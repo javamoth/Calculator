@@ -4,7 +4,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
+import java.util.Objects;
+
 public class HelloController {
+
+
+
+    // Add change listener
+
+
+    //Defining the variables
     @FXML
     private Label display;
     @FXML
@@ -12,19 +21,40 @@ public class HelloController {
             button6, button7, button8, button9, buttonAdd, buttonSubtract,
             buttonDivide, buttonMultiply, buttonEquals, buttonC;
 
-    @FXML
-    protected void onHelloButtonClick() {
-        display.setText("Welcome to JavaFX Application!");
-        button0.setText("!!!");
-    }
+    String flag;
+    String num1;
 
-    @FXML
-    protected double onAddButtonClick(double number) {
-        return number;
-    }
 
+//    @FXML
+//    public void onAddButtonClick() {
+//        double num1 = Double.parseDouble(display.getText());
+//        display.setText("0");
+//        boolean j = false;
+//        while (!j) {
+//            if (equals) {
+//                double num2 = Double.parseDouble(display.getText());
+//                double resultText = num1 + num2;
+//                String result = Double.toString(resultText);
+//                display.setText(result);
+//                j = true;
+//                equals = false;
+//
+//            }
+//
+//        }
+//
+//    }
+
+
+
+
+
+
+    //Event handler methods
     @FXML
     protected void onButton1Click() {
+
+
         if (Double.parseDouble(display.getText()) == 0) {
             display.setText("1");
         }
@@ -143,9 +173,71 @@ public class HelloController {
         }
     }
 
-
+    //This clears the display area
     @FXML
     protected void onButtonCClick() {
         display.setText("0");
     }
+
+    public void onButtonAddClick(){
+        num1 = display.getText();
+        display.setText("0");
+        flag = "+";
+
+    }
+
+    public void onButtonSubtractClick(){
+        num1 = display.getText();
+        display.setText("0");
+        flag = "-";
+
+    }
+
+    public void onButtonMultiplyClick(){
+        num1 = display.getText();
+        display.setText("0");
+        flag = "*";
+
+    }
+
+    public void onButtonDivideClick(){
+        num1 = display.getText();
+        display.setText("0");
+        flag = "/";
+
+    }
+
+    public void onButtonEqualsClick() {
+        if (Objects.equals(flag, "+")) {
+            String num2 = display.getText();
+            double result = Double.parseDouble(num1) + Double.parseDouble(num2);
+            display.setText(Double.toString(result));
+            flag = "";
+        }
+
+        if (Objects.equals(flag, "-")) {
+            String num2 = display.getText();
+            double result = Double.parseDouble(num1) - Double.parseDouble(num2);
+            display.setText(Double.toString(result));
+            flag = "";
+        }
+
+        if (Objects.equals(flag, "*")) {
+            String num2 = display.getText();
+            double result = Double.parseDouble(num1) * Double.parseDouble(num2);
+            display.setText(Double.toString(result));
+            flag = "";
+        }
+
+        if (Objects.equals(flag, "/")) {
+            String num2 = display.getText();
+            double result = Double.parseDouble(num1) / Double.parseDouble(num2);
+            display.setText(Double.toString(result));
+            flag = "";
+        }
+    }
+
+
+
+
 }
