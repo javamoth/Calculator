@@ -8,11 +8,6 @@ import java.util.Objects;
 
 public class HelloController {
 
-
-
-    // Add change listener
-
-
     //Defining the variables
     @FXML
     private Label display;
@@ -23,31 +18,6 @@ public class HelloController {
 
     String flag;
     String num1;
-
-
-//    @FXML
-//    public void onAddButtonClick() {
-//        double num1 = Double.parseDouble(display.getText());
-//        display.setText("0");
-//        boolean j = false;
-//        while (!j) {
-//            if (equals) {
-//                double num2 = Double.parseDouble(display.getText());
-//                double resultText = num1 + num2;
-//                String result = Double.toString(resultText);
-//                display.setText(result);
-//                j = true;
-//                equals = false;
-//
-//            }
-//
-//        }
-//
-//    }
-
-
-
-
 
 
     //Event handler methods
