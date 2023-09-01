@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
+import java.text.DecimalFormat;
 import java.util.Objects;
 
 public class HelloController {
@@ -181,28 +182,36 @@ public class HelloController {
         if (Objects.equals(flag, "+")) {
             String num2 = display.getText();
             double result = Double.parseDouble(num1) + Double.parseDouble(num2);
-            display.setText(Double.toString(result));
+            String stringRes = Double.toString(result);
+            DecimalFormat format = new DecimalFormat("0.###########");
+            display.setText(format.format(Double.valueOf(stringRes)));
             flag = "";
         }
 
         if (Objects.equals(flag, "-")) {
             String num2 = display.getText();
             double result = Double.parseDouble(num1) - Double.parseDouble(num2);
-            display.setText(Double.toString(result));
+            String stringRes = Double.toString(result);
+            DecimalFormat format = new DecimalFormat("0.###########");
+            display.setText(format.format(Double.valueOf(stringRes)));
             flag = "";
         }
 
         if (Objects.equals(flag, "*")) {
             String num2 = display.getText();
             double result = Double.parseDouble(num1) * Double.parseDouble(num2);
-            display.setText(Double.toString(result));
+            String stringRes = Double.toString(result);
+            DecimalFormat format = new DecimalFormat("0.###########");
+            display.setText(format.format(Double.valueOf(stringRes)));
             flag = "";
         }
 
         if (Objects.equals(flag, "/")) {
             String num2 = display.getText();
             double result = Double.parseDouble(num1) / Double.parseDouble(num2);
-            display.setText(Double.toString(result));
+            String stringRes = Double.toString(result);
+            DecimalFormat format = new DecimalFormat("0.###########");
+            display.setText(format.format(Double.valueOf(stringRes)));
             flag = "";
         }
     }
