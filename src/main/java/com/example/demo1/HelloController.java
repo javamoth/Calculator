@@ -30,7 +30,7 @@ public class HelloController {
         if (Double.parseDouble(display.getText()) == 0 || afterTheOperator || equals) {
             display.setText("1");
             afterTheOperator = false;
-
+            equals = false;
         }
         else {
             String num = display.getText();
