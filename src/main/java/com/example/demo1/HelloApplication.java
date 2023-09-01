@@ -1,17 +1,38 @@
 package com.example.demo1;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class HelloApplication extends Application {
+
+
+    class WindowButtons extends HBox {
+
+        public WindowButtons() {
+            Button closeBtn = new Button("X");
+
+            closeBtn.setOnAction(new EventHandler<ActionEvent>() {
+
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    Platform.exit();
+                }
+            });
+
+            this.getChildren().add(closeBtn);
+        }
+    }
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -20,6 +41,7 @@ public class HelloApplication extends Application {
 
 
         Scene scene = new Scene(fxmlLoader.load(), 347, 351);
+
 
         Button button0 = (Button) scene.lookup("#button0");
         Button button1 = (Button) scene.lookup("#button1");
@@ -126,11 +148,17 @@ public class HelloApplication extends Application {
             }
         });
 
+
+
+
         stage.setTitle("Calculator v1.12");
         stage.setScene(scene);
 
         stage.setResizable(false);
         stage.show();
+
+
+
 
 
 

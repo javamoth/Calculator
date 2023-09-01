@@ -16,26 +16,31 @@ public class HelloController {
 //            button6, button7, button8, button9, buttonAdd, buttonSubtract,
 //            buttonDivide, buttonMultiply, buttonEquals, buttonC;
 
-    String flag;
-    String num1;
-    Boolean afterTheOperator;
-    Boolean equals = false;
+    String flag; //Stores the operator: +, -, *, /
+    String num1; //Stores the 1st operand
+    Boolean afterTheOperator; //This flag lets the Onclick functions of the number buttons know that
+                                //an operator button has been pressed and they need to replace the displayed number
+                                //entirely instead of appending digits to it.
+    Boolean equals = false; //This flag lets the Onclick functions of the number buttons know that the "=" button
+                            //has been pressed and they need to replace the displayed number
+                            //entirely instead of appending digits to it.
 
 
     //Event handler methods
     @FXML
     protected void onButton1Click() {
 
-
-        if (Double.parseDouble(display.getText()) == 0 || afterTheOperator || equals) {
-            display.setText("1");
-            afterTheOperator = false;
-            equals = false;
+        if (Double.parseDouble(display.getText()) == 0 || afterTheOperator || equals) { //If either "0" is being
+                                    //displayed or an operator button's been pressed or the "=" button's been pressed
+            display.setText("1"); //Resets the displayed number to the button's digit
+            afterTheOperator = false; //Sets the operator flag to "false" after the 1st press to allow for
+                                         // appending digits
+            equals = false; //Sets the "=" flag to "false" after the 1st press to allow for appending digits
         }
         else {
-            String num = display.getText();
-            num = num + "1";
-            display.setText(num);
+            String num = display.getText(); //Gets the number that's already on the display
+            num = num + "1"; //Appends its value to it
+            display.setText(num); //Displays the resulting number
         }
     }
 
