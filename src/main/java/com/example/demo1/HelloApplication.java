@@ -126,7 +126,7 @@ public class HelloApplication extends Application {
             }
         });
 
-        stage.setTitle("Calculator v1.11");
+        stage.setTitle("Calculator v1.12");
         stage.setScene(scene);
 
         stage.setResizable(false);
