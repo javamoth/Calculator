@@ -12,11 +12,14 @@ public class HelloController {
     private Label display;
 
     String flag; //Stores the operator: +, -, *, /
+
     String num1; //Stores the 1st operand
+
     Boolean afterTheOperator; //This flag lets the Onclick functions of the number buttons know that
                                 //an operator button has been pressed, and they need to replace the displayed number
                                 //entirely instead of appending digits to it.
-    Boolean equals = false; //This flag lets the Onclick functions of the number buttons know that the "=" button
+
+    Boolean equals;         //This flag lets the Onclick functions of the number buttons know that the "=" button
                             //has been pressed, and they need to replace the displayed number
                             //entirely instead of appending digits to it.
 
