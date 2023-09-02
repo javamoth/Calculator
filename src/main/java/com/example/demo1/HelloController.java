@@ -15,6 +15,8 @@ public class HelloController {
 
     String num1; //Stores the 1st operand
 
+    String num2; //Stores the 2nd operand
+
     Boolean afterTheOperator; //This flag lets the Onclick functions of the number buttons know that
                                 //an operator button has been pressed, and they need to replace the displayed number
                                 //entirely instead of appending digits to it.
@@ -183,6 +185,7 @@ public class HelloController {
     }
 
     public void onButtonSubtractClick(){
+//        onButtonEqualsClick();
         num1 = display.getText();
         flag = "-";
         afterTheOperator = true;
@@ -203,7 +206,7 @@ public class HelloController {
 
     public void onButtonEqualsClick() {         //The "=" button
         if (Objects.equals(flag, "+")) {     //Checks what the operator flag is set to (+)
-            String num2 = display.getText();    //Stores the currently displayed number into the local variable num2
+            num2 = display.getText();    //Stores the currently displayed number into the local variable num2
             double result = Double.parseDouble(num1) + Double.parseDouble(num2);    //Converts the stored Strings
                                                 //to double and calculates the result
             String stringRes = Double.toString(result);     //Converts the result back to String
@@ -219,7 +222,7 @@ public class HelloController {
         }
 
         if (Objects.equals(flag, "-")) {
-            String num2 = display.getText();
+            num2 = display.getText();
             double result = Double.parseDouble(num1) - Double.parseDouble(num2);
             String stringRes = Double.toString(result);
             DecimalFormat format = new DecimalFormat("0.###########");
@@ -229,7 +232,7 @@ public class HelloController {
         }
 
         if (Objects.equals(flag, "*")) {
-            String num2 = display.getText();
+            num2 = display.getText();
             double result = Double.parseDouble(num1) * Double.parseDouble(num2);
             String stringRes = Double.toString(result);
             DecimalFormat format = new DecimalFormat("0.###########");
@@ -239,7 +242,7 @@ public class HelloController {
         }
 
         if (Objects.equals(flag, "/")) {
-            String num2 = display.getText();
+            num2 = display.getText();
             double result = Double.parseDouble(num1) / Double.parseDouble(num2);
             String stringRes = Double.toString(result);
             DecimalFormat format = new DecimalFormat("0.###########");
