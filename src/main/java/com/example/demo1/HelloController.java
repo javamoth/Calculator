@@ -17,6 +17,8 @@ public class HelloController {
 
     String num2; //Stores the 2nd operand
 
+    String numIterative = "";
+
     Boolean afterTheOperator; //This flag lets the Onclick functions of the number buttons know that
                                 //an operator button has been pressed, and they need to replace the displayed number
                                 //entirely instead of appending digits to it.
@@ -175,6 +177,7 @@ public class HelloController {
         flag = "";
         afterTheOperator = false;
         equals = false;
+        numIterative = "";
     }
 
     public void onButtonAddClick(){
@@ -182,6 +185,7 @@ public class HelloController {
         flag = "+";                     //Sets the operator flag to the corresponding operator sign
         afterTheOperator = true;        //This lets the digit buttons know that they have to overwrite the number
                                         //displayed
+        numIterative = "";
     }
 
     public void onButtonSubtractClick(){
@@ -189,6 +193,7 @@ public class HelloController {
         num1 = display.getText();
         flag = "-";
         afterTheOperator = true;
+        numIterative = "";
 
     }
 
@@ -196,59 +201,130 @@ public class HelloController {
         num1 = display.getText();
         flag = "*";
         afterTheOperator = true;
+        numIterative = "";
     }
 
     public void onButtonDivideClick(){
         num1 = display.getText();
         flag = "/";
         afterTheOperator = true;
+        numIterative = "";
     }
 
     public void onButtonEqualsClick() {         //The "=" button
-        if (Objects.equals(flag, "+")) {     //Checks what the operator flag is set to (+)
-            num2 = display.getText();    //Stores the currently displayed number into the local variable num2
-            double result = Double.parseDouble(num1) + Double.parseDouble(num2);    //Converts the stored Strings
-                                                //to double and calculates the result
-            String stringRes = Double.toString(result);     //Converts the result back to String
-            DecimalFormat format = new DecimalFormat("0.###########");      //Defines and Stores the desired
-                                                                                   //number format
-            display.setText(format.format(Double.valueOf(stringRes)));      //Converts the String back to double,
-                                                                    //formats and converts it yet again back to String
-                                                                    //then outputs said String to the display
-                                                                    //overwriting any existing number there
-            flag = "";      //Resets the operator flag
-            equals = true;  //Sets the equals flag to true, this lets the digit buttons know to overwrite the number
-                            //displayed on the first press
+//        if (Objects.equals(flag, "+")) {     //Checks what the operator flag is set to (+)
+//            num2 = display.getText();    //Stores the currently displayed number into the local variable num2
+//            double result = Double.parseDouble(num1) + Double.parseDouble(num2);    //Converts the stored Strings
+//                                                //to double and calculates the result
+//            String stringRes = Double.toString(result);     //Converts the result back to String
+//            DecimalFormat format = new DecimalFormat("0.###########");      //Defines and Stores the desired
+//                                                                                   //number format
+//            display.setText(format.format(Double.valueOf(stringRes)));      //Converts the String back to double,
+//                                                                    //formats and converts it yet again back to String
+//                                                                    //then outputs said String to the display
+//                                                                    //overwriting any existing number there
+////            flag = "";      //Resets the operator flag
+//            equals = true;  //Sets the equals flag to true, this lets the digit buttons know to overwrite the number
+//                            //displayed on the first press
+//        }
+
+        if (Objects.equals(flag, "+")) {
+            if (!Objects.equals(numIterative, "")){
+                num1 = display.getText();
+                double result = Double.parseDouble(num1) + Double.parseDouble(numIterative);
+                String stringRes = Double.toString(result);
+                DecimalFormat format = new DecimalFormat("0.###########");
+                display.setText(format.format(Double.valueOf(stringRes)));
+//            flag = "";
+                equals = true;
+
+            }
+            if (Objects.equals(numIterative, "")) {
+                num2 = display.getText();
+                double result = Double.parseDouble(num1) + Double.parseDouble(num2);
+                String stringRes = Double.toString(result);
+                DecimalFormat format = new DecimalFormat("0.###########");
+                display.setText(format.format(Double.valueOf(stringRes)));
+//            flag = "";
+                equals = true;
+                numIterative = num2;
+                num2 = "";
+            }
         }
 
+
         if (Objects.equals(flag, "-")) {
-            num2 = display.getText();
-            double result = Double.parseDouble(num1) - Double.parseDouble(num2);
-            String stringRes = Double.toString(result);
-            DecimalFormat format = new DecimalFormat("0.###########");
-            display.setText(format.format(Double.valueOf(stringRes)));
-            flag = "";
-            equals = true;
+            if (!Objects.equals(numIterative, "")){
+                num1 = display.getText();
+                double result = Double.parseDouble(num1) - Double.parseDouble(numIterative);
+                String stringRes = Double.toString(result);
+                DecimalFormat format = new DecimalFormat("0.###########");
+                display.setText(format.format(Double.valueOf(stringRes)));
+//            flag = "";
+                equals = true;
+
+            }
+            if (Objects.equals(numIterative, "")) {
+                num2 = display.getText();
+                double result = Double.parseDouble(num1) - Double.parseDouble(num2);
+                String stringRes = Double.toString(result);
+                DecimalFormat format = new DecimalFormat("0.###########");
+                display.setText(format.format(Double.valueOf(stringRes)));
+//            flag = "";
+                equals = true;
+                numIterative = num2;
+                num2 = "";
+            }
         }
 
         if (Objects.equals(flag, "*")) {
-            num2 = display.getText();
-            double result = Double.parseDouble(num1) * Double.parseDouble(num2);
-            String stringRes = Double.toString(result);
-            DecimalFormat format = new DecimalFormat("0.###########");
-            display.setText(format.format(Double.valueOf(stringRes)));
-            flag = "";
-            equals = true;
+
+            if (!Objects.equals(numIterative, "")){
+                num1 = display.getText();
+                double result = Double.parseDouble(num1) * Double.parseDouble(numIterative);
+                String stringRes = Double.toString(result);
+                DecimalFormat format = new DecimalFormat("0.###########");
+                display.setText(format.format(Double.valueOf(stringRes)));
+//            flag = "";
+                equals = true;
+
+            }
+            if (Objects.equals(numIterative, "")) {
+                num2 = display.getText();
+                double result = Double.parseDouble(num1) * Double.parseDouble(num2);
+                String stringRes = Double.toString(result);
+                DecimalFormat format = new DecimalFormat("0.###########");
+                display.setText(format.format(Double.valueOf(stringRes)));
+//            flag = "";
+                equals = true;
+                numIterative = num2;
+                num2 = "";
+            }
+
         }
 
         if (Objects.equals(flag, "/")) {
-            num2 = display.getText();
-            double result = Double.parseDouble(num1) / Double.parseDouble(num2);
-            String stringRes = Double.toString(result);
-            DecimalFormat format = new DecimalFormat("0.###########");
-            display.setText(format.format(Double.valueOf(stringRes)));
-            flag = "";
-            equals = true;
+            if (!Objects.equals(numIterative, "")){
+                num1 = display.getText();
+                double result = Double.parseDouble(num1) / Double.parseDouble(numIterative);
+                String stringRes = Double.toString(result);
+                DecimalFormat format = new DecimalFormat("0.###########");
+                display.setText(format.format(Double.valueOf(stringRes)));
+//            flag = "";
+                equals = true;
+
+            }
+            if (Objects.equals(numIterative, "")) {
+                num2 = display.getText();
+                double result = Double.parseDouble(num1) / Double.parseDouble(num2);
+                String stringRes = Double.toString(result);
+                DecimalFormat format = new DecimalFormat("0.###########");
+                display.setText(format.format(Double.valueOf(stringRes)));
+//            flag = "";
+                equals = true;
+                numIterative = num2;
+                num2 = "";
+            }
         }
     }
 }
