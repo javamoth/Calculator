@@ -168,7 +168,7 @@ public class HelloController {
     }
 
     @FXML
-    protected void onButtonCClick() {
+    protected void onButtonCClick() {   //Clears the display and resets all flags
         display.setText("0");
         flag = "";
         afterTheOperator = false;
@@ -176,9 +176,10 @@ public class HelloController {
     }
 
     public void onButtonAddClick(){
-        num1 = display.getText();
-        flag = "+";
-        afterTheOperator = true;
+        num1 = display.getText();       //Stores the current displayed number in the global variable num1
+        flag = "+";                     //Sets the operator flag to the corresponding operator sign
+        afterTheOperator = true;        //This lets the digit buttons know that they have to overwrite the number
+                                        //displayed
     }
 
     public void onButtonSubtractClick(){
@@ -200,15 +201,21 @@ public class HelloController {
         afterTheOperator = true;
     }
 
-    public void onButtonEqualsClick() {
-        if (Objects.equals(flag, "+")) {
-            String num2 = display.getText();
-            double result = Double.parseDouble(num1) + Double.parseDouble(num2);
-            String stringRes = Double.toString(result);
-            DecimalFormat format = new DecimalFormat("0.###########");
-            display.setText(format.format(Double.valueOf(stringRes)));
-            flag = "";
-            equals = true;
+    public void onButtonEqualsClick() {         //The "=" button
+        if (Objects.equals(flag, "+")) {     //Checks what the operator flag is set to (+)
+            String num2 = display.getText();    //Stores the currently displayed number into the local variable num2
+            double result = Double.parseDouble(num1) + Double.parseDouble(num2);    //Converts the stored Strings
+                                                //to double and calculates the result
+            String stringRes = Double.toString(result);     //Converts the result back to String
+            DecimalFormat format = new DecimalFormat("0.###########");      //Defines and Stores the desired
+                                                                                   //number format
+            display.setText(format.format(Double.valueOf(stringRes)));      //Converts the String back to double,
+                                                                    //formats and converts it yet again back to String
+                                                                    //then outputs said String to the display
+                                                                    //overwriting any existing number there
+            flag = "";      //Resets the operator flag
+            equals = true;  //Sets the equals flag to true, this lets the digit buttons know to overwrite the number
+                            //displayed on the first press
         }
 
         if (Objects.equals(flag, "-")) {
