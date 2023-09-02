@@ -43,35 +43,38 @@ public class HelloApplication extends Application {
 
                 //If either the zero key on the number row or the numpad zero is pressed
                 //Press the "0" button programmatically
-                case DIGIT0, NUMPAD0 -> button0.fire();
-                case DIGIT1, NUMPAD1 -> button1.fire();
-                case DIGIT2, NUMPAD2 -> button2.fire();
-                case DIGIT3, NUMPAD3 -> button3.fire();
-                case DIGIT4, NUMPAD4 -> button4.fire();
-                case DIGIT5, NUMPAD5 -> button5.fire();
-                case DIGIT6, NUMPAD6 -> button6.fire();
-                case DIGIT7, NUMPAD7 -> button7.fire();
-                case DIGIT9, NUMPAD9 -> button9.fire();
-                case ADD -> buttonAdd.fire();
-                case SUBTRACT, MINUS -> buttonSubtract.fire();
-                case MULTIPLY -> buttonMultiply.fire();
-                case DIVIDE, BACK_SLASH -> buttonDivide.fire();
-                case EQUALS, ENTER -> buttonEquals.fire();
-                case DELETE -> buttonC.fire();
+                case DIGIT0, NUMPAD0 -> {button0.fire(); key.consume();}
+                case DIGIT1, NUMPAD1 -> {button1.fire(); key.consume();}
+                case DIGIT2, NUMPAD2 -> {button2.fire(); key.consume();}
+                case DIGIT3, NUMPAD3 -> {button3.fire(); key.consume();}
+                case DIGIT4, NUMPAD4 -> {button4.fire(); key.consume();}
+                case DIGIT5, NUMPAD5 -> {button5.fire(); key.consume();}
+                case DIGIT6, NUMPAD6 -> {button6.fire(); key.consume();}
+                case DIGIT7, NUMPAD7 -> {button7.fire(); key.consume();}
+                case DIGIT9, NUMPAD9 -> {button9.fire(); key.consume();}
+                case ADD -> {buttonAdd.fire(); key.consume();}
+                case SUBTRACT, MINUS -> {buttonSubtract.fire(); key.consume();}
+                case MULTIPLY -> {buttonMultiply.fire(); key.consume();}
+                case DIVIDE, BACK_SLASH -> {buttonDivide.fire(); key.consume();}
+                case EQUALS, ENTER -> {buttonEquals.fire(); key.consume();}
+                case DELETE -> {buttonC.fire(); key.consume();}
 //              default -> System.out.println(key.getCode()); //I used this for debugging
             }
 
             if (key.isShiftDown() && key.getCode() == KeyCode.EQUALS) {
                 buttonAdd.fire();
+                key.consume();
             }
 
             //Digit 8 from the number row is a special case as it needs to trigger an event with both shift pressed
             //and shift released, so I excluded it from the switch statement and wrote two "if" conditions instead
             if (key.isShiftDown() && key.getCode() == KeyCode.DIGIT8) {
                 buttonMultiply.fire();
+                key.consume();
             }
             if (!key.isShiftDown() && (key.getCode() == KeyCode.DIGIT8) || (key.getCode() == KeyCode.NUMPAD8)){
                 button8.fire();
+                key.consume();
             }
         });
 
