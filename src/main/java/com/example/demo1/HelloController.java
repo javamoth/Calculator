@@ -2,7 +2,6 @@ package com.example.demo1;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-
 import java.text.DecimalFormat;
 import java.util.Objects;
 
@@ -11,22 +10,17 @@ public class HelloController {
     //Defining the variables
     @FXML
     private Label display;
-//    @FXML
-//    private Button button0, button1, button2, button3, button4, button5,
-//            button6, button7, button8, button9, buttonAdd, buttonSubtract,
-//            buttonDivide, buttonMultiply, buttonEquals, buttonC;
 
     String flag; //Stores the operator: +, -, *, /
     String num1; //Stores the 1st operand
     Boolean afterTheOperator; //This flag lets the Onclick functions of the number buttons know that
-                                //an operator button has been pressed and they need to replace the displayed number
+                                //an operator button has been pressed, and they need to replace the displayed number
                                 //entirely instead of appending digits to it.
     Boolean equals = false; //This flag lets the Onclick functions of the number buttons know that the "=" button
-                            //has been pressed and they need to replace the displayed number
+                            //has been pressed, and they need to replace the displayed number
                             //entirely instead of appending digits to it.
 
-
-    //Event handler methods
+    //onClick methods
     @FXML
     protected void onButton1Click() {
 
@@ -170,7 +164,6 @@ public class HelloController {
         }
     }
 
-    //This clears the display area
     @FXML
     protected void onButtonCClick() {
         display.setText("0");
@@ -181,16 +174,12 @@ public class HelloController {
 
     public void onButtonAddClick(){
         num1 = display.getText();
-//        display.setText("0");
         flag = "+";
         afterTheOperator = true;
-
-
     }
 
     public void onButtonSubtractClick(){
         num1 = display.getText();
-//        display.setText("0");
         flag = "-";
         afterTheOperator = true;
 
@@ -198,18 +187,14 @@ public class HelloController {
 
     public void onButtonMultiplyClick(){
         num1 = display.getText();
-//        display.setText("0");
         flag = "*";
         afterTheOperator = true;
-
     }
 
     public void onButtonDivideClick(){
         num1 = display.getText();
-//        display.setText("0");
         flag = "/";
         afterTheOperator = true;
-
     }
 
     public void onButtonEqualsClick() {
@@ -253,8 +238,4 @@ public class HelloController {
             equals = true;
         }
     }
-
-
-
-
 }
