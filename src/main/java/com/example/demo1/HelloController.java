@@ -31,13 +31,21 @@ public class HelloController {
     @FXML
     protected void onButton1Click() {
 
-        if (Double.parseDouble(display.getText()) == 0 || afterTheOperator || equals) { //If either "0" is being
+        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) { //If either "0" is being
                                     //displayed or an operator button's been pressed or the "=" button's been pressed
             display.setText("1"); //Resets the displayed number to the button's digit
             afterTheOperator = false; //Sets the operator flag to "false" after the 1st press to allow for
                                          // appending digits
             equals = false; //Sets the "=" flag to "false" after the 1st press to allow for appending digits
         }
+
+
+        if ((Double.parseDouble(display.getText()) == 0 && display.getText().contains(".")) && (afterTheOperator || equals)) {
+            String num = display.getText(); //Gets the number that's already on the display
+            num = num + "1"; //Appends its value to it
+            display.setText(num); //Displays the resulting number
+        }
+
         else {
             String num = display.getText(); //Gets the number that's already on the display
             num = num + "1"; //Appends its value to it
@@ -47,7 +55,7 @@ public class HelloController {
 
     @FXML
     protected void onButton2Click() {
-        if (Double.parseDouble(display.getText()) == 0 || afterTheOperator || equals) {
+        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
             display.setText("2");
             afterTheOperator = false;
             equals = false;
@@ -61,7 +69,7 @@ public class HelloController {
 
     @FXML
     protected void onButton3Click() {
-        if (Double.parseDouble(display.getText()) == 0 || afterTheOperator || equals) {
+        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
             display.setText("3");
             afterTheOperator = false;
             equals = false;
@@ -75,7 +83,7 @@ public class HelloController {
 
     @FXML
     protected void onButton4Click() {
-        if (Double.parseDouble(display.getText()) == 0 || afterTheOperator || equals) {
+        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
             display.setText("4");
             afterTheOperator = false;
             equals = false;
@@ -89,7 +97,7 @@ public class HelloController {
 
     @FXML
     protected void onButton5Click() {
-        if (Double.parseDouble(display.getText()) == 0 || afterTheOperator || equals) {
+        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
             display.setText("5");
             afterTheOperator = false;
             equals = false;
@@ -103,7 +111,7 @@ public class HelloController {
 
     @FXML
     protected void onButton6Click() {
-        if (Double.parseDouble(display.getText()) == 0 || afterTheOperator || equals) {
+        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
             display.setText("6");
             afterTheOperator = false;
             equals = false;
@@ -117,7 +125,7 @@ public class HelloController {
 
     @FXML
     protected void onButton7Click() {
-        if (Double.parseDouble(display.getText()) == 0 || afterTheOperator || equals) {
+        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
             display.setText("7");
             afterTheOperator = false;
             equals = false;
@@ -131,7 +139,7 @@ public class HelloController {
 
     @FXML
     protected void onButton8Click() {
-        if (Double.parseDouble(display.getText()) == 0 || afterTheOperator || equals) {
+        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
             display.setText("8");
             afterTheOperator = false;
             equals = false;
@@ -145,7 +153,7 @@ public class HelloController {
 
     @FXML
     protected void onButton9Click() {
-        if (Double.parseDouble(display.getText()) == 0 || afterTheOperator || equals) {
+        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
             display.setText("9");
             afterTheOperator = false;
             equals = false;
@@ -159,7 +167,7 @@ public class HelloController {
 
     @FXML
     protected void onButton0Click() {
-        if (Double.parseDouble(display.getText()) == 0 || afterTheOperator || equals) {
+        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
             display.setText("0");
             afterTheOperator = false;
             equals = false;
@@ -181,6 +189,10 @@ public class HelloController {
     }
 
     public void onButtonAddClick(){
+        DecimalFormat format = new DecimalFormat("0.###########");
+        String pointAndZeroCleared = format.format(Double.valueOf(display.getText()));
+        display.setText(pointAndZeroCleared);
+
         num1 = display.getText();       //Stores the current displayed number in the global variable num1
         flag = "+";                     //Sets the operator flag to the corresponding operator sign
         afterTheOperator = true;        //This lets the digit buttons know that they have to overwrite the number
@@ -189,7 +201,12 @@ public class HelloController {
     }
 
     public void onButtonSubtractClick(){
+
 //        onButtonEqualsClick();
+        DecimalFormat format = new DecimalFormat("0.###########");
+        String pointAndZeroCleared = format.format(Double.valueOf(display.getText()));
+        display.setText(pointAndZeroCleared);
+
         num1 = display.getText();
         flag = "-";
         afterTheOperator = true;
@@ -198,6 +215,11 @@ public class HelloController {
     }
 
     public void onButtonMultiplyClick(){
+
+        DecimalFormat format = new DecimalFormat("0.###########");
+        String pointAndZeroCleared = format.format(Double.valueOf(display.getText()));
+        display.setText(pointAndZeroCleared);
+
         num1 = display.getText();
         flag = "*";
         afterTheOperator = true;
@@ -205,6 +227,11 @@ public class HelloController {
     }
 
     public void onButtonDivideClick(){
+
+        DecimalFormat format = new DecimalFormat("0.###########");
+        String pointAndZeroCleared = format.format(Double.valueOf(display.getText()));
+        display.setText(pointAndZeroCleared);
+
         num1 = display.getText();
         flag = "/";
         afterTheOperator = true;
@@ -337,21 +364,33 @@ public class HelloController {
 
         if (displayed < 0) {
 
-            double displayedPos = Math.abs(displayed);
+            double displayPos = Math.abs(displayed);
             DecimalFormat format = new DecimalFormat("0.###########");
-            display.setText(format.format(Double.valueOf(displayedPos)));
+            display.setText(format.format(Double.valueOf(displayPos)));
         }
 
         if (displayed > 0) {
 
-            double displayedNeg = -displayed;
+            double displayNeg = -displayed;
             DecimalFormat format = new DecimalFormat("0.###########");
-            display.setText(format.format(Double.valueOf(displayedNeg)));
+            display.setText(format.format(Double.valueOf(displayNeg)));
         }
 
     }
 
     public void onButtonPointClick(){
+
+        String displayed = display.getText();
+
+        if (!displayed.contains(".") && (!afterTheOperator || !equals)) {
+            String pointAdded = displayed + ".";
+            display.setText(pointAdded);
+        }
+
+        if (afterTheOperator || equals) {
+
+            display.setText("0.");
+        }
 
     }
 
