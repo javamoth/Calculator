@@ -19,8 +19,6 @@ public class HelloController {
 
     String numIterative = "";
 
-    Boolean stopIterating = false;
-
     Boolean afterTheOperator = false; //This flag lets the Onclick functions of the number buttons know that
                                 //an operator button has been pressed, and they need to replace the displayed number
                                 //entirely instead of appending digits to it.
@@ -29,185 +27,192 @@ public class HelloController {
                             //has been pressed, and they need to replace the displayed number
                             //entirely instead of appending digits to it.
 
-
-
-
     //onClick methods
     @FXML
     protected void onButton1Click() {
 
-        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || (afterTheOperator || equals)) { //If either "0" is being
-                                    //displayed or an operator button's been pressed or the "=" button's been pressed
+        //If either "0" is being displayed or an operator button's been pressed or the "=" button's been pressed
+        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || (afterTheOperator || equals)) {
+
             display.setText("1"); //Resets the displayed number to the button's digit
             afterTheOperator = false; //Sets the operator flag to "false" after the 1st press to allow for
                                          // appending digits
-
             equals = false; //Sets the "=" flag to "false" after the 1st press to allow for appending digits
-
         }
 
-
-//        if (Objects.equals(display.getText(), "0.") && (afterTheOperator || equals))  {
-//            String num = display.getText(); //Gets the number that's already on the display
-//            num = num + "1"; //Appends its value to it
-//            display.setText(num); //Displays the resulting number
-//        }
-
         else {
+
             String num = display.getText(); //Gets the number that's already on the display
             num = num + "1"; //Appends its value to it
             display.setText(num); //Displays the resulting number
         }
-
-
     }
 
     @FXML
     protected void onButton2Click() {
+
         if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
+
             display.setText("2");
             afterTheOperator = false;
             equals = false;
         }
+
         else {
+
             String num = display.getText();
             num = num + "2";
             display.setText(num);
         }
-
-
     }
 
     @FXML
     protected void onButton3Click() {
+
         if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
+
             display.setText("3");
             afterTheOperator = false;
             equals = false;
         }
+
         else {
+
             String num = display.getText();
             num = num + "3";
             display.setText(num);
         }
-
-
     }
 
     @FXML
     protected void onButton4Click() {
+
         if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
+
             display.setText("4");
             afterTheOperator = false;
             equals = false;
         }
+
         else {
+
             String num = display.getText();
             num = num + "4";
             display.setText(num);
         }
-
-
     }
 
     @FXML
     protected void onButton5Click() {
+
         if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
+
             display.setText("5");
             afterTheOperator = false;
             equals = false;
         }
+
         else {
+
             String num = display.getText();
             num = num + "5";
             display.setText(num);
         }
-
-
     }
 
     @FXML
     protected void onButton6Click() {
+
         if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
+
             display.setText("6");
             afterTheOperator = false;
             equals = false;
         }
+
         else {
+
             String num = display.getText();
             num = num + "6";
             display.setText(num);
         }
-
-
     }
 
     @FXML
     protected void onButton7Click() {
+
         if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
+
             display.setText("7");
             afterTheOperator = false;
             equals = false;
         }
+
         else {
+
             String num = display.getText();
             num = num + "7";
             display.setText(num);
         }
-
-
     }
 
     @FXML
     protected void onButton8Click() {
+
         if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
+
             display.setText("8");
             afterTheOperator = false;
             equals = false;
         }
+
         else {
+
             String num = display.getText();
             num = num + "8";
             display.setText(num);
         }
-
-
     }
 
     @FXML
     protected void onButton9Click() {
+
         if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
+
             display.setText("9");
             afterTheOperator = false;
             equals = false;
         }
+
         else {
+
             String num = display.getText();
             num = num + "9";
             display.setText(num);
         }
-
-
     }
 
     @FXML
     protected void onButton0Click() {
+
         if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
+
             display.setText("0");
             afterTheOperator = false;
             equals = false;
         }
+
         else {
+
             String num = display.getText();
             num = num + "0";
             display.setText(num);
         }
-
-
     }
 
     @FXML
     protected void onButtonCClick() {   //Clears the display and resets all flags
+
         display.setText("0");
         flag = "";
         afterTheOperator = false;
@@ -216,16 +221,17 @@ public class HelloController {
     }
 
     public void onButtonAddClick(){
+
         DecimalFormat format = new DecimalFormat("0.###########");
         String pointAndZeroCleared = format.format(Double.valueOf(display.getText()));
 
         //Remove leading '-" from zero after backspacing to it
         if (pointAndZeroCleared.matches("-0")) {
+
             pointAndZeroCleared = "0";
         }
 
         display.setText(pointAndZeroCleared);
-
         num1 = display.getText();       //Stores the current displayed number in the global variable num1
         flag = "+";                     //Sets the operator flag to the corresponding operator sign
         afterTheOperator = true;        //This lets the digit buttons know that they have to overwrite the number
@@ -240,15 +246,15 @@ public class HelloController {
         String pointAndZeroCleared = format.format(Double.valueOf(display.getText()));
 
         if (pointAndZeroCleared.matches("-0")) {
+
             pointAndZeroCleared = "0";
         }
-        display.setText(pointAndZeroCleared);
 
+        display.setText(pointAndZeroCleared);
         num1 = display.getText();
         flag = "-";
         afterTheOperator = true;
         numIterative = "";
-
     }
 
     public void onButtonMultiplyClick(){

@@ -11,8 +11,6 @@ import java.io.IOException;
 
 public class HelloApplication extends Application {
 
-
-
     @Override
     public void start(Stage stage) throws IOException {
 
@@ -61,13 +59,12 @@ public class HelloApplication extends Application {
                 case SUBTRACT, MINUS -> {buttonSubtract.fire(); key.consume();}
                 case MULTIPLY -> {buttonMultiply.fire(); key.consume();}
                 case DIVIDE, BACK_SLASH -> {buttonDivide.fire(); key.consume();}
-//                case EQUALS, ENTER -> {buttonEquals.fire(); key.consume();}
                 case DELETE -> {buttonC.fire(); key.consume();}
                 case DECIMAL, PERIOD, F11 -> {buttonPoint.fire(); key.consume();}
                 case F10 -> {buttonNegative.fire(); key.consume();}
                 case BACK_SPACE, F12 -> {buttonBackspace.fire(); key.consume();}
 
-//              default -> System.out.println(key.getCode()); //I used this for debugging
+//              default -> System.out.println(key.getCode()); //Use this for debugging
             }
 
             if (key.isShiftDown() && key.getCode() == KeyCode.EQUALS) {
@@ -91,10 +88,6 @@ public class HelloApplication extends Application {
             }
         });
 
-
-
-
-
         stage.setTitle("Calculator v1.23");
         stage.setScene(scene);
         stage.setResizable(false);
@@ -102,7 +95,6 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
-
 
         launch();
     }
