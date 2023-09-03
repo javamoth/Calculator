@@ -327,4 +327,20 @@ public class HelloController {
             }
         }
     }
+
+    public void onButtonRepeatSwitchClick(){
+
+    }
+
+    public void onButtonNegativeClick(){
+
+    }
+
+    public void onButtonPointClick(){
+
+    }
+
+    public void onButtonBackspaceClick(){
+
+    }
 }

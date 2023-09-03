@@ -27,6 +27,23 @@
             <Font size="27.0" />
          </font></Label>
 
+       <Button fx:id="buttonRepeatSwitch" layoutX="15.0" layoutY="74.0" mnemonicParsing="false" onAction="#onButtonRepeatSwitchClick" prefHeight="55.0" prefWidth="77.0" text="R" GridPane.columnIndex="0" GridPane.rowIndex="1">
+           <font>
+               <Font size="27.0" />
+           </font></Button>
+       <Button fx:id="buttonNegative" layoutX="88.0" layoutY="74.0" mnemonicParsing="false" onAction="#onButtonNegativeClick" prefHeight="55.0" prefWidth="77.0" text="±" GridPane.columnIndex="1" GridPane.rowIndex="1">
+           <font>
+               <Font size="27.0" />
+           </font></Button>
+       <Button fx:id="buttonPoint" layoutX="88.0" layoutY="74.0" mnemonicParsing="false" onAction="#onButtonPointClick" prefHeight="55.0" prefWidth="77.0" text="." GridPane.columnIndex="2" GridPane.rowIndex="1">
+           <font>
+               <Font size="27.0" />
+           </font></Button>
+       <Button fx:id="buttonBackspace" layoutX="88.0" layoutY="74.0" mnemonicParsing="false" onAction="#onButtonBackspaceClick" prefHeight="55.0" prefWidth="77.0" text="BS" GridPane.columnIndex="3" GridPane.rowIndex="1">
+           <font>
+               <Font size="27.0" />
+           </font></Button>
+
       <Button fx:id="button7" layoutX="15.0" layoutY="74.0" mnemonicParsing="false" onAction="#onButton7Click" prefHeight="55.0" prefWidth="77.0" text="7" GridPane.columnIndex="0" GridPane.rowIndex="2">
          <font>
             <Font size="27.0" />
