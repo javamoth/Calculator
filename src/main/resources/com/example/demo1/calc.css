@@ -8,7 +8,9 @@
 }
 
 .label {
--fx-background-color: #9DB2BF;
+/*-fx-background-color: #1B6B93;*/
+-fx-background-color: #256D85;
+
 -fx-text-fill: white;
 }
 
