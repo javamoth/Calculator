@@ -220,7 +220,7 @@ public class HelloController {
         numIterative = "";
     }
 
-    public void onButtonAddClick(){
+    public void onButtonAddClick() {
 
         DecimalFormat format = new DecimalFormat("0.###########");
         String pointAndZeroCleared = format.format(Double.valueOf(display.getText()));
@@ -239,7 +239,7 @@ public class HelloController {
         numIterative = "";
     }
 
-    public void onButtonSubtractClick(){
+    public void onButtonSubtractClick() {
 
 //        onButtonEqualsClick();
         DecimalFormat format = new DecimalFormat("0.###########");
@@ -257,32 +257,34 @@ public class HelloController {
         numIterative = "";
     }
 
-    public void onButtonMultiplyClick(){
+    public void onButtonMultiplyClick() {
 
         DecimalFormat format = new DecimalFormat("0.###########");
         String pointAndZeroCleared = format.format(Double.valueOf(display.getText()));
 
         if (pointAndZeroCleared.matches("-0")) {
+
             pointAndZeroCleared = "0";
         }
-        display.setText(pointAndZeroCleared);
 
+        display.setText(pointAndZeroCleared);
         num1 = display.getText();
         flag = "*";
         afterTheOperator = true;
         numIterative = "";
     }
 
-    public void onButtonDivideClick(){
+    public void onButtonDivideClick() {
 
         DecimalFormat format = new DecimalFormat("0.###########");
         String pointAndZeroCleared = format.format(Double.valueOf(display.getText()));
 
         if (pointAndZeroCleared.matches("-0")) {
+
             pointAndZeroCleared = "0";
         }
-        display.setText(pointAndZeroCleared);
 
+        display.setText(pointAndZeroCleared);
         num1 = display.getText();
         flag = "/";
         afterTheOperator = true;
@@ -307,48 +309,49 @@ public class HelloController {
 //        }
 
         if (Objects.equals(flag, "+")) {
-            if (!Objects.equals(numIterative, "")){
+
+            if (!Objects.equals(numIterative, "")) {
+
                 num1 = display.getText();
                 double result = Double.parseDouble(num1) + Double.parseDouble(numIterative);
                 String stringRes = Double.toString(result);
                 DecimalFormat format = new DecimalFormat("0.###########");
                 display.setText(format.format(Double.valueOf(stringRes)));
-//            flag = "";
                 equals = true;
-
             }
+
             if (Objects.equals(numIterative, "")) {
+
                 num2 = display.getText();
                 double result = Double.parseDouble(num1) + Double.parseDouble(num2);
                 String stringRes = Double.toString(result);
                 DecimalFormat format = new DecimalFormat("0.###########");
                 display.setText(format.format(Double.valueOf(stringRes)));
-//            flag = "";
                 equals = true;
                 numIterative = num2;
                 num2 = "";
             }
         }
 
-
         if (Objects.equals(flag, "-")) {
+
             if (!Objects.equals(numIterative, "")){
+
                 num1 = display.getText();
                 double result = Double.parseDouble(num1) - Double.parseDouble(numIterative);
                 String stringRes = Double.toString(result);
                 DecimalFormat format = new DecimalFormat("0.###########");
                 display.setText(format.format(Double.valueOf(stringRes)));
-//            flag = "";
                 equals = true;
-
             }
+
             if (Objects.equals(numIterative, "")) {
+
                 num2 = display.getText();
                 double result = Double.parseDouble(num1) - Double.parseDouble(num2);
                 String stringRes = Double.toString(result);
                 DecimalFormat format = new DecimalFormat("0.###########");
                 display.setText(format.format(Double.valueOf(stringRes)));
-//            flag = "";
                 equals = true;
                 numIterative = num2;
                 num2 = "";
@@ -357,48 +360,48 @@ public class HelloController {
 
         if (Objects.equals(flag, "*")) {
 
-            if (!Objects.equals(numIterative, "")){
+            if (!Objects.equals(numIterative, "")) {
+
                 num1 = display.getText();
                 double result = Double.parseDouble(num1) * Double.parseDouble(numIterative);
                 String stringRes = Double.toString(result);
                 DecimalFormat format = new DecimalFormat("0.###########");
                 display.setText(format.format(Double.valueOf(stringRes)));
-//            flag = "";
                 equals = true;
-
             }
+
             if (Objects.equals(numIterative, "")) {
+
                 num2 = display.getText();
                 double result = Double.parseDouble(num1) * Double.parseDouble(num2);
                 String stringRes = Double.toString(result);
                 DecimalFormat format = new DecimalFormat("0.###########");
                 display.setText(format.format(Double.valueOf(stringRes)));
-//            flag = "";
                 equals = true;
                 numIterative = num2;
                 num2 = "";
             }
-
         }
 
         if (Objects.equals(flag, "/")) {
-            if (!Objects.equals(numIterative, "")){
+
+            if (!Objects.equals(numIterative, "")) {
+
                 num1 = display.getText();
                 double result = Double.parseDouble(num1) / Double.parseDouble(numIterative);
                 String stringRes = Double.toString(result);
                 DecimalFormat format = new DecimalFormat("0.###########");
                 display.setText(format.format(Double.valueOf(stringRes)));
-//            flag = "";
                 equals = true;
-
             }
+
             if (Objects.equals(numIterative, "")) {
+
                 num2 = display.getText();
                 double result = Double.parseDouble(num1) / Double.parseDouble(num2);
                 String stringRes = Double.toString(result);
                 DecimalFormat format = new DecimalFormat("0.###########");
                 display.setText(format.format(Double.valueOf(stringRes)));
-//            flag = "";
                 equals = true;
                 numIterative = num2;
                 num2 = "";
