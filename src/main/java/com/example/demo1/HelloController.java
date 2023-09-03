@@ -215,6 +215,12 @@ public class HelloController {
     public void onButtonAddClick(){
         DecimalFormat format = new DecimalFormat("0.###########");
         String pointAndZeroCleared = format.format(Double.valueOf(display.getText()));
+
+        //Remove leading '-" from zero after backspacing to it
+        if (pointAndZeroCleared.matches("-0")) {
+            pointAndZeroCleared = "0";
+        }
+
         display.setText(pointAndZeroCleared);
 
         num1 = display.getText();       //Stores the current displayed number in the global variable num1
@@ -229,6 +235,10 @@ public class HelloController {
 //        onButtonEqualsClick();
         DecimalFormat format = new DecimalFormat("0.###########");
         String pointAndZeroCleared = format.format(Double.valueOf(display.getText()));
+
+        if (pointAndZeroCleared.matches("-0")) {
+            pointAndZeroCleared = "0";
+        }
         display.setText(pointAndZeroCleared);
 
         num1 = display.getText();
@@ -242,6 +252,10 @@ public class HelloController {
 
         DecimalFormat format = new DecimalFormat("0.###########");
         String pointAndZeroCleared = format.format(Double.valueOf(display.getText()));
+
+        if (pointAndZeroCleared.matches("-0")) {
+            pointAndZeroCleared = "0";
+        }
         display.setText(pointAndZeroCleared);
 
         num1 = display.getText();
@@ -254,6 +268,10 @@ public class HelloController {
 
         DecimalFormat format = new DecimalFormat("0.###########");
         String pointAndZeroCleared = format.format(Double.valueOf(display.getText()));
+
+        if (pointAndZeroCleared.matches("-0")) {
+            pointAndZeroCleared = "0";
+        }
         display.setText(pointAndZeroCleared);
 
         num1 = display.getText();
@@ -422,24 +440,50 @@ public class HelloController {
 
     public void onButtonBackspaceClick(){
 
-        String displayed = display.getText();
-
         if (!equals) { //Make backspace only work on entered operands and not the result
 
-            if (displayed.equalsIgnoreCase("-0.") && displayed.length() == 3) {
+//            double j = Double.parseDouble(display.getText());
+//
+//                boolean isZero = true;
+//
+//                while (j != 0) {
+//
+//                }
+            String displayed = display.getText();
 
-                display.setText("0");
-            }
+//            if (displayed.equalsIgnoreCase("-0.0")) {
+//
+//
+//
+//                display.setText("0");
+//
+//            }
 
             if (displayed.equalsIgnoreCase("0") || displayed.length() == 1) {
 
+
+
                 display.setText("0");
+
+
             }
 
             if (!displayed.equalsIgnoreCase("0") && displayed.length() > 1) {
 
                 String trimmed = displayed.substring(0, displayed.length() - 1);
-                display.setText(trimmed);
+
+//                if (trimmed.matches("-.")&& displayed.length() > 2) {
+//
+//                    display.setText("0");
+//                }
+//
+//                else {
+                    display.setText(trimmed);
+//                }
+            }
+
+            if ((displayed.matches("-.")) || (displayed.matches("-0."))) {
+                display.setText("0");
             }
         }
     }
