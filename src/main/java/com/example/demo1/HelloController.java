@@ -421,12 +421,26 @@ public class HelloController {
     }
 
     public void onButtonBackspaceClick(){
-//        String displayed = display.getText();
-//
-//        if (!Objects.equals(displayed, "0")) {
-//
-//            String trimmed = displayed.substring(0, displayed.length() -1);
-//            display.setText(trimmed);
-//        }
+
+        String displayed = display.getText();
+
+        if (!equals) { //Make backspace only work on entered operands and not the result
+
+            if (displayed.equalsIgnoreCase("-0.") && displayed.length() == 3) {
+
+                display.setText("0");
+            }
+
+            if (displayed.equalsIgnoreCase("0") || displayed.length() == 1) {
+
+                display.setText("0");
+            }
+
+            if (!displayed.equalsIgnoreCase("0") && displayed.length() > 1) {
+
+                String trimmed = displayed.substring(0, displayed.length() - 1);
+                display.setText(trimmed);
+            }
+        }
     }
 }
