@@ -224,7 +224,9 @@ public class HelloController {
     public void onButtonAddClick() {
 
         //Just in case the user has backspaced to "-0." after entering the 1st operand we perform the steps below
+
         DecimalFormat format = new DecimalFormat("0.###########"); //Presets the format
+
         String pointAndZeroCleared = format.format(Double.valueOf(display.getText())); //Converts double to String
         //and formats it, stripping any trailing zeros and the floating point from the number displayed
 
@@ -239,12 +241,12 @@ public class HelloController {
         flag = "+";                     //Sets the operator flag to the corresponding operator sign
         afterTheOperator = true;        //This lets the digit buttons know that they have to overwrite the number
                                         //displayed
-        numIterative = "";
+        numIterative = "";              //Empties numIterative so that the function, calculating the result, knows
+                                        //that the next iteration will be the 1st (???  forgot why it is needed)
     }
 
     public void onButtonSubtractClick() {
 
-//        onButtonEqualsClick();
         DecimalFormat format = new DecimalFormat("0.###########");
         String pointAndZeroCleared = format.format(Double.valueOf(display.getText()));
 
@@ -295,7 +297,7 @@ public class HelloController {
     }
 
     public void onButtonEqualsClick() {         //The "=" button
-//        if (Objects.equals(flag, "+")) {     //Checks what the operator flag is set to (+)
+//        if (Objects.equals(flag, "+")) {
 //            num2 = display.getText();    //Stores the currently displayed number into the local variable num2
 //            double result = Double.parseDouble(num1) + Double.parseDouble(num2);    //Converts the stored Strings
 //                                                //to double and calculates the result
@@ -311,28 +313,43 @@ public class HelloController {
 //                            //displayed on the first press
 //        }
 
-        if (Objects.equals(flag, "+")) {
+        if (Objects.equals(flag, "+")) { //Checks what the operator flag is set to (+)
 
-            if (!Objects.equals(numIterative, "")) {
+            if (!Objects.equals(numIterative, "")) { //If numIterative is not empty, that means the 2nd operand
+                //from the previous operation was stored in numIterative, and will be used again as the 2nd operand here
 
-                num1 = display.getText();
-                double result = Double.parseDouble(num1) + Double.parseDouble(numIterative);
-                String stringRes = Double.toString(result);
-                DecimalFormat format = new DecimalFormat("0.###########");
-                display.setText(format.format(Double.valueOf(stringRes)));
-                equals = true;
+                num1 = display.getText(); //Stores the outputted result of the previous operation in num1
+                double result = Double.parseDouble(num1) + Double.parseDouble(numIterative); //Converts the values
+                //of both variables to double and stores the result
+
+                String stringRes = Double.toString(result); //Converts the result to String
+                DecimalFormat format = new DecimalFormat("0.###########"); //Presets the format
+                display.setText(format.format(Double.valueOf(stringRes))); //Converts the String result to double,
+                //formats it and outputs it to the display
+
+                equals = true; //Sets the equals flag to true, this lets the digit buttons know to overwrite the number
+//                            //displayed on the first press
             }
 
-            if (Objects.equals(numIterative, "")) {
+            if (Objects.equals(numIterative, "")) { //If numIterative is empty, that means that this is the first
+                //iteration of the operation
 
-                num2 = display.getText();
-                double result = Double.parseDouble(num1) + Double.parseDouble(num2);
-                String stringRes = Double.toString(result);
-                DecimalFormat format = new DecimalFormat("0.###########");
-                display.setText(format.format(Double.valueOf(stringRes)));
-                equals = true;
-                numIterative = num2;
-                num2 = "";
+                num2 = display.getText(); //Stores the value of the 2nd operand, currently on the display, into num2
+                double result = Double.parseDouble(num1) + Double.parseDouble(num2); //Converts the values
+                //of both variables to double and stores the result
+
+                String stringRes = Double.toString(result); //Converts the result to String
+                DecimalFormat format = new DecimalFormat("0.###########"); //Presets the format
+                display.setText(format.format(Double.valueOf(stringRes))); //Converts the String result to double,
+                //formats it and outputs it to the display
+
+                equals = true; //Sets the equals flag to true, this lets the digit buttons know to overwrite the number
+//                            //displayed on the first press
+
+                numIterative = num2; //Stores the 2nd operand into numIterative to be used as the 2nd operand during
+                //the 2nd and all consecutive iterations
+
+                num2 = ""; //Empties num2
             }
         }
 
