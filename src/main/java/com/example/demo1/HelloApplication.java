@@ -11,6 +11,8 @@ import java.io.IOException;
 
 public class HelloApplication extends Application {
 
+
+
     @Override
     public void start(Stage stage) throws IOException {
 
@@ -89,13 +91,18 @@ public class HelloApplication extends Application {
             }
         });
 
-        stage.setTitle("Calculator v1.13");
+
+
+
+
+        stage.setTitle("Calculator v1.23");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
     }
 
     public static void main(String[] args) {
+
 
         launch();
     }
