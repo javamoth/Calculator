@@ -37,6 +37,7 @@ public class HelloApplication extends Application {
         Button buttonC = (Button) scene.lookup("#buttonC");
         Button buttonPoint = (Button) scene.lookup("#buttonPoint");
         Button buttonNegative = (Button) scene.lookup("#buttonNegative");
+        Button buttonBackspace = (Button) scene.lookup("#buttonBackspace");
 
         //Detecting the keys that are being pressed
         scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {  //Registering a key press event
@@ -62,6 +63,7 @@ public class HelloApplication extends Application {
                 case DELETE -> {buttonC.fire(); key.consume();}
                 case DECIMAL, PERIOD, F11 -> {buttonPoint.fire(); key.consume();}
                 case F10 -> {buttonNegative.fire(); key.consume();}
+                case BACK_SPACE, F12 -> {buttonBackspace.fire(); key.consume();}
 
 //              default -> System.out.println(key.getCode()); //I used this for debugging
             }

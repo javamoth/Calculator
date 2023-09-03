@@ -421,6 +421,12 @@ public class HelloController {
     }
 
     public void onButtonBackspaceClick(){
+        String displayed = display.getText();
 
+        if (!Objects.equals(displayed, "0")) {
+
+            String trimmed = displayed.substring(0, displayed.length() -1);
+            display.setText(trimmed);
+        }
     }
 }
