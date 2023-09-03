@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class HelloController {
 
-    //Defining the variables
+    //Defining global variables
     @FXML
     private Label display;
 
@@ -296,22 +296,7 @@ public class HelloController {
         numIterative = "";
     }
 
-    public void onButtonEqualsClick() {         //The "=" button
-//        if (Objects.equals(flag, "+")) {
-//            num2 = display.getText();    //Stores the currently displayed number into the local variable num2
-//            double result = Double.parseDouble(num1) + Double.parseDouble(num2);    //Converts the stored Strings
-//                                                //to double and calculates the result
-//            String stringRes = Double.toString(result);     //Converts the result back to String
-//            DecimalFormat format = new DecimalFormat("0.###########");      //Defines and Stores the desired
-//                                                                                   //number format
-//            display.setText(format.format(Double.valueOf(stringRes)));      //Converts the String back to double,
-//                                                                    //formats and converts it yet again back to String
-//                                                                    //then outputs said String to the display
-//                                                                    //overwriting any existing number there
-////            flag = "";      //Resets the operator flag
-//            equals = true;  //Sets the equals flag to true, this lets the digit buttons know to overwrite the number
-//                            //displayed on the first press
-//        }
+    public void onButtonEqualsClick() {         //The "=" button, calculates the resulting value
 
         if (Objects.equals(flag, "+")) { //Checks what the operator flag is set to (+)
 
@@ -431,48 +416,56 @@ public class HelloController {
 
     public void onButtonRepeatSwitchClick() {
 
+        //Implement method
     }
 
-    public void onButtonNegativeClick() {
+    public void onButtonNegativeClick() {   //Switching to negative or positive number
 
-        double displayed = Double.parseDouble(display.getText());
+        double displayed = Double.parseDouble(display.getText()); //Grab the displayed value, convert it to double
+        //and store in displayed
 
-        if (displayed < 0) {
+        if (displayed < 0) {    //If the number is negative
 
-            double displayPos = Math.abs(displayed);
-            DecimalFormat format = new DecimalFormat("0.###########");
-            display.setText(format.format(Double.valueOf(displayPos)));
+            double displayPos = Math.abs(displayed);    //Convert to positive and store in displayedPos
+            DecimalFormat format = new DecimalFormat("0.###########");  //Preset the output format
+            display.setText(format.format(Double.valueOf(displayPos))); //Trim the final value, convert to String, and
+            //output to the display
         }
 
-        if (displayed > 0) {
+        if (displayed > 0) {    //If the number is positive
 
-            double displayNeg = -displayed;
-            DecimalFormat format = new DecimalFormat("0.###########");
-            display.setText(format.format(Double.valueOf(displayNeg)));
+            double displayNeg = -displayed;     //Convert to negative and store in displayNeg
+            DecimalFormat format = new DecimalFormat("0.###########");  //Preset the output format
+            display.setText(format.format(Double.valueOf(displayNeg)));   //Trim the final value, convert to String, and
+            //output to the display
         }
     }
 
-    public void onButtonPointClick() {
+    public void onButtonPointClick() {      //Introducing the floating point
 
-        String displayed = display.getText();
+        String displayed = display.getText();   //Store currently displayed text into displayed
 
-        if (!displayed.contains(".") && (!afterTheOperator || !equals)) {
+        if (!displayed.contains(".") && (!afterTheOperator && !equals)) { //If there's no f.point already and none
+            //of the flags is set to "true"
 
-            String pointAdded = displayed + ".";
-            display.setText(pointAdded);
+            String pointAdded = displayed + ".";    //Append the f.point to the currently displayed number
+            display.setText(pointAdded);    //Output the resulting value
         }
 
-        if (afterTheOperator || equals) {
+        if (afterTheOperator || equals) {   //If either of the flags is set to "true"
+
+            //Then I'd like the app to input "0." for the 1st operand or the 2nd operand
+            //for us if we hit the f.point button after either seeing the result or pressing an operator button:
 
             display.setText("0.");
-            afterTheOperator = false;
+            afterTheOperator = false;   //Reset both flags
             equals = false;
         }
     }
 
     public void onButtonBackspaceClick() {
 
-        if (!equals) { //Make backspace only work on entered operands and not the result
+        if (!equals) { //Make the backspace only work on entered operands and not the result
 
             String displayed = display.getText();
 
