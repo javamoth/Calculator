@@ -1,2 +1,9 @@
-# Calculator
-This project is my first ever Java App. It's a simple GUI calculator. How exciting!
+# Calculator v1.23
+Hotkeys:
+
+
+Positive/negative:  F10  
+Floating point:     F11 / EN period / Numpad decimal  
+Backspace:          F12 / Backspace  
+Clear: Delete  
+Calculate result: Enter / =
