@@ -16,7 +16,7 @@ public class HelloApplication extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load(), 347, 351);
+        Scene scene = new Scene(fxmlLoader.load(), 340, 400);
 
         //Accessing the buttons in the .fxml file and assigning them to variables
         Button button0 = (Button) scene.lookup("#button0");
