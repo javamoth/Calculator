@@ -223,16 +223,18 @@ public class HelloController {
 
     public void onButtonAddClick() {
 
-        DecimalFormat format = new DecimalFormat("0.###########");
-        String pointAndZeroCleared = format.format(Double.valueOf(display.getText()));
+        //Just in case the user has backspaced to "-0." after entering the 1st operand we perform the steps below
+        DecimalFormat format = new DecimalFormat("0.###########"); //Presets the format
+        String pointAndZeroCleared = format.format(Double.valueOf(display.getText())); //Converts double to String
+        //and formats it, stripping any trailing zeros and the floating point from the number displayed
 
-        //Remove leading '-" from zero after backspacing to it
-        if (pointAndZeroCleared.matches("-0")) {
+        if (pointAndZeroCleared.matches("-0")) { //Checks if the resulting trimmed value turned out to be "-0"
 
-            pointAndZeroCleared = "0";
+            pointAndZeroCleared = "0"; //strips the leading "-" from the "0"
         }
 
-        display.setText(pointAndZeroCleared);
+        display.setText(pointAndZeroCleared); //Outputs the corrected value to the display
+
         num1 = display.getText();       //Stores the current displayed number in the global variable num1
         flag = "+";                     //Sets the operator flag to the corresponding operator sign
         afterTheOperator = true;        //This lets the digit buttons know that they have to overwrite the number
