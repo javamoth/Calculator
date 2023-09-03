@@ -17,7 +17,8 @@ public class HelloController {
 
     String num2; //Stores the 2nd operand
 
-    String numIterative = "";
+    String numIterative = ""; //Stores the latest operand to be used as the 2nd operand during iterative calculation
+                                //Used in a couple of unique checks
 
     Boolean afterTheOperator = false; //This flag lets the Onclick functions of the number buttons know that
                                 //an operator button has been pressed, and they need to replace the displayed number
@@ -31,7 +32,7 @@ public class HelloController {
     @FXML
     protected void onButton1Click() {
 
-        //If either "0" is being displayed or an operator button's been pressed or the "=" button's been pressed
+        //Checks if the "0" without the f. point is being displayed or either an operator button or "=" being previously pressed
         if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || (afterTheOperator || equals)) {
 
             display.setText("1"); //Resets the displayed number to the button's digit
@@ -211,7 +212,7 @@ public class HelloController {
     }
 
     @FXML
-    protected void onButtonCClick() {   //Clears the display and resets all flags
+    protected void onButtonCClick() {   //Clears the display, resets all flags, empties all variables
 
         display.setText("0");
         flag = "";
