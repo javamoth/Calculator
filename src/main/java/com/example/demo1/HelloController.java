@@ -465,11 +465,11 @@ public class HelloController {
 
     public void onButtonBackspaceClick() {
 
-        if (!equals) { //Make the backspace only work on entered operands and not the result
+        if (!equals) { //Makes the backspace only work on entered operands and not the result
 
-            String displayed = display.getText();
+            String displayed = display.getText();   //Grab the displayed value, store into displayed
 
-            if (displayed.equalsIgnoreCase("0") || displayed.length() == 1) {
+            if (displayed.equalsIgnoreCase("0") || displayed.length() == 1) {   //
 
                 display.setText("0");
             }
