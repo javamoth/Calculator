@@ -409,11 +409,12 @@ public class HelloController {
         }
     }
 
-    public void onButtonRepeatSwitchClick(){
+    public void onButtonRepeatSwitchClick() {
 
     }
 
-    public void onButtonNegativeClick(){
+    public void onButtonNegativeClick() {
+
         double displayed = Double.parseDouble(display.getText());
 
         if (displayed < 0) {
@@ -429,14 +430,14 @@ public class HelloController {
             DecimalFormat format = new DecimalFormat("0.###########");
             display.setText(format.format(Double.valueOf(displayNeg)));
         }
-
     }
 
-    public void onButtonPointClick(){
+    public void onButtonPointClick() {
 
         String displayed = display.getText();
 
         if (!displayed.contains(".") && (!afterTheOperator || !equals)) {
+
             String pointAdded = displayed + ".";
             display.setText(pointAdded);
         }
@@ -447,54 +448,27 @@ public class HelloController {
             afterTheOperator = false;
             equals = false;
         }
-
     }
 
-    public void onButtonBackspaceClick(){
+    public void onButtonBackspaceClick() {
 
         if (!equals) { //Make backspace only work on entered operands and not the result
 
-//            double j = Double.parseDouble(display.getText());
-//
-//                boolean isZero = true;
-//
-//                while (j != 0) {
-//
-//                }
             String displayed = display.getText();
-
-//            if (displayed.equalsIgnoreCase("-0.0")) {
-//
-//
-//
-//                display.setText("0");
-//
-//            }
 
             if (displayed.equalsIgnoreCase("0") || displayed.length() == 1) {
 
-
-
                 display.setText("0");
-
-
             }
 
             if (!displayed.equalsIgnoreCase("0") && displayed.length() > 1) {
 
                 String trimmed = displayed.substring(0, displayed.length() - 1);
-
-//                if (trimmed.matches("-.")&& displayed.length() > 2) {
-//
-//                    display.setText("0");
-//                }
-//
-//                else {
-                    display.setText(trimmed);
-//                }
+                display.setText(trimmed);
             }
 
             if ((displayed.matches("-.")) || (displayed.matches("-0."))) {
+
                 display.setText("0");
             }
         }
