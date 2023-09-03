@@ -333,6 +333,21 @@ public class HelloController {
     }
 
     public void onButtonNegativeClick(){
+        double displayed = Double.parseDouble(display.getText());
+
+        if (displayed < 0) {
+
+            double displayedPos = Math.abs(displayed);
+            DecimalFormat format = new DecimalFormat("0.###########");
+            display.setText(format.format(Double.valueOf(displayedPos)));
+        }
+
+        if (displayed > 0) {
+
+            double displayedNeg = -displayed;
+            DecimalFormat format = new DecimalFormat("0.###########");
+            display.setText(format.format(Double.valueOf(displayedNeg)));
+        }
 
     }
 

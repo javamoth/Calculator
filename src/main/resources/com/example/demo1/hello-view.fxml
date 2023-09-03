@@ -39,7 +39,7 @@
            <font>
                <Font size="27.0" />
            </font></Button>
-       <Button fx:id="buttonBackspace" layoutX="88.0" layoutY="74.0" mnemonicParsing="false" onAction="#onButtonBackspaceClick" prefHeight="55.0" prefWidth="77.0" text="BS" GridPane.columnIndex="3" GridPane.rowIndex="1">
+       <Button fx:id="buttonBackspace" layoutX="88.0" layoutY="74.0" mnemonicParsing="false" onAction="#onButtonBackspaceClick" prefHeight="55.0" prefWidth="77.0" text="BP" GridPane.columnIndex="3" GridPane.rowIndex="1">
            <font>
                <Font size="27.0" />
            </font></Button>
