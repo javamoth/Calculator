@@ -35,6 +35,8 @@ public class HelloApplication extends Application {
         Button buttonDivide = (Button) scene.lookup("#buttonDivide");
         Button buttonEquals = (Button) scene.lookup("#buttonEquals");
         Button buttonC = (Button) scene.lookup("#buttonC");
+        Button buttonPoint = (Button) scene.lookup("#buttonPoint");
+        Button buttonNegative = (Button) scene.lookup("#buttonNegative");
 
         //Detecting the keys that are being pressed
         scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {  //Registering a key press event
@@ -56,14 +58,21 @@ public class HelloApplication extends Application {
                 case SUBTRACT, MINUS -> {buttonSubtract.fire(); key.consume();}
                 case MULTIPLY -> {buttonMultiply.fire(); key.consume();}
                 case DIVIDE, BACK_SLASH -> {buttonDivide.fire(); key.consume();}
-                case EQUALS, ENTER -> {buttonEquals.fire(); key.consume();}
+//                case EQUALS, ENTER -> {buttonEquals.fire(); key.consume();}
                 case DELETE -> {buttonC.fire(); key.consume();}
+                case DECIMAL, PERIOD, F11 -> {buttonPoint.fire(); key.consume();}
+                case F10 -> {buttonNegative.fire(); key.consume();}
+
 //              default -> System.out.println(key.getCode()); //I used this for debugging
             }
 
             if (key.isShiftDown() && key.getCode() == KeyCode.EQUALS) {
                 buttonAdd.fire();
                 key.consume();
+            }
+
+            if (!key.isShiftDown() && ((key.getCode() == KeyCode.EQUALS) || (key.getCode() == KeyCode.ENTER))) {
+                buttonEquals.fire();
             }
 
             //Digit 8 from the number row is a special case as it needs to trigger an event with both shift pressed

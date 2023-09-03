@@ -19,11 +19,13 @@ public class HelloController {
 
     String numIterative = "";
 
-    Boolean afterTheOperator; //This flag lets the Onclick functions of the number buttons know that
+    Boolean stopIterating = false;
+
+    Boolean afterTheOperator = false; //This flag lets the Onclick functions of the number buttons know that
                                 //an operator button has been pressed, and they need to replace the displayed number
                                 //entirely instead of appending digits to it.
 
-    Boolean equals;         //This flag lets the Onclick functions of the number buttons know that the "=" button
+    Boolean equals = false;         //This flag lets the Onclick functions of the number buttons know that the "=" button
                             //has been pressed, and they need to replace the displayed number
                             //entirely instead of appending digits to it.
 
@@ -31,26 +33,30 @@ public class HelloController {
     @FXML
     protected void onButton1Click() {
 
-        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) { //If either "0" is being
+        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || (afterTheOperator || equals)) { //If either "0" is being
                                     //displayed or an operator button's been pressed or the "=" button's been pressed
             display.setText("1"); //Resets the displayed number to the button's digit
             afterTheOperator = false; //Sets the operator flag to "false" after the 1st press to allow for
                                          // appending digits
+
             equals = false; //Sets the "=" flag to "false" after the 1st press to allow for appending digits
+
         }
 
 
-        if ((Double.parseDouble(display.getText()) == 0 && display.getText().contains(".")) && (afterTheOperator || equals)) {
-            String num = display.getText(); //Gets the number that's already on the display
-            num = num + "1"; //Appends its value to it
-            display.setText(num); //Displays the resulting number
-        }
+//        if (Objects.equals(display.getText(), "0.") && (afterTheOperator || equals))  {
+//            String num = display.getText(); //Gets the number that's already on the display
+//            num = num + "1"; //Appends its value to it
+//            display.setText(num); //Displays the resulting number
+//        }
 
         else {
             String num = display.getText(); //Gets the number that's already on the display
             num = num + "1"; //Appends its value to it
             display.setText(num); //Displays the resulting number
         }
+
+
     }
 
     @FXML
@@ -65,6 +71,8 @@ public class HelloController {
             num = num + "2";
             display.setText(num);
         }
+
+
     }
 
     @FXML
@@ -79,6 +87,8 @@ public class HelloController {
             num = num + "3";
             display.setText(num);
         }
+
+
     }
 
     @FXML
@@ -93,6 +103,8 @@ public class HelloController {
             num = num + "4";
             display.setText(num);
         }
+
+
     }
 
     @FXML
@@ -107,6 +119,8 @@ public class HelloController {
             num = num + "5";
             display.setText(num);
         }
+
+
     }
 
     @FXML
@@ -121,6 +135,8 @@ public class HelloController {
             num = num + "6";
             display.setText(num);
         }
+
+
     }
 
     @FXML
@@ -135,6 +151,8 @@ public class HelloController {
             num = num + "7";
             display.setText(num);
         }
+
+
     }
 
     @FXML
@@ -149,6 +167,8 @@ public class HelloController {
             num = num + "8";
             display.setText(num);
         }
+
+
     }
 
     @FXML
@@ -163,6 +183,8 @@ public class HelloController {
             num = num + "9";
             display.setText(num);
         }
+
+
     }
 
     @FXML
@@ -177,6 +199,8 @@ public class HelloController {
             num = num + "0";
             display.setText(num);
         }
+
+
     }
 
     @FXML
@@ -390,6 +414,8 @@ public class HelloController {
         if (afterTheOperator || equals) {
 
             display.setText("0.");
+            afterTheOperator = false;
+            equals = false;
         }
 
     }
