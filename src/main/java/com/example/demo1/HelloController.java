@@ -54,10 +54,10 @@ public class HelloController {
     //onClick methods
 
     @FXML
-    private void onDigitPress(ActionEvent event) {
-        ActionEvent e = event;
+    private void onDigitPress(ActionEvent event) {  //Grab the passed onAction event from a digit button
 
-        Button button = (Button) e.getTarget();
+        Button button = (Button) event.getTarget(); //Get the Button object from the event and store it in the "button"
+                                                    //variable
 
         highlightOnKeyPress(button);    //Pass the current button to highlightOnKeyPress so that it lights up when fired
 
