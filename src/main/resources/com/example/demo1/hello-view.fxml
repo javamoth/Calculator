@@ -59,7 +59,7 @@
          <font>
             <Font size="27.0" />
          </font></Button>
-       <Button fx:id="buttonDivide" layoutX="88.0" layoutY="74.0" mnemonicParsing="false" onAction="#onButtonDivideClick" prefHeight="55.0" prefWidth="77.0" text="/" GridPane.columnIndex="3" GridPane.rowIndex="2">
+       <Button fx:id="buttonDivide" layoutX="88.0" layoutY="74.0" mnemonicParsing="false" onAction="#onOperatorPress" prefHeight="55.0" prefWidth="77.0" text="/" GridPane.columnIndex="3" GridPane.rowIndex="2">
          <font>
             <Font size="27.0" />
          </font></Button>
@@ -76,7 +76,7 @@
          <font>
             <Font size="27.0" />
          </font></Button>
-       <Button fx:id="buttonMultiply" layoutX="88.0" layoutY="74.0" mnemonicParsing="false" onAction="#onButtonMultiplyClick" prefHeight="55.0" prefWidth="77.0" text="*" GridPane.columnIndex="3" GridPane.rowIndex="3">
+       <Button fx:id="buttonMultiply" layoutX="88.0" layoutY="74.0" mnemonicParsing="false" onAction="#onOperatorPress" prefHeight="55.0" prefWidth="77.0" text="*" GridPane.columnIndex="3" GridPane.rowIndex="3">
          <font>
             <Font size="27.0" />
          </font></Button>
@@ -93,7 +93,7 @@
          <font>
             <Font size="27.0" />
          </font></Button>
-       <Button fx:id="buttonSubtract" layoutX="88.0" layoutY="74.0" mnemonicParsing="false" onAction="#onButtonSubtractClick" prefHeight="55.0" prefWidth="77.0" text="-" GridPane.columnIndex="3" GridPane.rowIndex="4">
+       <Button fx:id="buttonSubtract" layoutX="88.0" layoutY="74.0" mnemonicParsing="false" onAction="#onOperatorPress" prefHeight="55.0" prefWidth="77.0" text="-" GridPane.columnIndex="3" GridPane.rowIndex="4">
          <font>
             <Font size="27.0" />
          </font></Button>
@@ -113,7 +113,7 @@
          <opaqueInsets>
             <Insets />
          </opaqueInsets></Button>
-       <Button fx:id="buttonAdd" layoutX="88.0" layoutY="74.0" mnemonicParsing="false" onAction="#onButtonAddClick" prefHeight="55.0" prefWidth="77.0" text="+" GridPane.columnIndex="3" GridPane.rowIndex="5">
+       <Button fx:id="buttonAdd" layoutX="88.0" layoutY="74.0" mnemonicParsing="false" onAction="#onOperatorPress" prefHeight="55.0" prefWidth="77.0" text="+" GridPane.columnIndex="3" GridPane.rowIndex="5">
          <font>
             <Font size="27.0" />
          </font></Button>

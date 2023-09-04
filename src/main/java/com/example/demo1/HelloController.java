@@ -54,7 +54,7 @@ public class HelloController {
     //onClick methods
 
     @FXML
-    private void onDigitPress(ActionEvent event) {  //Grab the passed onAction event from a digit button
+    private void onDigitPress(ActionEvent event) {  //Grab the passed onAction event from the digit button
 
         Button button = (Button) event.getTarget(); //Get the Button object from the event and store it in the "button"
                                                     //variable
@@ -76,7 +76,7 @@ public class HelloController {
         else {
 
             String num = display.getText(); //Gets the number that's already on the display
-            num = num + button.getText();   //Appends its value to it
+            num = num + button.getText();   //Appends the button's text value to it
             display.setText(num);   //Displays the resulting number
         }
     }
@@ -97,88 +97,34 @@ public class HelloController {
 //        System.out.println(mOnChange);
     }
 
-    public void onButtonAddClick() {
+    @FXML
+    public void onOperatorPress(ActionEvent event) {    //Grab the passed onAction event from the operator button
 
-        highlightOnKeyPress(buttonAdd);
+        Button button = (Button) event.getTarget(); //Get the Button object from the event and store it in the "button"
+        //variable
+
+        highlightOnKeyPress(button);    //Pass the current button to highlightOnKeyPress so that it lights up when fired
 
         //Just in case the user has backspaced to "-0." after entering the 1st operand we perform the steps below
 
-        DecimalFormat format = new DecimalFormat("0.###########"); //Presets the format
-
+        DecimalFormat format = new DecimalFormat("0.###########");  //Presets the format
         String pointAndZeroCleared = format.format(Double.valueOf(display.getText())); //Converts double to String
         //and formats it, stripping any trailing zeros and the floating point from the number displayed
 
-        if (pointAndZeroCleared.matches("-0")) { //Checks if the resulting trimmed value turned out to be "-0"
 
-            pointAndZeroCleared = "0"; //strips the leading "-" from the "0"
+        if (pointAndZeroCleared.matches("-0")) {    //Checks if the resulting trimmed value turned out to be "-0"
+
+            pointAndZeroCleared = "0";  //strips the leading "-" from the "0"
         }
 
-        display.setText(pointAndZeroCleared); //Outputs the corrected value to the display
-
-        num1 = display.getText();       //Stores the current displayed number in the global variable num1
-        flag = "+";                     //Sets the operator flag to the corresponding operator sign
-        afterTheOperator = true;        //This lets the digit buttons know that they have to overwrite the number
-                                        //displayed
-        numIterative = "";              //Empties numIterative so that the function, calculating the result, knows
-                                        //that the next iteration will be the 1st and to use the num2 variable as the
-                                        //2nd operand instead of numIterative
-    }
-
-    public void onButtonSubtractClick() {
-
-        highlightOnKeyPress(buttonSubtract);
-
-        DecimalFormat format = new DecimalFormat("0.###########");
-        String pointAndZeroCleared = format.format(Double.valueOf(display.getText()));
-
-        if (pointAndZeroCleared.matches("-0")) {
-
-            pointAndZeroCleared = "0";
-        }
-
-        display.setText(pointAndZeroCleared);
-        num1 = display.getText();
-        flag = "-";
-        afterTheOperator = true;
-        numIterative = "";
-    }
-
-    public void onButtonMultiplyClick() {
-
-        highlightOnKeyPress(buttonMultiply);
-
-        DecimalFormat format = new DecimalFormat("0.###########");
-        String pointAndZeroCleared = format.format(Double.valueOf(display.getText()));
-
-        if (pointAndZeroCleared.matches("-0")) {
-
-            pointAndZeroCleared = "0";
-        }
-
-        display.setText(pointAndZeroCleared);
-        num1 = display.getText();
-        flag = "*";
-        afterTheOperator = true;
-        numIterative = "";
-    }
-
-    public void onButtonDivideClick() {
-
-        highlightOnKeyPress(buttonDivide);
-
-        DecimalFormat format = new DecimalFormat("0.###########");
-        String pointAndZeroCleared = format.format(Double.valueOf(display.getText()));
-
-        if (pointAndZeroCleared.matches("-0")) {
-
-            pointAndZeroCleared = "0";
-        }
-
-        display.setText(pointAndZeroCleared);
-        num1 = display.getText();
-        flag = "/";
-        afterTheOperator = true;
-        numIterative = "";
+        display.setText(pointAndZeroCleared);   //Outputs the corrected value to the display
+        num1 = display.getText();               //Stores the current displayed number in the global variable num1
+        flag = button.getText();                //Sets the operator flag corresponding to the button's text
+        afterTheOperator = true;            //This lets the digit buttons know that they have to overwrite the number
+        //displayed
+        numIterative = "";                  //Empties numIterative so that the function, calculating the result, knows
+                                            //that the next iteration will be the 1st and to use the num2 variable as the
+                                            //2nd operand instead of numIterative
     }
 
     public void onButtonEqualsClick() {         //The "=" button, calculates the resulting value
