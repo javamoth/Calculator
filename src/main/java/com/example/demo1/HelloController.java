@@ -14,6 +14,7 @@ public class HelloController {
 
     ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor(); //This service will be used to
     //briefly highlight and unhighlight buttons after pressing/clicking them as it's hard to achieve in CSS
+    //We then shut it down in the main class on app exit
 
     //Defining global variables
     @FXML
@@ -46,7 +47,7 @@ public class HelloController {
     @FXML
     protected void onButton1Click() {
 
-        highlightOnKeyPress(button1);
+        highlightOnKeyPress(button1);   //Pass the current button to highlightOnKeyPress so that it lights up when fired
 
         //Checks if the "0" without the f. point is being displayed or either an operator button or "=" being previously pressed
         if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || (afterTheOperator || equals)) {

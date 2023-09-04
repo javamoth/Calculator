@@ -22,7 +22,7 @@
   </rowConstraints>
    <children>
       <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="77.0" text="Button" GridPane.rowIndex="2" />
-      <Label fx:id="display" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="60.0" prefWidth="333.0" style=" -fx-padding: 10,10,10,10;" text="0" textAlignment="RIGHT" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+      <Label fx:id="display" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="325.0" style=" -fx-padding: 10,10,10,10;" text="0" textAlignment="RIGHT" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <font>
             <Font size="27.0" />
          </font></Label>

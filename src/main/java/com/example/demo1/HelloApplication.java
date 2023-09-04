@@ -93,6 +93,10 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
+
+        HelloController helloController = fxmlLoader.getController();   //Access stuff in HelloController.java
+        stage.setOnCloseRequest(event -> helloController.executor.shutdown());  //Shut down the executor so the app
+        //closes properly
     }
 
     public static void main(String[] args) {
