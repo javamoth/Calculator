@@ -45,7 +45,8 @@ public class HelloController {
                             //has been pressed, and they need to replace the displayed number
                             //entirely instead of appending digits to it.
 
-    Boolean willHighlight = true;
+    Boolean willHighlight = true;   //Let's the switchBackspaceButton method know if it should highlight or unhighlight
+                                    //the BP button when it's clicked
 
 
 
@@ -63,7 +64,8 @@ public class HelloController {
                                          // appending digits
             equals = false; //Sets the "=" flag to "false" after the 1st press to allow for appending digits
 //            setOnBooChangeListener(mOnChange);
-            switchBackspaceButton();
+            switchBackspaceButton();    //This method call should be everywhere after the equals flag changes, this
+            //lets us either make the BP button appear active or inactive at appropriate times
         }
 
         else {
@@ -596,46 +598,18 @@ public class HelloController {
         executor.schedule(unHighlight, 150, TimeUnit.MILLISECONDS);     //Unhighlight it almost immediately after
     }
 
+    void switchBackspaceButton() {  //Switch the appearance of the BP button <- THIS IS  BUGGED
 
-
-
-//    public void onBooChange(boolean bobo) {
-//        equals = bobo;
-//        System.out.println("onBooChange triggered");
-//    }
+//        if (equals) {   //If equals is true, make the button appear inactive
 //
-//    public void setOnBooChangeListener(BooChangeListener bcl)
-//    {
+//            buttonBackspace.setStyle("-fx-background-color: #3C486B; -fx-text-fill: #61677A");
+//            willHighlight = false;  //Prohibits onclick highlighting
+//        }
 //
-//        mOnChange = bcl;
-//        setBoo(equals);
-//        System.out.println("setOnBooChangeListener triggered");
-//        buttonBackspace.setStyle("-fx-background-color: #3C486B; -fx-text-fill: #61677A");
+//        if (!equals){   //If equals is false, reset the appearance
 //
-//        System.out.println(mOnChange);
-//    }
-//
-//    public void setBoo(boolean equals)
-//    {
-//        System.out.println("setBoo");
-//        boolean lol = equals;
-//        if(mOnChange != null)
-//            mOnChange.onBooChange(lol);
-//    }
-
-    void switchBackspaceButton() {  //Switch the appearance of the BP button
-
-        if (equals) {   //If equals is true, make the button appear inactive
-
-            buttonBackspace.setStyle("-fx-background-color: #3C486B; -fx-text-fill: #61677A");
-            willHighlight = false;  //Prohibits onclick highlighting
-        }
-
-        if (!equals){   //If equals is false, reset the appearance
-
-//            buttonBackspace.getStyleClass().removeIf(s -> s.contains(":hover"));
-            buttonBackspace.setStyle(":hover -fx-background-color: #526D82");
-            willHighlight = true;   //Allows onclick highlighting
-        }
+//            buttonBackspace.setStyle(":hover -fx-background-color: #526D82");
+//            willHighlight = true;   //Allows onclick highlighting
+//        }
     }
 }
