@@ -102,7 +102,7 @@
          <font>
             <Font size="27.0" />
          </font></Button>
-       <Button fx:id="buttonEquals" layoutX="88.0" layoutY="74.0" mnemonicParsing="false" onAction="#onButtonEqualsClick" prefHeight="55.0" prefWidth="77.0" text="=" GridPane.columnIndex="1" GridPane.rowIndex="5">
+       <Button fx:id="buttonEquals" layoutX="88.0" layoutY="74.0" mnemonicParsing="false" onAction="#onEquals" prefHeight="55.0" prefWidth="77.0" text="=" GridPane.columnIndex="1" GridPane.rowIndex="5">
          <font>
             <Font size="27.0" />
          </font></Button>

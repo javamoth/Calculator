@@ -171,82 +171,79 @@ public class HelloController {
             }
         }
 
-        if (Objects.equals(flag, "-")) {
+    }
 
-            if (!Objects.equals(numIterative, "")){
+    public void onEquals(ActionEvent event) {
 
-                num1 = display.getText();
-                double result = Double.parseDouble(num1) - Double.parseDouble(numIterative);
-                String stringRes = Double.toString(result);
-                DecimalFormat format = new DecimalFormat("0.###########");
-                display.setText(format.format(Double.valueOf(stringRes)));
-                equals = true;
-            }
+        Button button = (Button) event.getTarget();
 
-            if (Objects.equals(numIterative, "")) {
-
-                num2 = display.getText();
-                double result = Double.parseDouble(num1) - Double.parseDouble(num2);
-                String stringRes = Double.toString(result);
-                DecimalFormat format = new DecimalFormat("0.###########");
-                display.setText(format.format(Double.valueOf(stringRes)));
-                equals = true;
-                numIterative = num2;
-                num2 = "";
-            }
-        }
-
-        if (Objects.equals(flag, "*")) {
-
+        highlightOnKeyPress(button);
+                
             if (!Objects.equals(numIterative, "")) {
 
                 num1 = display.getText();
-                double result = Double.parseDouble(num1) * Double.parseDouble(numIterative);
-                String stringRes = Double.toString(result);
-                DecimalFormat format = new DecimalFormat("0.###########");
-                display.setText(format.format(Double.valueOf(stringRes)));
-                equals = true;
+
+                if (Objects.equals(flag, "+")) {
+                    double result = Double.parseDouble(num1) + Double.parseDouble(numIterative);
+                    DecimalFormat format = new DecimalFormat("0.###########");
+                    display.setText(format.format(Double.valueOf(result)));
+                }
+
+                if (Objects.equals(flag, "-")) {
+                    double result = Double.parseDouble(num1) - Double.parseDouble(numIterative);
+                    DecimalFormat format = new DecimalFormat("0.###########");
+                    display.setText(format.format(Double.valueOf(result)));
+                }
+
+                if (Objects.equals(flag, "*")) {
+                    double result = Double.parseDouble(num1) * Double.parseDouble(numIterative);
+                    DecimalFormat format = new DecimalFormat("0.###########");
+                    display.setText(format.format(Double.valueOf(result)));
+                }
+
+                if (Objects.equals(flag, "/")) {
+                    double result = Double.parseDouble(num1) / Double.parseDouble(numIterative);
+                    DecimalFormat format = new DecimalFormat("0.###########");
+                    display.setText(format.format(Double.valueOf(result)));
+                }
             }
 
             if (Objects.equals(numIterative, "")) {
 
                 num2 = display.getText();
-                double result = Double.parseDouble(num1) * Double.parseDouble(num2);
-                String stringRes = Double.toString(result);
-                DecimalFormat format = new DecimalFormat("0.###########");
-                display.setText(format.format(Double.valueOf(stringRes)));
-                equals = true;
+
+
+                if (Objects.equals(flag, "+")) {
+                    double result = Double.parseDouble(num1) + Double.parseDouble(num2);
+                    DecimalFormat format = new DecimalFormat("0.###########");
+                    display.setText(format.format(Double.valueOf(result)));
+                }
+
+                if (Objects.equals(flag, "-")) {
+                    double result = Double.parseDouble(num1) - Double.parseDouble(num2);
+                    DecimalFormat format = new DecimalFormat("0.###########");
+                    display.setText(format.format(Double.valueOf(result)));
+                }
+
+                if (Objects.equals(flag, "*")) {
+                    double result = Double.parseDouble(num1) * Double.parseDouble(num2);
+                    DecimalFormat format = new DecimalFormat("0.###########");
+                    display.setText(format.format(Double.valueOf(result)));
+                }
+
+                if (Objects.equals(flag, "/")) {
+                    double result = Double.parseDouble(num1) / Double.parseDouble(num2);
+                    DecimalFormat format = new DecimalFormat("0.###########");
+                    display.setText(format.format(Double.valueOf(result)));
+                }
+
                 numIterative = num2;
                 num2 = "";
-            }
-        }
 
-        if (Objects.equals(flag, "/")) {
-
-            if (!Objects.equals(numIterative, "")) {
-
-                num1 = display.getText();
-                double result = Double.parseDouble(num1) / Double.parseDouble(numIterative);
-                String stringRes = Double.toString(result);
-                DecimalFormat format = new DecimalFormat("0.###########");
-                display.setText(format.format(Double.valueOf(stringRes)));
-                equals = true;
             }
 
-            if (Objects.equals(numIterative, "")) {
+        equals = true;
 
-                num2 = display.getText();
-                double result = Double.parseDouble(num1) / Double.parseDouble(num2);
-                String stringRes = Double.toString(result);
-                DecimalFormat format = new DecimalFormat("0.###########");
-                display.setText(format.format(Double.valueOf(stringRes)));
-                equals = true;
-                numIterative = num2;
-                num2 = "";
-            }
-        }
-        switchBackspaceButton();
-//        setOnBooChangeListener(mOnChange);
     }
 
     public void onButtonRepeatSwitchClick() {
