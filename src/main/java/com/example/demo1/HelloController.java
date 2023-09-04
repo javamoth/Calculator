@@ -1,15 +1,29 @@
 package com.example.demo1;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+
 import java.text.DecimalFormat;
 import java.util.Objects;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class HelloController {
+
+    ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor(); //This service will be used to
+    //briefly highlight and unhighlight buttons after pressing/clicking them as it's hard to achieve in CSS
 
     //Defining global variables
     @FXML
     private Label display;
+
+    //Defining button variables to use them in the highlighting on press method etc.
+    @FXML
+    Button buttonNegative, buttonPoint, buttonBackspace, button7, button8, button9, buttonDivide,
+            button4, button5, button6, buttonMultiply, button1, button2, button3, buttonSubtract,
+            buttonC, buttonEquals, button0, buttonAdd;
 
     String flag; //Stores the operator: +, -, *, /
 
@@ -32,6 +46,8 @@ public class HelloController {
     @FXML
     protected void onButton1Click() {
 
+        highlightOnKeyPress(button1);
+
         //Checks if the "0" without the f. point is being displayed or either an operator button or "=" being previously pressed
         if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || (afterTheOperator || equals)) {
 
@@ -52,6 +68,8 @@ public class HelloController {
     @FXML
     protected void onButton2Click() {
 
+        highlightOnKeyPress(button2);
+
         if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
 
             display.setText("2");
@@ -69,6 +87,8 @@ public class HelloController {
 
     @FXML
     protected void onButton3Click() {
+
+        highlightOnKeyPress(button3);
 
         if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
 
@@ -88,6 +108,8 @@ public class HelloController {
     @FXML
     protected void onButton4Click() {
 
+        highlightOnKeyPress(button4);
+
         if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
 
             display.setText("4");
@@ -105,6 +127,8 @@ public class HelloController {
 
     @FXML
     protected void onButton5Click() {
+
+        highlightOnKeyPress(button5);
 
         if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
 
@@ -124,6 +148,8 @@ public class HelloController {
     @FXML
     protected void onButton6Click() {
 
+        highlightOnKeyPress(button6);
+
         if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
 
             display.setText("6");
@@ -141,6 +167,8 @@ public class HelloController {
 
     @FXML
     protected void onButton7Click() {
+
+        highlightOnKeyPress(button7);
 
         if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
 
@@ -160,6 +188,8 @@ public class HelloController {
     @FXML
     protected void onButton8Click() {
 
+        highlightOnKeyPress(button8);
+
         if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
 
             display.setText("8");
@@ -177,6 +207,8 @@ public class HelloController {
 
     @FXML
     protected void onButton9Click() {
+
+        highlightOnKeyPress(button9);
 
         if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
 
@@ -196,6 +228,8 @@ public class HelloController {
     @FXML
     protected void onButton0Click() {
 
+        highlightOnKeyPress(button0);
+
         if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
 
             display.setText("0");
@@ -214,6 +248,8 @@ public class HelloController {
     @FXML
     protected void onButtonCClick() {   //Clears the display, resets all flags, empties all variables
 
+        highlightOnKeyPress(buttonC);
+
         display.setText("0");
         flag = "";
         afterTheOperator = false;
@@ -222,6 +258,8 @@ public class HelloController {
     }
 
     public void onButtonAddClick() {
+
+        highlightOnKeyPress(buttonAdd);
 
         //Just in case the user has backspaced to "-0." after entering the 1st operand we perform the steps below
 
@@ -248,6 +286,8 @@ public class HelloController {
 
     public void onButtonSubtractClick() {
 
+        highlightOnKeyPress(buttonSubtract);
+
         DecimalFormat format = new DecimalFormat("0.###########");
         String pointAndZeroCleared = format.format(Double.valueOf(display.getText()));
 
@@ -264,6 +304,8 @@ public class HelloController {
     }
 
     public void onButtonMultiplyClick() {
+
+        highlightOnKeyPress(buttonMultiply);
 
         DecimalFormat format = new DecimalFormat("0.###########");
         String pointAndZeroCleared = format.format(Double.valueOf(display.getText()));
@@ -282,6 +324,8 @@ public class HelloController {
 
     public void onButtonDivideClick() {
 
+        highlightOnKeyPress(buttonDivide);
+
         DecimalFormat format = new DecimalFormat("0.###########");
         String pointAndZeroCleared = format.format(Double.valueOf(display.getText()));
 
@@ -298,6 +342,8 @@ public class HelloController {
     }
 
     public void onButtonEqualsClick() {         //The "=" button, calculates the resulting value
+
+        highlightOnKeyPress(buttonEquals);
 
         if (Objects.equals(flag, "+")) { //Checks what the operator flag is set to (+)
 
@@ -422,6 +468,8 @@ public class HelloController {
 
     public void onButtonNegativeClick() {   //Switching to negative or positive number
 
+        highlightOnKeyPress(buttonNegative);
+
         double displayed = Double.parseDouble(display.getText()); //Grab the displayed value, convert it to double
         //and store in displayed
 
@@ -443,6 +491,8 @@ public class HelloController {
     }
 
     public void onButtonPointClick() {      //Introducing the floating point
+
+        highlightOnKeyPress(buttonPoint);
 
         String displayed = display.getText();   //Store currently displayed text into displayed
 
@@ -466,6 +516,8 @@ public class HelloController {
 
     public void onButtonBackspaceClick() {  //Deleting the last digit on the display
 
+        highlightOnKeyPress(buttonBackspace);
+
         if (!equals) { //Makes the backspace only work on entered operands and not the result
 
             String displayed = display.getText();   //Grab the displayed value, store in displayed
@@ -487,5 +539,32 @@ public class HelloController {
                 display.setText("0");   //Set the displayed string to zero
             }
         }
+    }
+
+    public void highlightOnKeyPress(Button button) {    //Highlight the passed button briefly after pressing it
+
+        Runnable highlight = new Runnable() {   //Create a new Runnable object
+
+            @Override
+            public void run() {
+
+                button.setStyle("-fx-background-color: #1B6B93");   //Set the bg color to a different one immediately
+                //after pressing
+            }
+        };
+
+        Runnable unHighlight = new Runnable() {     //Create a new Runnable object
+
+            @Override
+            public void run() {
+
+                button.setStyle(":hover -fx-background-color: #526D82");    //Set the stylesheet back to change
+                // color on hover
+
+            }
+        };
+
+        executor.execute(highlight);    //Highlight the button
+        executor.schedule(unHighlight, 150, TimeUnit.MILLISECONDS);     //Unhighlight it almost immediately after
     }
 }

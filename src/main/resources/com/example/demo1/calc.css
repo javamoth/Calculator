@@ -7,6 +7,11 @@
 -fx-text-fill: #DDE6ED;
 }
 
+.button:hover {
+-fx-background-color: #164B60;
+-fx-text-fill: #DDE6ED;
+}
+
 .label {
 /*-fx-background-color: #1B6B93;*/
 -fx-background-color: #256D85;
