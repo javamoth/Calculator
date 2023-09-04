@@ -52,18 +52,22 @@ public class HelloController {
 
 
     //onClick methods
-    @FXML
-    protected void onButton1Click() {
 
-        highlightOnKeyPress(button1);   //Pass the current button to highlightOnKeyPress so that it lights up when fired
+    @FXML
+    private void onDigitPress(ActionEvent event) {
+        ActionEvent e = event;
+
+        Button button = (Button) e.getTarget();
+
+        highlightOnKeyPress(button);    //Pass the current button to highlightOnKeyPress so that it lights up when fired
 
         //Checks if the "0" without the f. point is being displayed or either an operator button or "=" being previously pressed
-        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || (afterTheOperator || equals)) {
+        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
 
-            display.setText("1"); //Resets the displayed number to the button's digit
-            afterTheOperator = false; //Sets the operator flag to "false" after the 1st press to allow for
-                                         // appending digits
-            equals = false; //Sets the "=" flag to "false" after the 1st press to allow for appending digits
+            display.setText(button.getText());  //Resets the displayed number to the button's digit
+            afterTheOperator = false;   //Sets the operator flag to "false" after the 1st press to allow for
+            // appending digits
+            equals = false;     //Sets the "=" flag to "false" after the 1st press to allow for appending digits
 //            setOnBooChangeListener(mOnChange);
             switchBackspaceButton();    //This method call should be everywhere after the equals flag changes, this
             //lets us either make the BP button appear active or inactive at appropriate times
@@ -72,197 +76,8 @@ public class HelloController {
         else {
 
             String num = display.getText(); //Gets the number that's already on the display
-            num = num + "1"; //Appends its value to it
-            display.setText(num); //Displays the resulting number
-        }
-    }
-
-    @FXML
-    protected void onButton2Click() {
-
-        highlightOnKeyPress(button2);
-
-        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
-
-            display.setText("2");
-            afterTheOperator = false;
-            equals = false;
-            switchBackspaceButton();
-        }
-
-        else {
-
-            String num = display.getText();
-            num = num + "2";
-            display.setText(num);
-        }
-    }
-
-    @FXML
-    protected void onButton3Click() {
-
-        highlightOnKeyPress(button3);
-
-        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
-
-            display.setText("3");
-            afterTheOperator = false;
-            equals = false;
-            switchBackspaceButton();
-        }
-
-        else {
-
-            String num = display.getText();
-            num = num + "3";
-            display.setText(num);
-        }
-    }
-
-    @FXML
-    protected void onButton4Click() {
-
-        highlightOnKeyPress(button4);
-
-        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
-
-            display.setText("4");
-            afterTheOperator = false;
-            equals = false;
-            switchBackspaceButton();
-        }
-
-        else {
-
-            String num = display.getText();
-            num = num + "4";
-            display.setText(num);
-        }
-    }
-
-    @FXML
-    protected void onButton5Click() {
-
-        highlightOnKeyPress(button5);
-
-        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
-
-            display.setText("5");
-            afterTheOperator = false;
-            equals = false;
-            switchBackspaceButton();
-        }
-
-        else {
-
-            String num = display.getText();
-            num = num + "5";
-            display.setText(num);
-        }
-    }
-
-    @FXML
-    protected void onButton6Click() {
-
-        highlightOnKeyPress(button6);
-
-        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
-
-            display.setText("6");
-            afterTheOperator = false;
-            equals = false;
-            switchBackspaceButton();
-        }
-
-        else {
-
-            String num = display.getText();
-            num = num + "6";
-            display.setText(num);
-        }
-    }
-
-    @FXML
-    protected void onButton7Click() {
-
-        highlightOnKeyPress(button7);
-
-        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
-
-            display.setText("7");
-            afterTheOperator = false;
-            equals = false;
-            switchBackspaceButton();
-        }
-
-        else {
-
-            String num = display.getText();
-            num = num + "7";
-            display.setText(num);
-        }
-    }
-
-    @FXML
-    protected void onButton8Click() {
-
-        highlightOnKeyPress(button8);
-
-        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
-
-            display.setText("8");
-            afterTheOperator = false;
-            equals = false;
-            switchBackspaceButton();
-        }
-
-        else {
-
-            String num = display.getText();
-            num = num + "8";
-            display.setText(num);
-        }
-    }
-
-    @FXML
-    protected void onButton9Click() {
-
-        highlightOnKeyPress(button9);
-
-        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
-
-            display.setText("9");
-            afterTheOperator = false;
-            equals = false;
-            switchBackspaceButton();
-        }
-
-        else {
-
-            String num = display.getText();
-            num = num + "9";
-            display.setText(num);
-        }
-    }
-
-    @FXML
-    protected void onButton0Click() {
-
-        highlightOnKeyPress(button0);
-
-        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
-
-            display.setText("0");
-            afterTheOperator = false;
-            equals = false;
-            switchBackspaceButton();
-        }
-
-        else {
-
-            String num = display.getText();
-            num = num + "0";
-            display.setText(num);
+            num = num + button.getText();   //Appends its value to it
+            display.setText(num);   //Displays the resulting number
         }
     }
 
@@ -613,31 +428,7 @@ public class HelloController {
 //            willHighlight = true;   //Allows onclick highlighting
 //        }
     }
-    @FXML
-    private void onDigitPress(ActionEvent event)
-    {
-        ActionEvent e = event;
 
-        Button button = (Button) e.getTarget();
-
-        highlightOnKeyPress(button);
-
-        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
-
-            display.setText(button.getText());
-            afterTheOperator = false;
-            equals = false;
-            switchBackspaceButton();
-        }
-
-        else {
-
-            String num = display.getText();
-            num = num + button.getText();
-            display.setText(num);
-        }
-
-    }
 
 
 }
