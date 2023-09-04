@@ -469,7 +469,7 @@ public class HelloController {
 
             String displayed = display.getText();   //Grab the displayed value, store into displayed
 
-            if (displayed.equalsIgnoreCase("0") || displayed.length() == 1) {   //
+            if (displayed.length() == 1) {   //
 
                 display.setText("0");
             }
