@@ -474,7 +474,7 @@ public class HelloController {
                 display.setText("0");
             }
 
-            if (!displayed.equalsIgnoreCase("0") && displayed.length() > 1) {
+            if (displayed.length() > 1) {
 
                 String trimmed = displayed.substring(0, displayed.length() - 1);
                 display.setText(trimmed);
