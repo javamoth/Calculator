@@ -67,6 +67,8 @@ public class HelloApplication extends Application {
 //              default -> System.out.println(key.getCode()); //Use this for debugging
             }
 
+            //For this number row key we need to trigger an event with both shift pressed
+            //and shift released, so I excluded it from the switch statement and wrote two "if" conditions instead
             if (key.isShiftDown() && key.getCode() == KeyCode.EQUALS) {
                 buttonAdd.fire();
                 key.consume();
@@ -76,7 +78,7 @@ public class HelloApplication extends Application {
                 buttonEquals.fire();
             }
 
-            //Digit 8 from the number row is a special case as it needs to trigger an event with both shift pressed
+            //For this number row key we need to trigger an event with both shift pressed
             //and shift released, so I excluded it from the switch statement and wrote two "if" conditions instead
             if (key.isShiftDown() && key.getCode() == KeyCode.DIGIT8) {
                 buttonMultiply.fire();

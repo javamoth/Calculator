@@ -242,7 +242,8 @@ public class HelloController {
         afterTheOperator = true;        //This lets the digit buttons know that they have to overwrite the number
                                         //displayed
         numIterative = "";              //Empties numIterative so that the function, calculating the result, knows
-                                        //that the next iteration will be the 1st (???  forgot why it is needed)
+                                        //that the next iteration will be the 1st and to use the num2 variable as the
+                                        //2nd operand instead of numIterative
     }
 
     public void onButtonSubtractClick() {
@@ -301,7 +302,7 @@ public class HelloController {
         if (Objects.equals(flag, "+")) { //Checks what the operator flag is set to (+)
 
             if (!Objects.equals(numIterative, "")) { //If numIterative is not empty, that means the 2nd operand
-                //from the previous operation was stored in numIterative, and will be used again as the 2nd operand here
+                //from the previous operation has been stored in numIterative, and will be used again as the 2nd operand here
 
                 num1 = display.getText(); //Stores the outputted result of the previous operation in num1
                 double result = Double.parseDouble(num1) + Double.parseDouble(numIterative); //Converts the values
@@ -463,26 +464,27 @@ public class HelloController {
         }
     }
 
-    public void onButtonBackspaceClick() {
+    public void onButtonBackspaceClick() {  //Deleting the last digit on the display
 
         if (!equals) { //Makes the backspace only work on entered operands and not the result
 
-            String displayed = display.getText();   //Grab the displayed value, store into displayed
+            String displayed = display.getText();   //Grab the displayed value, store in displayed
 
-            if (displayed.length() == 1) {   //
+            if (displayed.length() == 1) {   //If there's just a character on the screen
 
-                display.setText("0");
+                display.setText("0"); //Set the displayed string to zero
             }
 
-            if (displayed.length() > 1) {
+            if (displayed.length() > 1) {   //If there's more than one character
 
-                String trimmed = displayed.substring(0, displayed.length() - 1);
-                display.setText(trimmed);
+                String trimmed = displayed.substring(0, displayed.length() - 1);    //Reduce the length by 1
+                display.setText(trimmed);   //Output the resulting value
             }
 
-            if ((displayed.matches("-.")) || (displayed.matches("-0."))) {
+            if ((displayed.matches("-.")) || (displayed.matches("-0."))) {  //If there's either a single
+                //character with the leading minus or a zero with the leading minus and the decimal point
 
-                display.setText("0");
+                display.setText("0");   //Set the displayed string to zero
             }
         }
     }
