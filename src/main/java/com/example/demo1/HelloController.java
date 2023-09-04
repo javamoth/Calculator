@@ -1,5 +1,6 @@
 package com.example.demo1;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -45,7 +46,7 @@ public class HelloController {
                             //has been pressed, and they need to replace the displayed number
                             //entirely instead of appending digits to it.
 
-    Boolean willHighlight = true;   //Let's the switchBackspaceButton method know if it should highlight or unhighlight
+    Boolean willHighlight = true;   //Lets the switchBackspaceButton method know if it should highlight or unhighlight
                                     //the BP button when it's clicked
 
 
@@ -612,4 +613,31 @@ public class HelloController {
 //            willHighlight = true;   //Allows onclick highlighting
 //        }
     }
+    @FXML
+    private void onDigitPress(ActionEvent event)
+    {
+        ActionEvent e = event;
+
+        Button button = (Button) e.getTarget();
+
+        highlightOnKeyPress(button);
+
+        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
+
+            display.setText(button.getText());
+            afterTheOperator = false;
+            equals = false;
+            switchBackspaceButton();
+        }
+
+        else {
+
+            String num = display.getText();
+            num = num + button.getText();
+            display.setText(num);
+        }
+
+    }
+
+
 }
