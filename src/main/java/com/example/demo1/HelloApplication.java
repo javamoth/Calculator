@@ -7,12 +7,17 @@ import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 
 public class HelloApplication extends Application {
 
+
+
+
+
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException{
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
 
@@ -97,6 +102,54 @@ public class HelloApplication extends Application {
         HelloController helloController = fxmlLoader.getController();   //Access stuff in HelloController.java
         stage.setOnCloseRequest(event -> helloController.executor.shutdown());  //Shut down the executor so the app
         //closes properly
+
+
+
+
+//        ObservableBooleanValue xxx = new ObservableBooleanValue() {
+//            @Override
+//            public boolean get() {
+//                return false;
+//            }
+//
+//            @Override
+//            public void addListener(ChangeListener<? super Boolean> changeListener) {
+//
+//            }
+//
+//            @Override
+//            public void removeListener(ChangeListener<? super Boolean> changeListener) {
+//
+//            }
+//
+//            @Override
+//            public Boolean getValue() {
+//                return null;
+//            }
+//
+//            @Override
+//            public void addListener(InvalidationListener invalidationListener) {
+//
+//            }
+//
+//            @Override
+//            public void removeListener(InvalidationListener invalidationListener) {
+//
+//            }
+//        };
+//
+//        Boolean toCheck = helloController.equals;
+//        xxx.addListener(toCheck);
+
+//        if (helloController.equals) {
+//
+//            buttonPoint.setStyle("-fx-background-color: #3C486B");
+//        }
+
+
+
+
+
     }
 
     public static void main(String[] args) {

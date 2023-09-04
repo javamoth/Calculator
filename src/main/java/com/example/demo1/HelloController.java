@@ -17,6 +17,8 @@ public class HelloController {
     //We then shut it down in the main class on app exit
 
     //Defining global variables
+
+//    BooChangeListener mOnChange = null;
     @FXML
     private Label display;
 
@@ -43,6 +45,10 @@ public class HelloController {
                             //has been pressed, and they need to replace the displayed number
                             //entirely instead of appending digits to it.
 
+    Boolean willHighlight = true;
+
+
+
     //onClick methods
     @FXML
     protected void onButton1Click() {
@@ -56,6 +62,8 @@ public class HelloController {
             afterTheOperator = false; //Sets the operator flag to "false" after the 1st press to allow for
                                          // appending digits
             equals = false; //Sets the "=" flag to "false" after the 1st press to allow for appending digits
+//            setOnBooChangeListener(mOnChange);
+            switchBackspaceButton();
         }
 
         else {
@@ -76,6 +84,7 @@ public class HelloController {
             display.setText("2");
             afterTheOperator = false;
             equals = false;
+            switchBackspaceButton();
         }
 
         else {
@@ -96,6 +105,7 @@ public class HelloController {
             display.setText("3");
             afterTheOperator = false;
             equals = false;
+            switchBackspaceButton();
         }
 
         else {
@@ -116,6 +126,7 @@ public class HelloController {
             display.setText("4");
             afterTheOperator = false;
             equals = false;
+            switchBackspaceButton();
         }
 
         else {
@@ -136,6 +147,7 @@ public class HelloController {
             display.setText("5");
             afterTheOperator = false;
             equals = false;
+            switchBackspaceButton();
         }
 
         else {
@@ -156,6 +168,7 @@ public class HelloController {
             display.setText("6");
             afterTheOperator = false;
             equals = false;
+            switchBackspaceButton();
         }
 
         else {
@@ -176,6 +189,7 @@ public class HelloController {
             display.setText("7");
             afterTheOperator = false;
             equals = false;
+            switchBackspaceButton();
         }
 
         else {
@@ -196,6 +210,7 @@ public class HelloController {
             display.setText("8");
             afterTheOperator = false;
             equals = false;
+            switchBackspaceButton();
         }
 
         else {
@@ -216,6 +231,7 @@ public class HelloController {
             display.setText("9");
             afterTheOperator = false;
             equals = false;
+            switchBackspaceButton();
         }
 
         else {
@@ -236,6 +252,7 @@ public class HelloController {
             display.setText("0");
             afterTheOperator = false;
             equals = false;
+            switchBackspaceButton();
         }
 
         else {
@@ -256,6 +273,10 @@ public class HelloController {
         afterTheOperator = false;
         equals = false;
         numIterative = "";
+
+        switchBackspaceButton();
+//        setOnBooChangeListener(mOnChange);
+//        System.out.println(mOnChange);
     }
 
     public void onButtonAddClick() {
@@ -460,6 +481,8 @@ public class HelloController {
                 num2 = "";
             }
         }
+        switchBackspaceButton();
+//        setOnBooChangeListener(mOnChange);
     }
 
     public void onButtonRepeatSwitchClick() {
@@ -512,12 +535,16 @@ public class HelloController {
             display.setText("0.");
             afterTheOperator = false;   //Reset both flags
             equals = false;
+            switchBackspaceButton();
         }
     }
 
     public void onButtonBackspaceClick() {  //Deleting the last digit on the display
 
-        highlightOnKeyPress(buttonBackspace);
+        if (willHighlight) {
+
+            highlightOnKeyPress(buttonBackspace);
+        }
 
         if (!equals) { //Makes the backspace only work on entered operands and not the result
 
@@ -567,5 +594,48 @@ public class HelloController {
 
         executor.execute(highlight);    //Highlight the button
         executor.schedule(unHighlight, 150, TimeUnit.MILLISECONDS);     //Unhighlight it almost immediately after
+    }
+
+
+
+
+//    public void onBooChange(boolean bobo) {
+//        equals = bobo;
+//        System.out.println("onBooChange triggered");
+//    }
+//
+//    public void setOnBooChangeListener(BooChangeListener bcl)
+//    {
+//
+//        mOnChange = bcl;
+//        setBoo(equals);
+//        System.out.println("setOnBooChangeListener triggered");
+//        buttonBackspace.setStyle("-fx-background-color: #3C486B; -fx-text-fill: #61677A");
+//
+//        System.out.println(mOnChange);
+//    }
+//
+//    public void setBoo(boolean equals)
+//    {
+//        System.out.println("setBoo");
+//        boolean lol = equals;
+//        if(mOnChange != null)
+//            mOnChange.onBooChange(lol);
+//    }
+
+    void switchBackspaceButton() {  //Switch the appearance of the BP button
+
+        if (equals) {   //If equals is true, make the button appear inactive
+
+            buttonBackspace.setStyle("-fx-background-color: #3C486B; -fx-text-fill: #61677A");
+            willHighlight = false;  //Prohibits onclick highlighting
+        }
+
+        if (!equals){   //If equals is false, reset the appearance
+
+//            buttonBackspace.getStyleClass().removeIf(s -> s.contains(":hover"));
+            buttonBackspace.setStyle(":hover -fx-background-color: #526D82");
+            willHighlight = true;   //Allows onclick highlighting
+        }
     }
 }
