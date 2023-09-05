@@ -49,7 +49,7 @@ public class HelloController {
     Boolean willHighlight = true;   //Lets the switchBackspaceButton method know if it should highlight or unhighlight
                                     //the BP button when it's clicked
 
-
+    DecimalFormat deciFormat = new DecimalFormat("0.###########");  //Presets the format
 
     //onClick methods
 
@@ -93,8 +93,6 @@ public class HelloController {
         numIterative = "";
 
         switchBackspaceButton();
-//        setOnBooChangeListener(mOnChange);
-//        System.out.println(mOnChange);
     }
 
     @FXML
@@ -107,8 +105,8 @@ public class HelloController {
 
         //Just in case the user has backspaced to "-0." after entering the 1st operand we perform the steps below
 
-        DecimalFormat format = new DecimalFormat("0.###########");  //Presets the format
-        String pointAndZeroCleared = format.format(Double.valueOf(display.getText())); //Converts double to String
+
+        String pointAndZeroCleared = deciFormat.format(Double.valueOf(display.getText())); //Converts double to String
         //and formats it, stripping any trailing zeros and the floating point from the number displayed
 
 
@@ -139,27 +137,27 @@ public class HelloController {
                 if (Objects.equals(flag, "+")) {    //Checks what the operator flag is set to (+)
                     double result = Double.parseDouble(num1) + Double.parseDouble(numIterative);    //Converts the values
                     //of both variables to double, performs the operation and stores the result
-                    DecimalFormat format = new DecimalFormat("0.###########");  //Presets the format
-                    display.setText(format.format(result)); //Formats the double value of "result" and outputs the
+
+                    display.setText(deciFormat.format(result)); //Formats the double value of "result" and outputs the
                     //resulting string to the display
                 }
 
                 if (Objects.equals(flag, "-")) {
                     double result = Double.parseDouble(num1) - Double.parseDouble(numIterative);
-                    DecimalFormat format = new DecimalFormat("0.###########");
-                    display.setText(format.format(result));
+
+                    display.setText(deciFormat.format(result));
                 }
 
                 if (Objects.equals(flag, "*")) {
                     double result = Double.parseDouble(num1) * Double.parseDouble(numIterative);
-                    DecimalFormat format = new DecimalFormat("0.###########");
-                    display.setText(format.format(result));
+
+                    display.setText(deciFormat.format(result));
                 }
 
                 if (Objects.equals(flag, "/")) {
                     double result = Double.parseDouble(num1) / Double.parseDouble(numIterative);
-                    DecimalFormat format = new DecimalFormat("0.###########");
-                    display.setText(format.format(result));
+
+                    display.setText(deciFormat.format(result));
                 }
             }
 
@@ -171,26 +169,26 @@ public class HelloController {
 
                 if (Objects.equals(flag, "+")) {
                     double result = Double.parseDouble(num1) + Double.parseDouble(num2);
-                    DecimalFormat format = new DecimalFormat("0.###########");
-                    display.setText(format.format(result));
+
+                    display.setText(deciFormat.format(result));
                 }
 
                 if (Objects.equals(flag, "-")) {
                     double result = Double.parseDouble(num1) - Double.parseDouble(num2);
-                    DecimalFormat format = new DecimalFormat("0.###########");
-                    display.setText(format.format(result));
+
+                    display.setText(deciFormat.format(result));
                 }
 
                 if (Objects.equals(flag, "*")) {
                     double result = Double.parseDouble(num1) * Double.parseDouble(num2);
-                    DecimalFormat format = new DecimalFormat("0.###########");
-                    display.setText(format.format(result));
+
+                    display.setText(deciFormat.format(result));
                 }
 
                 if (Objects.equals(flag, "/")) {
                     double result = Double.parseDouble(num1) / Double.parseDouble(num2);
-                    DecimalFormat format = new DecimalFormat("0.###########");
-                    display.setText(format.format(result));
+
+                    display.setText(deciFormat.format(result));
                 }
 
                 numIterative = num2;    //Stores the 2nd operand into numIterative to be used as the 2nd operand during
@@ -217,16 +215,16 @@ public class HelloController {
         if (displayed < 0) {    //If the number is negative
 
             double displayPos = Math.abs(displayed);    //Convert to positive and store in displayedPos
-            DecimalFormat format = new DecimalFormat("0.###########");  //Preset the output format
-            display.setText(format.format(Double.valueOf(displayPos))); //Trim the final value, convert to String, and
+
+            display.setText(deciFormat.format(Double.valueOf(displayPos))); //Trim the final value, convert to String, and
             //output to the display
         }
 
         if (displayed > 0) {    //If the number is positive
 
             double displayNeg = -displayed;     //Convert to negative and store in displayNeg
-            DecimalFormat format = new DecimalFormat("0.###########");  //Preset the output format
-            display.setText(format.format(Double.valueOf(displayNeg)));   //Trim the final value, convert to String, and
+
+            display.setText(deciFormat.format(Double.valueOf(displayNeg)));   //Trim the final value, convert to String, and
             //output to the display
         }
     }
