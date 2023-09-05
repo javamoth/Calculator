@@ -261,25 +261,19 @@ public class HelloController {
 
     public void highlightOnKeyPress(Button button) {    //Highlight the passed button briefly after pressing it
 
-        Runnable highlight = new Runnable() {   //Create a new Runnable object
+        //Create a new Runnable object
+        Runnable highlight = () -> {
 
-            @Override
-            public void run() {
-
-                button.setStyle("-fx-background-color: #1B6B93");   //Set the bg color to a different one immediately
-                //after pressing
-            }
+            button.setStyle("-fx-background-color: #1B6B93");   //Set the bg color to a different one immediately
+            //after pressing
         };
 
-        Runnable unHighlight = new Runnable() {     //Create a new Runnable object
+        //Create a new Runnable object
+        Runnable unHighlight = () -> {
 
-            @Override
-            public void run() {
+            button.setStyle(":hover -fx-background-color: #526D82");    //Set the stylesheet back to change
+            // color on hover
 
-                button.setStyle(":hover -fx-background-color: #526D82");    //Set the stylesheet back to change
-                // color on hover
-
-            }
         };
 
         executor.execute(highlight);    //Highlight the button
