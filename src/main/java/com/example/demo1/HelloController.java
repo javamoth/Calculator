@@ -115,72 +115,10 @@ public class HelloController {
                                             //2nd operand instead of numIterative
     }
 
-    public void onEquals() {   //The "=" button, calculates the resulting value
+    public void onEqualsPress() {   //The "=" button, calculates the resulting value
 
         highlightOnKeyPress(buttonEquals);
-
-            if (!Objects.equals(numIterative, "")) {    //If numIterative is not empty, that means the 2nd operand
-                //from the previous operation has been stored in numIterative, and will be used again as the 2nd operand here
-
-                num1 = display.getText();   //Stores the outputted result of the previous operation in num1
-
-                if (Objects.equals(flag, "+")) {    //Checks what the operator flag is set to (+)
-                    double result = Double.parseDouble(num1) + Double.parseDouble(numIterative);    //Converts the values
-                    //of both variables to double, performs the operation and stores the result
-
-                    display.setText(deciFormat.format(result)); //Formats the double value of "result" and outputs the
-                    //resulting string to the display
-                }
-
-                if (Objects.equals(flag, "-")) {
-                    double result = Double.parseDouble(num1) - Double.parseDouble(numIterative);
-                    display.setText(deciFormat.format(result));
-                }
-
-                if (Objects.equals(flag, "*")) {
-                    double result = Double.parseDouble(num1) * Double.parseDouble(numIterative);
-                    display.setText(deciFormat.format(result));
-                }
-
-                if (Objects.equals(flag, "/")) {
-                    double result = Double.parseDouble(num1) / Double.parseDouble(numIterative);
-                    display.setText(deciFormat.format(result));
-                }
-            }
-
-            if (Objects.equals(numIterative, "")) { //If numIterative is empty, that means that this is the first
-                //iteration of the operation
-
-                num2 = display.getText();   //Stores the value of the 2nd operand, currently on the display, into num2
-
-
-                if (Objects.equals(flag, "+")) {
-                    double result = Double.parseDouble(num1) + Double.parseDouble(num2);
-                    display.setText(deciFormat.format(result));
-                }
-
-                if (Objects.equals(flag, "-")) {
-                    double result = Double.parseDouble(num1) - Double.parseDouble(num2);
-                    display.setText(deciFormat.format(result));
-                }
-
-                if (Objects.equals(flag, "*")) {
-                    double result = Double.parseDouble(num1) * Double.parseDouble(num2);
-                    display.setText(deciFormat.format(result));
-                }
-
-                if (Objects.equals(flag, "/")) {
-                    double result = Double.parseDouble(num1) / Double.parseDouble(num2);
-                    display.setText(deciFormat.format(result));
-                }
-
-                numIterative = num2;    //Stores the 2nd operand into numIterative to be used as the 2nd operand during
-                //the 2nd and all consecutive iterations
-                num2 = "";  //Empties num2
-            }
-
-        equals = true;  //Sets the equals flag to true, this lets the digit buttons know to overwrite the number
-                        //displayed on the first press
+        calculate();    //calculate the result
     }
 
     public void onButtonRepeatSwitchClick() {
@@ -278,5 +216,71 @@ public class HelloController {
 
         executor.execute(highlight);    //Highlight the button
         executor.schedule(unHighlight, 150, TimeUnit.MILLISECONDS);     //Unhighlight it almost immediately after
+    }
+
+    public void calculate() {
+
+        if (!Objects.equals(numIterative, "")) {    //If numIterative is not empty, that means the 2nd operand
+            //from the previous operation has been stored in numIterative, and will be used again as the 2nd operand here
+
+            num1 = display.getText();   //Stores the outputted result of the previous operation in num1
+
+            if (Objects.equals(flag, "+")) {    //Checks what the operator flag is set to (+)
+                double result = Double.parseDouble(num1) + Double.parseDouble(numIterative);    //Converts the values
+                //of both variables to double, performs the operation and stores the result
+
+                display.setText(deciFormat.format(result)); //Formats the double value of "result" and outputs the
+                //resulting string to the display
+            }
+
+            if (Objects.equals(flag, "-")) {
+                double result = Double.parseDouble(num1) - Double.parseDouble(numIterative);
+                display.setText(deciFormat.format(result));
+            }
+
+            if (Objects.equals(flag, "*")) {
+                double result = Double.parseDouble(num1) * Double.parseDouble(numIterative);
+                display.setText(deciFormat.format(result));
+            }
+
+            if (Objects.equals(flag, "/")) {
+                double result = Double.parseDouble(num1) / Double.parseDouble(numIterative);
+                display.setText(deciFormat.format(result));
+            }
+        }
+
+        if (Objects.equals(numIterative, "")) { //If numIterative is empty, that means that this is the first
+            //iteration of the operation
+
+            num2 = display.getText();   //Stores the value of the 2nd operand, currently on the display, into num2
+
+
+            if (Objects.equals(flag, "+")) {
+                double result = Double.parseDouble(num1) + Double.parseDouble(num2);
+                display.setText(deciFormat.format(result));
+            }
+
+            if (Objects.equals(flag, "-")) {
+                double result = Double.parseDouble(num1) - Double.parseDouble(num2);
+                display.setText(deciFormat.format(result));
+            }
+
+            if (Objects.equals(flag, "*")) {
+                double result = Double.parseDouble(num1) * Double.parseDouble(num2);
+                display.setText(deciFormat.format(result));
+            }
+
+            if (Objects.equals(flag, "/")) {
+                double result = Double.parseDouble(num1) / Double.parseDouble(num2);
+                display.setText(deciFormat.format(result));
+            }
+
+            numIterative = num2;    //Stores the 2nd operand into numIterative to be used as the 2nd operand during
+            //the 2nd and all consecutive iterations
+            num2 = "";  //Empties num2
+        }
+
+        equals = true;  //Sets the equals flag to true, this lets the digit buttons know to overwrite the number
+        //displayed on the first press
     }
 }
