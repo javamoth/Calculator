@@ -134,19 +134,16 @@ public class HelloController {
 
                 if (Objects.equals(flag, "-")) {
                     double result = Double.parseDouble(num1) - Double.parseDouble(numIterative);
-
                     display.setText(deciFormat.format(result));
                 }
 
                 if (Objects.equals(flag, "*")) {
                     double result = Double.parseDouble(num1) * Double.parseDouble(numIterative);
-
                     display.setText(deciFormat.format(result));
                 }
 
                 if (Objects.equals(flag, "/")) {
                     double result = Double.parseDouble(num1) / Double.parseDouble(numIterative);
-
                     display.setText(deciFormat.format(result));
                 }
             }
@@ -159,25 +156,21 @@ public class HelloController {
 
                 if (Objects.equals(flag, "+")) {
                     double result = Double.parseDouble(num1) + Double.parseDouble(num2);
-
                     display.setText(deciFormat.format(result));
                 }
 
                 if (Objects.equals(flag, "-")) {
                     double result = Double.parseDouble(num1) - Double.parseDouble(num2);
-
                     display.setText(deciFormat.format(result));
                 }
 
                 if (Objects.equals(flag, "*")) {
                     double result = Double.parseDouble(num1) * Double.parseDouble(num2);
-
                     display.setText(deciFormat.format(result));
                 }
 
                 if (Objects.equals(flag, "/")) {
                     double result = Double.parseDouble(num1) / Double.parseDouble(num2);
-
                     display.setText(deciFormat.format(result));
                 }
 
