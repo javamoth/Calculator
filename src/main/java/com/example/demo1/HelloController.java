@@ -19,7 +19,6 @@ public class HelloController {
 
     //Defining global variables
 
-//    BooChangeListener mOnChange = null;
     @FXML
     private Label display;
 
@@ -46,10 +45,7 @@ public class HelloController {
                             //has been pressed, and they need to replace the displayed number
                             //entirely instead of appending digits to it.
 
-    Boolean willHighlight = true;   //Lets the switchBackspaceButton method know if it should highlight or unhighlight
-                                    //the BP button when it's clicked
-
-    DecimalFormat deciFormat = new DecimalFormat("0.###########");  //Presets the format
+    DecimalFormat deciFormat = new DecimalFormat("0.###########");  //Presets the decimal format to be used
 
     //onClick methods
 
@@ -62,15 +58,13 @@ public class HelloController {
         highlightOnKeyPress(button);    //Pass the current button to highlightOnKeyPress so that it lights up when fired
 
         //Checks if the "0" without the f. point is being displayed or either an operator button or "=" being previously pressed
+
         if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
 
             display.setText(button.getText());  //Resets the displayed number to the button's digit
             afterTheOperator = false;   //Sets the operator flag to "false" after the 1st press to allow for
             // appending digits
             equals = false;     //Sets the "=" flag to "false" after the 1st press to allow for appending digits
-//            setOnBooChangeListener(mOnChange);
-            switchBackspaceButton();    //This method call should be everywhere after the equals flag changes, this
-            //lets us either make the BP button appear active or inactive at appropriate times
         }
 
         else {
@@ -85,14 +79,11 @@ public class HelloController {
     protected void onButtonCClick() {   //Clears the display, resets all flags, empties all variables
 
         highlightOnKeyPress(buttonC);
-
         display.setText("0");
         flag = "";
         afterTheOperator = false;
         equals = false;
         numIterative = "";
-
-        switchBackspaceButton();
     }
 
     @FXML
@@ -104,7 +95,6 @@ public class HelloController {
         highlightOnKeyPress(button);    //Pass the current button to highlightOnKeyPress so that it lights up when fired
 
         //Just in case the user has backspaced to "-0." after entering the 1st operand we perform the steps below
-
 
         String pointAndZeroCleared = deciFormat.format(Double.valueOf(display.getText())); //Converts double to String
         //and formats it, stripping any trailing zeros and the floating point from the number displayed
@@ -128,7 +118,7 @@ public class HelloController {
     public void onEquals() {   //The "=" button, calculates the resulting value
 
         highlightOnKeyPress(buttonEquals);
-                
+
             if (!Objects.equals(numIterative, "")) {    //If numIterative is not empty, that means the 2nd operand
                 //from the previous operation has been stored in numIterative, and will be used again as the 2nd operand here
 
@@ -208,7 +198,6 @@ public class HelloController {
     public void onButtonNegativeClick() {   //Switching to negative or positive number
 
         highlightOnKeyPress(buttonNegative);
-
         double displayed = Double.parseDouble(display.getText()); //Grab the displayed value, convert it to double
         //and store in displayed
 
@@ -232,7 +221,6 @@ public class HelloController {
     public void onButtonPointClick() {      //Introducing the floating point
 
         highlightOnKeyPress(buttonPoint);
-
         String displayed = display.getText();   //Store currently displayed text into displayed
 
         if (!displayed.contains(".") && (!afterTheOperator && !equals)) { //If there's no f.point already and none
@@ -250,16 +238,10 @@ public class HelloController {
             display.setText("0.");
             afterTheOperator = false;   //Reset both flags
             equals = false;
-            switchBackspaceButton();
         }
     }
 
     public void onButtonBackspaceClick() {  //Deleting the last digit on the display
-
-        if (willHighlight) {
-
-            highlightOnKeyPress(buttonBackspace);
-        }
 
         if (!equals) { //Makes the backspace only work on entered operands and not the result
 
@@ -310,22 +292,4 @@ public class HelloController {
         executor.execute(highlight);    //Highlight the button
         executor.schedule(unHighlight, 150, TimeUnit.MILLISECONDS);     //Unhighlight it almost immediately after
     }
-
-    void switchBackspaceButton() {  //Switch the appearance of the BP button <- THIS IS  BUGGED
-
-//        if (equals) {   //If equals is true, make the button appear inactive
-//
-//            buttonBackspace.setStyle("-fx-background-color: #3C486B; -fx-text-fill: #61677A");
-//            willHighlight = false;  //Prohibits onclick highlighting
-//        }
-//
-//        if (!equals){   //If equals is false, reset the appearance
-//
-//            buttonBackspace.setStyle(":hover -fx-background-color: #526D82");
-//            willHighlight = true;   //Allows onclick highlighting
-//        }
-    }
-
-
-
 }
