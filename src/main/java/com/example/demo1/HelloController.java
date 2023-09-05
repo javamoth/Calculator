@@ -224,29 +224,7 @@ public class HelloController {
             //from the previous operation has been stored in numIterative, and will be used again as the 2nd operand here
 
             num1 = display.getText();   //Stores the outputted result of the previous operation in num1
-
-            if (Objects.equals(flag, "+")) {    //Checks what the operator flag is set to (+)
-                double result = Double.parseDouble(num1) + Double.parseDouble(numIterative);    //Converts the values
-                //of both variables to double, performs the operation and stores the result
-
-                display.setText(deciFormat.format(result)); //Formats the double value of "result" and outputs the
-                //resulting string to the display
-            }
-
-            if (Objects.equals(flag, "-")) {
-                double result = Double.parseDouble(num1) - Double.parseDouble(numIterative);
-                display.setText(deciFormat.format(result));
-            }
-
-            if (Objects.equals(flag, "*")) {
-                double result = Double.parseDouble(num1) * Double.parseDouble(numIterative);
-                display.setText(deciFormat.format(result));
-            }
-
-            if (Objects.equals(flag, "/")) {
-                double result = Double.parseDouble(num1) / Double.parseDouble(numIterative);
-                display.setText(deciFormat.format(result));
-            }
+            num2 = numIterative;
         }
 
         if (Objects.equals(numIterative, "")) { //If numIterative is empty, that means that this is the first
@@ -254,33 +232,32 @@ public class HelloController {
 
             num2 = display.getText();   //Stores the value of the 2nd operand, currently on the display, into num2
 
-
-            if (Objects.equals(flag, "+")) {
-                double result = Double.parseDouble(num1) + Double.parseDouble(num2);
-                display.setText(deciFormat.format(result));
-            }
-
-            if (Objects.equals(flag, "-")) {
-                double result = Double.parseDouble(num1) - Double.parseDouble(num2);
-                display.setText(deciFormat.format(result));
-            }
-
-            if (Objects.equals(flag, "*")) {
-                double result = Double.parseDouble(num1) * Double.parseDouble(num2);
-                display.setText(deciFormat.format(result));
-            }
-
-            if (Objects.equals(flag, "/")) {
-                double result = Double.parseDouble(num1) / Double.parseDouble(num2);
-                display.setText(deciFormat.format(result));
-            }
-
             numIterative = num2;    //Stores the 2nd operand into numIterative to be used as the 2nd operand during
             //the 2nd and all consecutive iterations
-            num2 = "";  //Empties num2
         }
 
+        if (Objects.equals(flag, "+")) {
+            double result = Double.parseDouble(num1) + Double.parseDouble(num2);
+            display.setText(deciFormat.format(result));
+        }
+
+        if (Objects.equals(flag, "-")) {
+            double result = Double.parseDouble(num1) - Double.parseDouble(num2);
+            display.setText(deciFormat.format(result));
+        }
+
+        if (Objects.equals(flag, "*")) {
+            double result = Double.parseDouble(num1) * Double.parseDouble(num2);
+            display.setText(deciFormat.format(result));
+        }
+
+        if (Objects.equals(flag, "/")) {
+            double result = Double.parseDouble(num1) / Double.parseDouble(num2);
+            display.setText(deciFormat.format(result));
+        }
         equals = true;  //Sets the equals flag to true, this lets the digit buttons know to overwrite the number
         //displayed on the first press
+
+        num2 = "";  //Empties num2
     }
 }
