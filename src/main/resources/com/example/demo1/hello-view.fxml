@@ -20,7 +20,6 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
-   <children>
       <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="77.0" text="Button" GridPane.rowIndex="2" />
       <Label fx:id="display" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="327.0" style=" -fx-padding: 10,10,10,10;" text="0" textAlignment="RIGHT" GridPane.columnSpan="4" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.valignment="CENTER">
          <font>
@@ -117,7 +116,6 @@
          <font>
             <Font size="27.0" />
          </font></Button>
-   </children>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
    </padding>

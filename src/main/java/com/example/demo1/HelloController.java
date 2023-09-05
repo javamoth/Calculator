@@ -26,7 +26,7 @@ public class HelloController {
     @FXML
     Button buttonNegative, buttonPoint, buttonBackspace, button7, button8, button9, buttonDivide,
             button4, button5, button6, buttonMultiply, button1, button2, button3, buttonSubtract,
-            buttonC, buttonEquals, button0, buttonAdd;
+            buttonC, buttonEquals, button0, buttonAdd, buttonRepeatSwitch;
 
     String flag; //Stores the operator: +, -, *, /
 
@@ -47,7 +47,7 @@ public class HelloController {
 
     DecimalFormat deciFormat = new DecimalFormat("0.###########");  //Presets the decimal format to be used
 
-    //onClick methods
+    //Button onAction methods
 
     @FXML
     private void onDigitPress(ActionEvent event) {  //Grab the passed onAction event from the digit button
@@ -255,6 +255,7 @@ public class HelloController {
             double result = Double.parseDouble(num1) / Double.parseDouble(num2);
             display.setText(deciFormat.format(result));
         }
+
         equals = true;  //Sets the equals flag to true, this lets the digit buttons know to overwrite the number
         //displayed on the first press
 
