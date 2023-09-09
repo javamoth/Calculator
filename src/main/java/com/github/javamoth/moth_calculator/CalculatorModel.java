@@ -61,6 +61,10 @@ public class CalculatorModel {  //Main logic
         return DECI_FORMAT;
     }
 
+    public void setResult(double result) {
+        this.result = result;
+    }
+
     public String calculate(String currentValue) {   //Calculate the result
 
         if (!Objects.equals(numIterative, "")) {    //If numIterative is not empty, that means the 2nd operand

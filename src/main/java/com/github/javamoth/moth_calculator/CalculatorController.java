@@ -69,6 +69,7 @@ public class CalculatorController {
         model.setAfterTheOperator(false);
         model.setEquals(false);
         model.setNumIterative("");
+        model.setResult(0);
     }
 
     @FXML
