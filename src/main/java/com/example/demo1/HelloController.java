@@ -5,13 +5,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-import java.text.DecimalFormat;
-import java.util.Objects;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class HelloController {
+
+    private final CalculatorModel model = new CalculatorModel();
+
+    public void setModelFlag(String flag) {
+        model.setFlag(flag);
+    }
 
     ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor(); //This service will be used to
     //briefly highlight and unhighlight buttons after pressing/clicking them as it's hard to achieve in CSS
@@ -24,28 +28,7 @@ public class HelloController {
 
     //Defining button variables to use them in the highlighting on press method etc.
     @FXML
-    Button buttonNegative, buttonPoint, buttonBackspace, button7, button8, button9, buttonDivide,
-            button4, button5, button6, buttonMultiply, button1, button2, button3, buttonSubtract,
-            buttonC, buttonEquals, button0, buttonAdd, buttonRepeatSwitch;
-
-    String flag; //Stores the operator: +, -, *, /
-
-    String num1; //Stores the 1st operand
-
-    String num2; //Stores the 2nd operand
-
-    String numIterative = ""; //Stores the latest operand to be used as the 2nd operand during iterative calculation
-                                //Used in a couple of unique checks
-
-    Boolean afterTheOperator = false; //This flag lets the Onclick functions of the number buttons know that
-                                //an operator button has been pressed, and they need to replace the displayed number
-                                //entirely instead of appending digits to it.
-
-    Boolean equals = false;         //This flag lets the Onclick functions of the number buttons know that the "=" button
-                            //has been pressed, and they need to replace the displayed number
-                            //entirely instead of appending digits to it.
-
-    DecimalFormat deciFormat = new DecimalFormat("0.###########");  //Presets the decimal format to be used
+    private Button buttonNegative, buttonPoint, buttonC, buttonEquals;
 
     //Button onAction methods
 
@@ -59,12 +42,12 @@ public class HelloController {
 
         //Checks if the "0" without the f. point is being displayed or either an operator button or "=" being previously pressed
 
-        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || afterTheOperator || equals) {
+        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || model.getAfterTheOperator() || model.getEquals()) {
 
             display.setText(button.getText());  //Resets the displayed number to the button's digit
-            afterTheOperator = false;   //Sets the operator flag to "false" after the 1st press to allow for
+            model.setAfterTheOperator(false);   //Sets the operator flag to "false" after the 1st press to allow for
             // appending digits
-            equals = false;     //Sets the "=" flag to "false" after the 1st press to allow for appending digits
+            model.setEquals(false);     //Sets the "=" flag to "false" after the 1st press to allow for appending digits
         }
 
         else {
@@ -80,10 +63,10 @@ public class HelloController {
 
         highlightOnKeyPress(buttonC);
         display.setText("0");
-        flag = "";
-        afterTheOperator = false;
-        equals = false;
-        numIterative = "";
+        setModelFlag("");
+        model.setAfterTheOperator(false);
+        model.setEquals(false);
+        model.setNumIterative("");
     }
 
     @FXML
@@ -96,7 +79,7 @@ public class HelloController {
 
         //Just in case the user has backspaced to "-0." after entering the 1st operand we perform the steps below
 
-        String pointAndZeroCleared = deciFormat.format(Double.valueOf(display.getText())); //Converts double to String
+        String pointAndZeroCleared = model.getDeciFormat().format(Double.valueOf(display.getText())); //Converts double to String
         //and formats it, stripping any trailing zeros and the floating point from the number displayed
 
 
@@ -106,11 +89,11 @@ public class HelloController {
         }
 
         display.setText(pointAndZeroCleared);   //Outputs the corrected value to the display
-        num1 = display.getText();               //Stores the current displayed number in the global variable num1
-        flag = button.getText();                //Sets the operator flag corresponding to the button's text
-        afterTheOperator = true;            //This lets the digit buttons know that they have to overwrite the number
+        model.setNum1(display.getText());               //Stores the current displayed number in the global variable num1
+        model.setFlag(button.getText());                //Sets the operator flag corresponding to the button's text
+        model.setAfterTheOperator(true);          //This lets the digit buttons know that they have to overwrite the number
         //displayed
-        numIterative = "";                  //Empties numIterative so that the function, calculating the result, knows
+        model.setNumIterative("");                 //Empties numIterative so that the function, calculating the result, knows
                                             //that the next iteration will be the 1st and to use the num2 variable as the
                                             //2nd operand instead of numIterative
     }
@@ -118,7 +101,10 @@ public class HelloController {
     public void onEqualsPress() {   //The "=" button, calculates the resulting value
 
         highlightOnKeyPress(buttonEquals);
-        calculate();    //calculate the result
+        String res = model.calculate(display.getText());//calculate the result
+        updateDisplay(res);
+
+
     }
 
     public void onButtonRepeatSwitchClick() {
@@ -136,7 +122,7 @@ public class HelloController {
 
             double displayPos = Math.abs(displayed);    //Convert to positive and store in displayedPos
 
-            display.setText(deciFormat.format(Double.valueOf(displayPos))); //Trim the final value, convert to String, and
+            display.setText(model.getDeciFormat().format(Double.valueOf(displayPos))); //Trim the final value, convert to String, and
             //output to the display
         }
 
@@ -144,7 +130,7 @@ public class HelloController {
 
             double displayNeg = -displayed;     //Convert to negative and store in displayNeg
 
-            display.setText(deciFormat.format(Double.valueOf(displayNeg)));   //Trim the final value, convert to String, and
+            display.setText(model.getDeciFormat().format(Double.valueOf(displayNeg)));   //Trim the final value, convert to String, and
             //output to the display
         }
     }
@@ -154,27 +140,27 @@ public class HelloController {
         highlightOnKeyPress(buttonPoint);
         String displayed = display.getText();   //Store currently displayed text into displayed
 
-        if (!displayed.contains(".") && (!afterTheOperator && !equals)) { //If there's no f.point already and none
+        if (!displayed.contains(".") && (!model.getAfterTheOperator() && !model.getEquals())) { //If there's no f.point already and none
             //of the flags is set to "true"
 
             String pointAdded = displayed + ".";    //Append the f.point to the currently displayed number
             display.setText(pointAdded);    //Output the resulting value
         }
 
-        if (afterTheOperator || equals) {   //If either of the flags is set to "true"
+        if (model.getAfterTheOperator() || model.getEquals()) {   //If either of the flags is set to "true"
 
             //Then I'd like the app to input "0." for the 1st operand or the 2nd operand
             //for us if we hit the f.point button after either seeing the result or pressing an operator button:
 
             display.setText("0.");
-            afterTheOperator = false;   //Reset both flags
-            equals = false;
+            model.setAfterTheOperator(false);   //Reset both flags
+            model.setEquals(false);
         }
     }
 
     public void onButtonBackspaceClick() {  //Deleting the last digit on the display
 
-        if (!equals) { //Makes the backspace only work on entered operands and not the result
+        if (!model.getEquals()) { //Makes the backspace only work on entered operands and not the result
 
             String displayed = display.getText();   //Grab the displayed value, store in displayed
 
@@ -218,47 +204,9 @@ public class HelloController {
         executor.schedule(unHighlight, 150, TimeUnit.MILLISECONDS);     //Unhighlight it almost immediately after
     }
 
-    public void calculate() {
+    public void updateDisplay(String output) {  //output the info to the display
 
-        if (!Objects.equals(numIterative, "")) {    //If numIterative is not empty, that means the 2nd operand
-            //from the previous operation has been stored in numIterative, and will be used again as the 2nd operand here
-
-            num1 = display.getText();   //Stores the outputted result of the previous operation in num1
-            num2 = numIterative;
-        }
-
-        if (Objects.equals(numIterative, "")) { //If numIterative is empty, that means that this is the first
-            //iteration of the operation
-
-            num2 = display.getText();   //Stores the value of the 2nd operand, currently on the display, into num2
-
-            numIterative = num2;    //Stores the 2nd operand into numIterative to be used as the 2nd operand during
-            //the 2nd and all consecutive iterations
-        }
-
-        if (Objects.equals(flag, "+")) {
-            double result = Double.parseDouble(num1) + Double.parseDouble(num2);
-            display.setText(deciFormat.format(result));
-        }
-
-        if (Objects.equals(flag, "-")) {
-            double result = Double.parseDouble(num1) - Double.parseDouble(num2);
-            display.setText(deciFormat.format(result));
-        }
-
-        if (Objects.equals(flag, "*")) {
-            double result = Double.parseDouble(num1) * Double.parseDouble(num2);
-            display.setText(deciFormat.format(result));
-        }
-
-        if (Objects.equals(flag, "/")) {
-            double result = Double.parseDouble(num1) / Double.parseDouble(num2);
-            display.setText(deciFormat.format(result));
-        }
-
-        equals = true;  //Sets the equals flag to true, this lets the digit buttons know to overwrite the number
-        //displayed on the first press
-
-        num2 = "";  //Empties num2
+        display.setText(output);
     }
+
 }
