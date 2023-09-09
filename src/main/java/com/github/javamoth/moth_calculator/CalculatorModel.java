@@ -107,6 +107,6 @@ public class CalculatorModel {  //Main logic
         //displayed on the first press
 
         num2 = "";  //Empties num2
-        return (DECI_FORMAT.format(result)); //Return the result
+        return (DECI_FORMAT.format(result)); //Return the resultsdf
     }
 }
