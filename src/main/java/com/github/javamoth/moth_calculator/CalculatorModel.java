@@ -26,6 +26,8 @@ public class CalculatorModel {  //Main logic
 
     private double result;  //Where result is stored
 
+    //Delete this comment
+
     //Setters and getters
     public void setFlag(String flag) {
         this.flag = flag;
