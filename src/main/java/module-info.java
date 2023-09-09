@@ -1,8 +1,8 @@
-module com.example.demo1 {
+module com.github.javamoth.moth_calculator {
     requires javafx.controls;
     requires javafx.fxml;
 
 
-    opens com.example.demo1 to javafx.fxml;
-    exports com.example.demo1;
+    opens com.github.javamoth.moth_calculator to javafx.fxml;
+    exports com.github.javamoth.moth_calculator;
 }

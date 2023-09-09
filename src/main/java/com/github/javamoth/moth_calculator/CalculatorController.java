@@ -1,4 +1,4 @@
-package com.example.demo1;
+package com.github.javamoth.moth_calculator;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

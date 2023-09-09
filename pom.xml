@@ -100,7 +100,7 @@
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>libs/</classpathPrefix>
                             <mainClass>
-                                com.example.demo1.Launcher
+                                com.github.javamoth.moth_calculator.Launcher
                             </mainClass>
                         </manifest>
                     </archive>
