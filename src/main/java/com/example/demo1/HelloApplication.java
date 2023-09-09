@@ -99,7 +99,7 @@ public class HelloApplication extends Application {
 
 
 
-        HelloController helloController = fxmlLoader.getController();   //Access stuff in HelloController.java
+        CalculatorController helloController = fxmlLoader.getController();   //Access stuff in CalculatorController.java
         stage.setOnCloseRequest(event -> helloController.executor.shutdown());  //Shut down the executor so the app
         //closes properly
     }

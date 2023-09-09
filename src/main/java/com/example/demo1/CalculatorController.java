@@ -9,7 +9,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class HelloController {
+public class CalculatorController {
 
     ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor(); //This service will be used to
     //briefly highlight and unhighlight buttons after pressing/clicking them as it's hard to achieve in CSS
