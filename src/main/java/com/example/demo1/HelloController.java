@@ -13,6 +13,7 @@ public class HelloController {
 
     private final CalculatorModel model = new CalculatorModel();
 
+    //Setters and getters
     public void setModelFlag(String flag) {
         model.setFlag(flag);
     }

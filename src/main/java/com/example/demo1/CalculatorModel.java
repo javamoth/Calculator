@@ -24,8 +24,9 @@ public class CalculatorModel {
 
     private final DecimalFormat deciFormat = new DecimalFormat("0.###########");  //Presets the decimal format to be used
 
-    private double result;
+    private double result;  //Where result is stored
 
+    //Setters and getters
     public void setFlag(String flag) {
         this.flag = flag;
     }
