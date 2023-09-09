@@ -11,16 +11,16 @@ import java.util.concurrent.TimeUnit;
 
 public class HelloController {
 
-    private final CalculatorModel model = new CalculatorModel();
+    ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor(); //This service will be used to
+    //briefly highlight and unhighlight buttons after pressing/clicking them as it's hard to achieve in CSS
+    //We then shut it down in the main class on app exit
+
+    private final CalculatorModel model = new CalculatorModel();    //Accessing the model class
 
     //Setters and getters
     public void setModelFlag(String flag) {
         model.setFlag(flag);
     }
-
-    ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor(); //This service will be used to
-    //briefly highlight and unhighlight buttons after pressing/clicking them as it's hard to achieve in CSS
-    //We then shut it down in the main class on app exit
 
     //Defining global variables
 
@@ -102,10 +102,8 @@ public class HelloController {
     public void onEqualsPress() {   //The "=" button, calculates the resulting value
 
         highlightOnKeyPress(buttonEquals);
-        String res = model.calculate(display.getText());//calculate the result
-        updateDisplay(res);
-
-
+        String result = model.calculate(display.getText());    //Pass the current displayed value to calculate() the res.
+        updateDisplay(result);  //Output the calculated value
     }
 
     public void onButtonRepeatSwitchClick() {
@@ -205,9 +203,8 @@ public class HelloController {
         executor.schedule(unHighlight, 150, TimeUnit.MILLISECONDS);     //Unhighlight it almost immediately after
     }
 
-    public void updateDisplay(String output) {  //output the info to the display
+    public void updateDisplay(String output) {  //Output the info to the display
 
         display.setText(output);
     }
-
 }

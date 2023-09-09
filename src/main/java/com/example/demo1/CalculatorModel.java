@@ -3,7 +3,7 @@ package com.example.demo1;
 import java.text.DecimalFormat;
 import java.util.Objects;
 
-public class CalculatorModel {
+public class CalculatorModel {  //Main logic
 
     private String flag; //Stores the operator: +, -, *, /
 
@@ -22,7 +22,7 @@ public class CalculatorModel {
     //has been pressed, and they need to replace the displayed number
     //entirely instead of appending digits to it.
 
-    private final DecimalFormat deciFormat = new DecimalFormat("0.###########");  //Presets the decimal format to be used
+    private final DecimalFormat DECI_FORMAT = new DecimalFormat("0.###########");  //Presets the decimal format to be used
 
     private double result;  //Where result is stored
 
@@ -56,30 +56,30 @@ public class CalculatorModel {
     }
 
     public DecimalFormat getDeciFormat() {
-        return deciFormat;
+        return DECI_FORMAT;
     }
 
-    public String calculate(String display) {
+    public String calculate(String currentValue) {   //Calculate the result
 
         if (!Objects.equals(numIterative, "")) {    //If numIterative is not empty, that means the 2nd operand
             //from the previous operation has been stored in numIterative, and will be used again as the 2nd operand here
 
-            num1 = display;   //Stores the outputted result of the previous operation in num1
-            num2 = numIterative;
+            num1 = currentValue;   //Stores the outputted result of the previous operation in num1
+            num2 = numIterative;   //
         }
 
         if (Objects.equals(numIterative, "")) { //If numIterative is empty, that means that this is the first
             //iteration of the operation
 
-            num2 = display;   //Stores the value of the 2nd operand, currently on the display, into num2
+            num2 = currentValue;   //Stores the value of the 2nd operand, currently on the display, into num2
 
             numIterative = num2;    //Stores the 2nd operand into numIterative to be used as the 2nd operand during
             //the 2nd and all consecutive iterations
         }
 
-        if (Objects.equals(flag, "+")) {
+        if (Objects.equals(flag, "+")) {    //If "flag" equals to "+"
 
-            result = Double.parseDouble(num1) + Double.parseDouble(num2);
+            result = Double.parseDouble(num1) + Double.parseDouble(num2);   //Perform the calculation and store the res.
         }
 
         if (Objects.equals(flag, "-")) {
@@ -101,7 +101,6 @@ public class CalculatorModel {
         //displayed on the first press
 
         num2 = "";  //Empties num2
-
-        return (deciFormat.format(result)); //Return the result
+        return (DECI_FORMAT.format(result)); //Return the result
     }
 }

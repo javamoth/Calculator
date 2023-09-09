@@ -13,7 +13,7 @@ import java.io.IOException;
 public class HelloApplication extends Application {
 
     @Override
-    public void start(Stage stage) throws IOException{
+    public void start(Stage stage) throws IOException {
 
 
 
@@ -92,8 +92,6 @@ public class HelloApplication extends Application {
             }
         });
 
-
-
         stage.setTitle("Calculator v1.23");
         stage.setScene(scene);
         stage.setResizable(false);
@@ -104,10 +102,10 @@ public class HelloApplication extends Application {
         HelloController helloController = fxmlLoader.getController();   //Access stuff in HelloController.java
         stage.setOnCloseRequest(event -> helloController.executor.shutdown());  //Shut down the executor so the app
         //closes properly
-
-
-
     }
+
+
+
 
     public static void main(String[] args) {
 
