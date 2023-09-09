@@ -29,9 +29,7 @@ public class CalculatorController {
 
     //Defining button variables to use them in the highlighting on press method etc.
     @FXML
-    private Button buttonNegative, buttonPoint, buttonC, buttonEquals, buttonAdd, button0, button1, button2, button3,
-    button4, button5, button6, button7, button8, button9, buttonSubtract, buttonMultiply, buttonDivide, buttonBackspace,
-    buttonRepeatSwitch;
+    private Button buttonNegative, buttonPoint, buttonC, buttonEquals;
 
     //Button onAction methods
 
