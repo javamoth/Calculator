@@ -10,14 +10,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
 
-
-
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("hello-view.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load(), 340, 400);
 
@@ -66,7 +64,6 @@ public class HelloApplication extends Application {
                 case DECIMAL, PERIOD, F11 -> {buttonPoint.fire(); key.consume();}
                 case F10 -> {buttonNegative.fire(); key.consume();}
                 case BACK_SPACE, F12 -> {buttonBackspace.fire(); key.consume();}
-
 //              default -> System.out.println(key.getCode()); //Use this for debugging
             }
 
@@ -97,15 +94,10 @@ public class HelloApplication extends Application {
         stage.setResizable(false);
         stage.show();
 
-
-
         CalculatorController helloController = fxmlLoader.getController();   //Access stuff in CalculatorController.java
         stage.setOnCloseRequest(event -> helloController.executor.shutdown());  //Shut down the executor so the app
         //closes properly
     }
-
-
-
 
     public static void main(String[] args) {
 

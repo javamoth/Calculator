@@ -19,6 +19,7 @@ public class CalculatorController {
 
     //Setters and getters
     public void setModelFlag(String flag) {
+
         model.setFlag(flag);
     }
 
