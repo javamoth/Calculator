@@ -85,30 +85,30 @@ public class CalculatorController {
     @FXML
     public void onOperatorPress(ActionEvent event) {    //Grab the passed onAction event from the operator button
 
-        Button button = (Button) event.getTarget(); //Get the Button object from the event and store it in the "button"
-        //variable
 
-        highlightOnKeyPress(button);    //Pass the current button to highlightOnKeyPress so that it lights up when fired
+        try {   //Prevent double_max_value overflow from crashing the app via the infinity sign
 
-        //Just in case the user has backspaced to "-0." after entering the 1st operand we perform the steps below
+            Button button = (Button) event.getTarget(); //Get the Button object from the event and store it in the "button"
+            //variable
 
+            highlightOnKeyPress(button);    //Pass the current button to highlightOnKeyPress so that it lights up when fired
 
-
-        String pointAndZeroCleared = model.getDeciFormat().format(Double.valueOf(display.getText())); //Converts double to String
-        //and formats it, stripping any trailing zeros and the floating point from the number displayed
+            //Just in case the user has backspaced to "-0." after entering the 1st operand we perform the steps below
 
 
-        if (pointAndZeroCleared.matches("-0")) {    //Checks if the resulting trimmed value turned out to be "-0"
+            String pointAndZeroCleared = model.getDeciFormat().format(Double.valueOf(display.getText())); //Converts double to String
+            //and formats it, stripping any trailing zeros and the floating point from the number displayed
 
-            pointAndZeroCleared = "0";  //strips the leading "-" from the "0"
-        }
 
-        if (!Objects.equals(model.getNum1(), "")) {   //If num1 has been set, on the next operator button press get
-            //and set num2
+            if (pointAndZeroCleared.matches("-0")) {    //Checks if the resulting trimmed value turned out to be "-0"
 
-            display.setText(pointAndZeroCleared);           //Outputs the corrected value to the display
+                pointAndZeroCleared = "0";  //strips the leading "-" from the "0"
+            }
 
-            try {    //Preventing double max_value overflow from crashing the app via the infinity sign
+            if (!Objects.equals(model.getNum1(), "")) {   //If num1 has been set, on the next operator button press get
+                //and set num2
+
+                display.setText(pointAndZeroCleared);           //Outputs the corrected value to the display
 
 
                 model.setNum2(display.getText());          //Stores the current displayed number in the global variable num2
@@ -116,32 +116,15 @@ public class CalculatorController {
                 //Show the current operation on the mini display
                 displayMini.setText(model.formatOutput(model.getNum1()) + " " + model.getFlag() + " " + model.getNumIterative() + " =");
 
-            } catch (NumberFormatException e) {   //Clear and reset everything
-
-                display.setText("0");
-                displayMini.setText("");
-                setModelFlag("");
-                model.setAfterTheOperator(false);
-                model.setEquals(false);
-                model.setNumIterative("");
-                model.setResult(0);
-                model.setNum1("");
-                model.setNum2("");
-                model.setCalculated(false);
-                displayError.setText("Error: number too big, press 'C' to clear");
 
             }
 
-        }
+            if (!Objects.equals(model.getNum1(), "") && !Objects.equals(model.getNum2(), "") && !model.isCalculated()) {
+                //Calculates an intermediate result if both num1 and num2 have been set and the result hasn't been already
+                //calculated
 
-        if (!Objects.equals(model.getNum1(), "") && !Objects.equals(model.getNum2(), "") && !model.isCalculated()) {
-            //Calculates an intermediate result if both num1 and num2 have been set and the result hasn't been already
-            //calculated
+                display.setText(pointAndZeroCleared);   //Outputs the corrected value to the display
 
-            display.setText(pointAndZeroCleared);   //Outputs the corrected value to the display
-
-
-            try {    //Preventing double max_value overflow from crashing the app via the infinity sign
 
                 String result = model.calcInter();    //Pass the current displayed value to calculate an
                 //intermediate result
@@ -154,35 +137,23 @@ public class CalculatorController {
 
                 model.setCalculated(true);    //Prevents from iterating on the result while waiting for the next operand
 
-            } catch (NumberFormatException e) {   //Clear and reset everything
 
-                display.setText("0");
-                displayMini.setText("");
-                setModelFlag("");
-                model.setAfterTheOperator(false);
-                model.setEquals(false);
-                model.setNumIterative("");
-                model.setResult(0);
-                model.setNum1("");
-                model.setNum2("");
-                model.setCalculated(false);
-                displayError.setText("Error: number too big, press 'C' to clear");
+            } else {
+                //Does the regular thing if none of the operands are known yet
+
+                display.setText(pointAndZeroCleared);   //Outputs the corrected value to the display
+                model.setNum1(display.getText());               //Stores the current displayed number in the global variable num1
+                model.setFlag(button.getText());                //Sets the operator flag corresponding to the button's text
+                displayMini.setText(model.getNum1() + " " + model.getFlag());   //Show the 1st operand and the operator on the mini display
+                model.setAfterTheOperator(true);          //This lets the digit buttons know that they have to overwrite the number
+                //displayed
+                model.setNumIterative("");                 //Empties numIterative so that the function, calculating the result, knows
+                //that the next iteration will be the 1st and to use the num2 variable as the
+                //2nd operand instead of numIterative
             }
+        } catch (NumberFormatException e){  //Clear and reset everything
 
-        }
-
-        else {
-            //Does the regular thing if none of the operands are known yet
-
-            display.setText(pointAndZeroCleared);   //Outputs the corrected value to the display
-            model.setNum1(display.getText());               //Stores the current displayed number in the global variable num1
-            model.setFlag(button.getText());                //Sets the operator flag corresponding to the button's text
-            displayMini.setText(model.getNum1() + " " + model.getFlag());   //Show the 1st operand and the operator on the mini display
-            model.setAfterTheOperator(true);          //This lets the digit buttons know that they have to overwrite the number
-            //displayed
-            model.setNumIterative("");                 //Empties numIterative so that the function, calculating the result, knows
-            //that the next iteration will be the 1st and to use the num2 variable as the
-            //2nd operand instead of numIterative
+            resetAfterError();
         }
     }
 
@@ -190,7 +161,7 @@ public class CalculatorController {
 
         highlightOnKeyPress(buttonEquals);
 
-        try {    //Preventing double max_value overflow from crashing the app via the infinity sign
+        try {    //Prevent double_max_value overflow from crashing the app via the infinity sign
 
         String result = model.calculate(display.getText());    //Pass the current displayed value to calculate() the res.
 
@@ -202,17 +173,7 @@ public class CalculatorController {
 
         catch (NumberFormatException e) {   //Clear and reset everything
 
-            display.setText("0");
-            displayMini.setText("");
-            setModelFlag("");
-            model.setAfterTheOperator(false);
-            model.setEquals(false);
-            model.setNumIterative("");
-            model.setResult(0);
-            model.setNum1("");
-            model.setNum2("");
-            model.setCalculated(false);
-            displayError.setText("Error: number too big, press 'C' to clear");
+                resetAfterError();
         }
 
 
@@ -320,5 +281,21 @@ public class CalculatorController {
     public void updateDisplay(String output) {  //Output the info to the display
 
         display.setText(output);
+    }
+
+
+    public void resetAfterError() {
+
+        display.setText("0");
+        displayMini.setText("");
+        setModelFlag("");
+        model.setAfterTheOperator(false);
+        model.setEquals(false);
+        model.setNumIterative("");
+        model.setResult(0);
+        model.setNum1("");
+        model.setNum2("");
+        model.setCalculated(false);
+        displayError.setText("Error: number too big, press 'C' to clear");
     }
 }

@@ -200,4 +200,6 @@ public class CalculatorModel {  //Main logic
            return DECI_FORMAT.format(Double.parseDouble(number));
 
     }
+
+
 }
