@@ -28,8 +28,6 @@ public class CalculatorModel {  //Main logic
 
     private boolean isCalculated;
 
-    //Delete this comment
-
     //Setters and getters
 
 
@@ -69,10 +67,6 @@ public class CalculatorModel {  //Main logic
         this.num2 = num2;
     }
 
-    public double getResult() {
-        return result;
-    }
-
     public void setNumIterative(String numIterative) {
         this.numIterative = numIterative;
     }
@@ -103,23 +97,25 @@ public class CalculatorModel {  //Main logic
 
     public String calculate(String currentValue) {   //Calculate the result
 
-        if (!Objects.equals(numIterative, "")) {    //If numIterative is not empty, that means the 2nd operand
-            //from the previous operation has been stored in numIterative, and will be used again as the 2nd operand here
+//        try {
 
-            num1 = currentValue;   //Stores the outputted result of the previous operation in num1
-            num2 = numIterative;   //Num2 takes the value of numIterative now
-        }
+            if (!Objects.equals(numIterative, "")) {    //If numIterative is not empty, that means the 2nd operand
+                //from the previous operation has been stored in numIterative, and will be used again as the 2nd operand here
 
-        if (Objects.equals(numIterative, "")) { //If numIterative is empty, that means that this is the first
-            //iteration of the operation
+                num1 = currentValue;   //Stores the outputted result of the previous operation in num1
+                num2 = numIterative;   //Num2 takes the value of numIterative now
+            }
 
-            num2 = currentValue;   //Stores the value of the 2nd operand, currently on the display, into num2
+            if (Objects.equals(numIterative, "")) { //If numIterative is empty, that means that this is the first
+                //iteration of the operation
 
-            numIterative = num2;    //Stores the 2nd operand into numIterative to be used as the 2nd operand during
-            //the 2nd and all consecutive iterations
-        }
+                num2 = currentValue;   //Stores the value of the 2nd operand, currently on the display, into num2
 
-           //Preventing double max_value overflow from crashing the app via the infinity sign
+                numIterative = num2;    //Stores the 2nd operand into numIterative to be used as the 2nd operand during
+                //the 2nd and all consecutive iterations
+            }
+
+            //Preventing double max_value overflow from crashing the app via the infinity sign
 
             if (Objects.equals(flag, "+")) {    //If "flag" equals to "+"
 
@@ -142,12 +138,25 @@ public class CalculatorModel {  //Main logic
             }
 
 
+            equals = true;  //Sets the equals flag to true, this lets the digit buttons know to overwrite the number
+            //displayed on the first press
 
-        equals = true;  //Sets the equals flag to true, this lets the digit buttons know to overwrite the number
-        //displayed on the first press
+            num2 = "";  //Empties num2
+            return (DECI_FORMAT.format(result)); //Return the results
 
-        num2 = "";  //Empties num2
-        return (DECI_FORMAT.format(result)); //Return the results
+//        } catch (NumberFormatException e) {
+//
+//            flag = "";
+//            afterTheOperator = false;
+//            equals = false;
+//            numIterative = "";
+//            result = 0;
+//            num1 = "";
+//            num2 = "";
+//            isCalculated = false;
+//            return "0";
+//
+//        }
     }
 
 
@@ -155,49 +164,79 @@ public class CalculatorModel {  //Main logic
 
     public String calcInter() {   //Calculate an intermediate result
 
-        if (!Objects.equals(numIterative, "")) {    //If numIterative is not empty, that means the 2nd operand
-            //from the previous operation has been stored in numIterative, and will be used again as the 2nd operand here
-            num2 = numIterative;   ////Num2 takes the value of numIterative now
+        try {
+
+            if (!Objects.equals(numIterative, "")) {    //If numIterative is not empty, that means the 2nd operand
+                //from the previous operation has been stored in numIterative, and will be used again as the 2nd operand here
+                num2 = numIterative;   ////Num2 takes the value of numIterative now
+            }
+
+            if (Objects.equals(numIterative, "")) { //If numIterative is empty, that means that this is the first
+                //iteration of the operation
+                numIterative = num2;    //Stores the 2nd operand into numIterative to be used as the 2nd operand during
+                //the 2nd and all consecutive iterations
+            }
+
+
+            if (Objects.equals(flag, "+")) {    //If "flag" equals to "+"
+
+                result = Double.parseDouble(num1) + Double.parseDouble(num2);   //Perform the calculation and store the res.
+            }
+
+            if (Objects.equals(flag, "-")) {
+
+                result = Double.parseDouble(num1) - Double.parseDouble(num2);
+            }
+
+            if (Objects.equals(flag, "*")) {
+
+                result = Double.parseDouble(num1) * Double.parseDouble(num2);
+            }
+
+            if (Objects.equals(flag, "/")) {
+
+                result = Double.parseDouble(num1) / Double.parseDouble(num2);
+            }
+
+            equals = true;  //Sets the equals flag to true, this lets the digit buttons know to overwrite the number
+            //displayed on the first press
+
+
+            num1 = Double.toString(result);  //Stores the result into num1 for the next operation
+            return (DECI_FORMAT.format(result)); //Return the results
+
+        } catch (NumberFormatException e) {
+
+            flag = "";
+            afterTheOperator = false;
+            equals = false;
+            numIterative = "";
+            result = 0;
+            num1 = "";
+            num2 = "";
+            isCalculated = false;
+            return "0";
         }
-
-        if (Objects.equals(numIterative, "")) { //If numIterative is empty, that means that this is the first
-            //iteration of the operation
-            numIterative = num2;    //Stores the 2nd operand into numIterative to be used as the 2nd operand during
-            //the 2nd and all consecutive iterations
-        }
-
-
-        if (Objects.equals(flag, "+")) {    //If "flag" equals to "+"
-
-            result = Double.parseDouble(num1) + Double.parseDouble(num2);   //Perform the calculation and store the res.
-        }
-
-        if (Objects.equals(flag, "-")) {
-
-            result = Double.parseDouble(num1) - Double.parseDouble(num2);
-        }
-
-        if (Objects.equals(flag, "*")) {
-
-            result = Double.parseDouble(num1) * Double.parseDouble(num2);
-        }
-
-        if (Objects.equals(flag, "/")) {
-
-            result = Double.parseDouble(num1) / Double.parseDouble(num2);
-        }
-
-        equals = true;  //Sets the equals flag to true, this lets the digit buttons know to overwrite the number
-        //displayed on the first press
-
-
-        num1 = Double.toString(result);  //Stores the result into num1 for the next operation
-        return (DECI_FORMAT.format(result)); //Return the results
     }
 
     public String formatOutput(String number) {
 
-           return DECI_FORMAT.format(Double.parseDouble(number));
+            try {
+
+                return DECI_FORMAT.format(Double.parseDouble(number));
+
+            } catch (NumberFormatException e) {
+
+                flag = "";
+                afterTheOperator = false;
+                equals = false;
+                numIterative = "";
+                result = 0;
+                num1 = "";
+                num2 = "";
+                isCalculated = false;
+                return "0";
+            }
 
     }
 
