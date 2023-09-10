@@ -17,7 +17,7 @@ public class Main extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("hello-view.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load(), 340, 420);
+        Scene scene = new Scene(fxmlLoader.load(), 340, 425);
 
         //Accessing the buttons in the .fxml file and assigning them to variables
         Button button0 = (Button) scene.lookup("#button0");
@@ -88,6 +88,20 @@ public class Main extends Application {
                 key.consume();
             }
         });
+//
+//        BackgroundSize backgroundSize = new BackgroundSize(40,
+//                28,
+//                true,
+//                true,
+//                true,
+//                false);
+//        BackgroundImage image = new BackgroundImage(new Image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTT1E8cf8qHxGNmRebypZeX5-ei_c97vdZo4A&usqp=CAU"),
+//                BackgroundRepeat.NO_REPEAT,
+//                BackgroundRepeat.NO_REPEAT,
+//                BackgroundPosition.CENTER,
+//                backgroundSize);
+//
+//        buttonBackspace.setBackground(new Background(image));
 
         stage.setTitle("Moth Calculator v1.23");
         stage.setScene(scene);
