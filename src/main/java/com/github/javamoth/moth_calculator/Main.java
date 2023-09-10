@@ -90,7 +90,7 @@ public class Main extends Application {
         });
 
 
-        stage.setTitle("Moth Calculator v1.23");
+        stage.setTitle("Moth Calculator v1.30");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
