@@ -127,6 +127,11 @@
       <padding>
          <Insets right="11.0" top="7.0" />
       </padding></Label>
+   <Label fx:id="displayError" alignment="BOTTOM_CENTER" GridPane.columnSpan="4" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+      <GridPane.margin>
+         <Insets right="13.0" />
+      </GridPane.margin>
+   </Label>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
    </padding>

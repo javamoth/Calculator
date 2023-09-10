@@ -27,7 +27,7 @@ public class CalculatorController {
     //Defining global variables
 
     @FXML
-    private Label display, displayMini;
+    private Label display, displayMini, displayError;
 
     //Defining button variables to use them in the highlighting on press method etc.
     @FXML
@@ -71,6 +71,7 @@ public class CalculatorController {
         highlightOnKeyPress(buttonC);
         display.setText("0");
         displayMini.setText("");
+        displayError.setText("");
         setModelFlag("");
         model.setAfterTheOperator(false);
         model.setEquals(false);
@@ -91,6 +92,8 @@ public class CalculatorController {
 
         //Just in case the user has backspaced to "-0." after entering the 1st operand we perform the steps below
 
+
+
         String pointAndZeroCleared = model.getDeciFormat().format(Double.valueOf(display.getText())); //Converts double to String
         //and formats it, stripping any trailing zeros and the floating point from the number displayed
 
@@ -104,10 +107,30 @@ public class CalculatorController {
             //and set num2
 
             display.setText(pointAndZeroCleared);           //Outputs the corrected value to the display
-            model.setNum2(display.getText());          //Stores the current displayed number in the global variable num2
 
-            //Show the current operation on the mini display
-            displayMini.setText(model.formatOutput(model.getNum1()) + " " + model.getFlag() + " " + model.getNumIterative() + " =");
+            try {    //Preventing double max_value overflow from crashing the app via the infinity sign
+
+
+                model.setNum2(display.getText());          //Stores the current displayed number in the global variable num2
+
+                //Show the current operation on the mini display
+                displayMini.setText(model.formatOutput(model.getNum1()) + " " + model.getFlag() + " " + model.getNumIterative() + " =");
+
+            } catch (NumberFormatException e) {   //Clear and reset everything
+
+                display.setText("0");
+                displayMini.setText("");
+                setModelFlag("");
+                model.setAfterTheOperator(false);
+                model.setEquals(false);
+                model.setNumIterative("");
+                model.setResult(0);
+                model.setNum1("");
+                model.setNum2("");
+                model.setCalculated(false);
+                displayError.setText("Error: number too big, press 'C' to clear");
+
+            }
 
         }
 
@@ -117,16 +140,34 @@ public class CalculatorController {
 
             display.setText(pointAndZeroCleared);   //Outputs the corrected value to the display
 
-            String result = model.calcInter();    //Pass the current displayed value to calculate an
-            //intermediate result
 
-            updateDisplay(result);  //Output the calculated value
-            model.setFlag(button.getText());                //Sets the operator flag corresponding to the button's text
+            try {    //Preventing double max_value overflow from crashing the app via the infinity sign
 
-            //Show the current operation on the mini display
-            displayMini.setText(model.formatOutput(model.getNum1()) + " " + model.getFlag());
+                String result = model.calcInter();    //Pass the current displayed value to calculate an
+                //intermediate result
 
-            model.setCalculated(true);    //Prevents from iterating on the result while waiting for the next operand
+                updateDisplay(result);  //Output the calculated value
+                model.setFlag(button.getText());                //Sets the operator flag corresponding to the button's text
+
+                //Show the current operation on the mini display
+                displayMini.setText(model.formatOutput(model.getNum1()) + " " + model.getFlag());
+
+                model.setCalculated(true);    //Prevents from iterating on the result while waiting for the next operand
+
+            } catch (NumberFormatException e) {   //Clear and reset everything
+
+                display.setText("0");
+                displayMini.setText("");
+                setModelFlag("");
+                model.setAfterTheOperator(false);
+                model.setEquals(false);
+                model.setNumIterative("");
+                model.setResult(0);
+                model.setNum1("");
+                model.setNum2("");
+                model.setCalculated(false);
+                displayError.setText("Error: number too big, press 'C' to clear");
+            }
 
         }
 
@@ -148,12 +189,33 @@ public class CalculatorController {
     public void onEqualsPress() {   //The "=" button, calculates the resulting value
 
         highlightOnKeyPress(buttonEquals);
+
+        try {    //Preventing double max_value overflow from crashing the app via the infinity sign
+
         String result = model.calculate(display.getText());    //Pass the current displayed value to calculate() the res.
 
         //Show the current operation on the mini display
-        displayMini.setText(model.formatOutput(model.getNum1()) + " " + model.getFlag() + " " + model.getNumIterative() + " =");
 
-        updateDisplay(result);  //Output the calculated value
+            displayMini.setText(model.formatOutput(model.getNum1()) + " " + model.getFlag() + " " + model.getNumIterative() + " =");
+            updateDisplay(result);  //Output the calculated value
+        }
+
+        catch (NumberFormatException e) {   //Clear and reset everything
+
+            display.setText("0");
+            displayMini.setText("");
+            setModelFlag("");
+            model.setAfterTheOperator(false);
+            model.setEquals(false);
+            model.setNumIterative("");
+            model.setResult(0);
+            model.setNum1("");
+            model.setNum2("");
+            model.setCalculated(false);
+            displayError.setText("Error: number too big, press 'C' to clear");
+        }
+
+
     }
 
     public void onButtonRepeatSwitchClick() {

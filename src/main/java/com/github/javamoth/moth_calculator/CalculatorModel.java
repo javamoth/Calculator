@@ -119,25 +119,29 @@ public class CalculatorModel {  //Main logic
             //the 2nd and all consecutive iterations
         }
 
-        if (Objects.equals(flag, "+")) {    //If "flag" equals to "+"
+           //Preventing double max_value overflow from crashing the app via the infinity sign
 
-            result = Double.parseDouble(num1) + Double.parseDouble(num2);   //Perform the calculation and store the res.
-        }
+            if (Objects.equals(flag, "+")) {    //If "flag" equals to "+"
 
-        if (Objects.equals(flag, "-")) {
+                result = Double.parseDouble(num1) + Double.parseDouble(num2);   //Perform the calculation and store the res.
+            }
 
-            result = Double.parseDouble(num1) - Double.parseDouble(num2);
-        }
+            if (Objects.equals(flag, "-")) {
 
-        if (Objects.equals(flag, "*")) {
+                result = Double.parseDouble(num1) - Double.parseDouble(num2);
+            }
 
-            result = Double.parseDouble(num1) * Double.parseDouble(num2);
-        }
+            if (Objects.equals(flag, "*")) {
 
-        if (Objects.equals(flag, "/")) {
+                result = Double.parseDouble(num1) * Double.parseDouble(num2);
+            }
 
-            result = Double.parseDouble(num1) / Double.parseDouble(num2);
-        }
+            if (Objects.equals(flag, "/")) {
+
+                result = Double.parseDouble(num1) / Double.parseDouble(num2);
+            }
+
+
 
         equals = true;  //Sets the equals flag to true, this lets the digit buttons know to overwrite the number
         //displayed on the first press
@@ -193,6 +197,7 @@ public class CalculatorModel {  //Main logic
 
     public String formatOutput(String number) {
 
-        return DECI_FORMAT.format(Double.parseDouble(number));
+           return DECI_FORMAT.format(Double.parseDouble(number));
+
     }
 }
