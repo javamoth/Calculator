@@ -26,9 +26,25 @@ public class CalculatorModel {  //Main logic
 
     private double result;  //Where result is stored
 
+    private boolean isCalculated;
+
     //Delete this comment
 
     //Setters and getters
+
+
+    public String getNumIterative() {
+        return numIterative;
+    }
+
+    public boolean isCalculated() {
+        return isCalculated;
+    }
+
+    public void setCalculated(boolean calculated) {
+        isCalculated = calculated;
+    }
+
     public void setFlag(String flag) {
         this.flag = flag;
     }
@@ -131,13 +147,16 @@ public class CalculatorModel {  //Main logic
 
     public String calcInter() {   //Calculate the result
 
-//        if (!Objects.equals(numIterative, "")) {    //If numIterative is not empty, that means the 2nd operand
-//            //from the previous operation has been stored in numIterative, and will be used again as the 2nd operand here
-//
-//            num1 = currentValue;   //Stores the outputted result of the previous operation in num1
-//            num2 = numIterative;   //
-//        }
+        if (!Objects.equals(numIterative, "")) {    //If numIterative is not empty, that means the 2nd operand
+            //from the previous operation has been stored in numIterative, and will be used again as the 2nd operand here
+            num2 = numIterative;   //
+        }
 
+        if (Objects.equals(numIterative, "")) { //If numIterative is empty, that means that this is the first
+            //iteration of the operation
+            numIterative = num2;    //Stores the 2nd operand into numIterative to be used as the 2nd operand during
+            //the 2nd and all consecutive iterations
+        }
 
 
         if (Objects.equals(flag, "+")) {    //If "flag" equals to "+"

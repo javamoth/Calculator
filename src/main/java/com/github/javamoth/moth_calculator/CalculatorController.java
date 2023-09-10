@@ -51,6 +51,10 @@ public class CalculatorController {
             model.setAfterTheOperator(false);   //Sets the operator flag to "false" after the 1st press to allow for
             // appending digits
             model.setEquals(false);     //Sets the "=" flag to "false" after the 1st press to allow for appending digits
+            model.setNumIterative("");  //Resets numIterative to prevent from iterating on the old 2nd operand after
+            //user has entered a new number
+            model.setCalculated(false);     //Allows operator button onAction calculation to continue after a new operand
+            //has been entered
         }
 
         else {
@@ -73,6 +77,7 @@ public class CalculatorController {
         model.setResult(0);
         model.setNum1("");
         model.setNum2("");
+        model.setCalculated(false);
     }
 
     @FXML
@@ -94,26 +99,25 @@ public class CalculatorController {
             pointAndZeroCleared = "0";  //strips the leading "-" from the "0"
         }
 
-        if (!Objects.equals(model.getNum1(), "")) {   //If num1 has been set, on the 2nd operator button press get
+        if (!Objects.equals(model.getNum1(), "")) {   //If num1 has been set, on the next operator button press get
             //and set num2
 
             display.setText(pointAndZeroCleared);           //Outputs the corrected value to the display
-            model.setFlag(button.getText());                //Sets the operator flag corresponding to the button's text
             model.setNum2(display.getText());          //Stores the current displayed number in the global variable num2
-            model.setNumIterative("");        //Empties numIterative so that the function, calculating the result, knows
+
         }
 
-        if (!Objects.equals(model.getNum1(), "") && !Objects.equals(model.getNum2(), "")) {
-            //Calculates an intermediate result if both num1 and num2 have been set
+        if (!Objects.equals(model.getNum1(), "") && !Objects.equals(model.getNum2(), "") && !model.isCalculated()) {
+            //Calculates an intermediate result if both num1 and num2 have been set and the result hasn't been already
+            //calculated
 
             display.setText(pointAndZeroCleared);   //Outputs the corrected value to the display
-            model.setFlag(button.getText());                //Sets the operator flag corresponding to the button's text
-            model.setNumIterative("");        //Empties numIterative so that the function, calculating the result, knows
-            //that the next iteration will be the 1st and to use the num2 variable as the
-            //2nd operand instead of numIterative
+
             String result = model.calcInter();    //Pass the current displayed value to calculate an
             //intermediate result
             updateDisplay(result);  //Output the calculated value
+            model.setFlag(button.getText());                //Sets the operator flag corresponding to the button's text
+            model.setCalculated(true);    //Prevents from iterating on the result while waiting for the next operand
 
         }
 
