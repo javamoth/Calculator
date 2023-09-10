@@ -37,6 +37,22 @@ public class CalculatorModel {  //Main logic
         this.num1 = num1;
     }
 
+    public String getNum1() {
+        return num1;
+    }
+
+    public String getNum2() {
+        return num2;
+    }
+
+    public void setNum2(String num2) {
+        this.num2 = num2;
+    }
+
+    public double getResult() {
+        return result;
+    }
+
     public void setNumIterative(String numIterative) {
         this.numIterative = numIterative;
     }
@@ -78,6 +94,52 @@ public class CalculatorModel {  //Main logic
             //iteration of the operation
 
             num2 = currentValue;   //Stores the value of the 2nd operand, currently on the display, into num2
+
+            numIterative = num2;    //Stores the 2nd operand into numIterative to be used as the 2nd operand during
+            //the 2nd and all consecutive iterations
+        }
+
+        if (Objects.equals(flag, "+")) {    //If "flag" equals to "+"
+
+            result = Double.parseDouble(num1) + Double.parseDouble(num2);   //Perform the calculation and store the res.
+        }
+
+        if (Objects.equals(flag, "-")) {
+
+            result = Double.parseDouble(num1) - Double.parseDouble(num2);
+        }
+
+        if (Objects.equals(flag, "*")) {
+
+            result = Double.parseDouble(num1) * Double.parseDouble(num2);
+        }
+
+        if (Objects.equals(flag, "/")) {
+
+            result = Double.parseDouble(num1) / Double.parseDouble(num2);
+        }
+
+        equals = true;  //Sets the equals flag to true, this lets the digit buttons know to overwrite the number
+        //displayed on the first press
+
+        num2 = "";  //Empties num2
+        return (DECI_FORMAT.format(result)); //Return the results
+    }
+
+
+
+
+    public String calcInter() {   //Calculate the result
+
+//        if (!Objects.equals(numIterative, "")) {    //If numIterative is not empty, that means the 2nd operand
+//            //from the previous operation has been stored in numIterative, and will be used again as the 2nd operand here
+//
+//            num1 = currentValue;   //Stores the outputted result of the previous operation in num1
+//            num2 = numIterative;   //
+//        }
+
+        if (Objects.equals(numIterative, "")) { //If numIterative is empty, that means that this is the first
+            //iteration of the operation
 
             numIterative = num2;    //Stores the 2nd operand into numIterative to be used as the 2nd operand during
             //the 2nd and all consecutive iterations

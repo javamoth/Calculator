@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
+import java.util.Objects;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -91,14 +92,33 @@ public class CalculatorController {
             pointAndZeroCleared = "0";  //strips the leading "-" from the "0"
         }
 
-        display.setText(pointAndZeroCleared);   //Outputs the corrected value to the display
-        model.setNum1(display.getText());               //Stores the current displayed number in the global variable num1
-        model.setFlag(button.getText());                //Sets the operator flag corresponding to the button's text
-        model.setAfterTheOperator(true);          //This lets the digit buttons know that they have to overwrite the number
-        //displayed
-        model.setNumIterative("");                 //Empties numIterative so that the function, calculating the result, knows
-                                            //that the next iteration will be the 1st and to use the num2 variable as the
-                                            //2nd operand instead of numIterative
+        if (!Objects.equals(model.getNum1(), "")) {
+            //Calculates an intermediate result if both num1 and num2 are not empty
+
+            display.setText(pointAndZeroCleared);   //Outputs the corrected value to the display
+            model.setFlag(button.getText());                //Sets the operator flag corresponding to the button's text
+            model.setNum2(display.getText());               //Stores the current displayed number in the global variable num2
+            model.setNumIterative("");                 //Empties numIterative so that the function, calculating the result, knows
+            //that the next iteration will be the 1st and to use the num2 variable as the
+            //2nd operand instead of numIterative
+            String result = model.calcInter();    //Pass the current displayed value to calculate an
+            //intermediate result
+            updateDisplay(result);  //Output the calculated value
+
+        }
+
+        else {
+            //Does the regular thing
+
+            display.setText(pointAndZeroCleared);   //Outputs the corrected value to the display
+            model.setNum1(display.getText());               //Stores the current displayed number in the global variable num1
+            model.setFlag(button.getText());                //Sets the operator flag corresponding to the button's text
+            model.setAfterTheOperator(true);          //This lets the digit buttons know that they have to overwrite the number
+            //displayed
+            model.setNumIterative("");                 //Empties numIterative so that the function, calculating the result, knows
+            //that the next iteration will be the 1st and to use the num2 variable as the
+            //2nd operand instead of numIterative
+        }
     }
 
     public void onEqualsPress() {   //The "=" button, calculates the resulting value
