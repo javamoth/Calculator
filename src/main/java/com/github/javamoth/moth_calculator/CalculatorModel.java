@@ -7,9 +7,9 @@ public class CalculatorModel {  //Main logic
 
     private String flag; //Stores the operator: +, -, *, /
 
-    private String num1; //Stores the 1st operand
+    private String num1 = ""; //Stores the 1st operand
 
-    private String num2; //Stores the 2nd operand
+    private String num2 = ""; //Stores the 2nd operand
 
     private String numIterative = ""; //Stores the latest operand to be used as the 2nd operand during iterative calculation
     //Used in a couple of unique checks
@@ -138,12 +138,7 @@ public class CalculatorModel {  //Main logic
 //            num2 = numIterative;   //
 //        }
 
-        if (Objects.equals(numIterative, "")) { //If numIterative is empty, that means that this is the first
-            //iteration of the operation
 
-            numIterative = num2;    //Stores the 2nd operand into numIterative to be used as the 2nd operand during
-            //the 2nd and all consecutive iterations
-        }
 
         if (Objects.equals(flag, "+")) {    //If "flag" equals to "+"
 
@@ -168,7 +163,8 @@ public class CalculatorModel {  //Main logic
         equals = true;  //Sets the equals flag to true, this lets the digit buttons know to overwrite the number
         //displayed on the first press
 
-        num2 = "";  //Empties num2
+
+        num1 = Double.toString(result);  //Stores the result into num1 for the next operation
         return (DECI_FORMAT.format(result)); //Return the results
     }
 }

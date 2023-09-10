@@ -71,6 +71,8 @@ public class CalculatorController {
         model.setEquals(false);
         model.setNumIterative("");
         model.setResult(0);
+        model.setNum1("");
+        model.setNum2("");
     }
 
     @FXML
@@ -92,13 +94,21 @@ public class CalculatorController {
             pointAndZeroCleared = "0";  //strips the leading "-" from the "0"
         }
 
-        if (!Objects.equals(model.getNum1(), "")) {
-            //Calculates an intermediate result if both num1 and num2 are not empty
+        if (!Objects.equals(model.getNum1(), "")) {   //If num1 has been set, on the 2nd operator button press get
+            //and set num2
+
+            display.setText(pointAndZeroCleared);           //Outputs the corrected value to the display
+            model.setFlag(button.getText());                //Sets the operator flag corresponding to the button's text
+            model.setNum2(display.getText());          //Stores the current displayed number in the global variable num2
+            model.setNumIterative("");        //Empties numIterative so that the function, calculating the result, knows
+        }
+
+        if (!Objects.equals(model.getNum1(), "") && !Objects.equals(model.getNum2(), "")) {
+            //Calculates an intermediate result if both num1 and num2 have been set
 
             display.setText(pointAndZeroCleared);   //Outputs the corrected value to the display
             model.setFlag(button.getText());                //Sets the operator flag corresponding to the button's text
-            model.setNum2(display.getText());               //Stores the current displayed number in the global variable num2
-            model.setNumIterative("");                 //Empties numIterative so that the function, calculating the result, knows
+            model.setNumIterative("");        //Empties numIterative so that the function, calculating the result, knows
             //that the next iteration will be the 1st and to use the num2 variable as the
             //2nd operand instead of numIterative
             String result = model.calcInter();    //Pass the current displayed value to calculate an
@@ -108,7 +118,7 @@ public class CalculatorController {
         }
 
         else {
-            //Does the regular thing
+            //Does the regular thing if none of the operands are known yet
 
             display.setText(pointAndZeroCleared);   //Outputs the corrected value to the display
             model.setNum1(display.getText());               //Stores the current displayed number in the global variable num1
