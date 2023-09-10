@@ -17,7 +17,7 @@ public class Main extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("hello-view.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load(), 340, 400);
+        Scene scene = new Scene(fxmlLoader.load(), 340, 420);
 
         //Accessing the buttons in the .fxml file and assigning them to variables
         Button button0 = (Button) scene.lookup("#button0");
