@@ -103,7 +103,7 @@ public class CalculatorModel {  //Main logic
             //from the previous operation has been stored in numIterative, and will be used again as the 2nd operand here
 
             num1 = currentValue;   //Stores the outputted result of the previous operation in num1
-            num2 = numIterative;   //
+            num2 = numIterative;   //Num2 takes the value of numIterative now
         }
 
         if (Objects.equals(numIterative, "")) { //If numIterative is empty, that means that this is the first
@@ -145,11 +145,11 @@ public class CalculatorModel {  //Main logic
 
 
 
-    public String calcInter() {   //Calculate the result
+    public String calcInter() {   //Calculate an intermediate result
 
         if (!Objects.equals(numIterative, "")) {    //If numIterative is not empty, that means the 2nd operand
             //from the previous operation has been stored in numIterative, and will be used again as the 2nd operand here
-            num2 = numIterative;   //
+            num2 = numIterative;   ////Num2 takes the value of numIterative now
         }
 
         if (Objects.equals(numIterative, "")) { //If numIterative is empty, that means that this is the first

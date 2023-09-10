@@ -53,7 +53,7 @@ public class CalculatorController {
             model.setEquals(false);     //Sets the "=" flag to "false" after the 1st press to allow for appending digits
             model.setNumIterative("");  //Resets numIterative to prevent from iterating on the old 2nd operand after
             //user has entered a new number
-            model.setCalculated(false);     //Allows operator button onAction calculation to continue after a new operand
+            model.setCalculated(false);     //Allows the operator button onAction calculation to continue after a new operand
             //has been entered
         }
 
