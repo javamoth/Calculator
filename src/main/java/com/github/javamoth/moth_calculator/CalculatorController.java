@@ -1,5 +1,6 @@
 package com.github.javamoth.moth_calculator;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -296,6 +297,29 @@ public class CalculatorController {
         model.setNum1("");
         model.setNum2("");
         model.setCalculated(false);
-        displayError.setText("Error: number too big, press 'C' to clear");
+
+        //Create a new Runnable object
+        Runnable showErrorMessage = () -> {
+            Platform.runLater(() -> {   //not on the FX thread
+            displayError.setText("Error: number too big");   //Display the error message
+            });
+        };
+
+        //Create a new Runnable object
+        Runnable clearErrorMessage = () -> {
+            Platform.runLater(() -> {   //not on the FX thread
+            displayError.setText("");   //Clear the error message
+            });
+        };
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                // do your GUI stuff here
+            }
+        });
+
+        executor.execute(showErrorMessage);
+        executor.schedule(clearErrorMessage, 3, TimeUnit.SECONDS);
     }
 }
