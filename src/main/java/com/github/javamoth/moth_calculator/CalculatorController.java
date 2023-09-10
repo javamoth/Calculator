@@ -31,7 +31,7 @@ public class CalculatorController {
 
     //Defining button variables to use them in the highlighting on press method etc.
     @FXML
-    private Button buttonNegative, buttonPoint, buttonC, buttonEquals;
+    private Button buttonNegative, buttonPoint, buttonC, buttonEquals, buttonBackspace;
 
     //Button onAction methods
 
@@ -194,6 +194,8 @@ public class CalculatorController {
     }
 
     public void onButtonBackspaceClick() {  //Deleting the last digit on the display
+
+        highlightOnKeyPress(buttonBackspace);
 
         if (!model.getEquals()) { //Makes the backspace only work on entered operands and not the result
 
