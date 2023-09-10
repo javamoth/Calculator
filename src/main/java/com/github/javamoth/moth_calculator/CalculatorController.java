@@ -285,7 +285,7 @@ public class CalculatorController {
     }
 
 
-    public void resetAfterError() {
+    public void resetAfterError() {     //Reset everything after the exception and display the error message
 
         display.setText("0");
         displayMini.setText("");

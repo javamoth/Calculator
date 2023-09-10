@@ -28,6 +28,11 @@ public class CalculatorModel {  //Main logic
 
     private boolean isCalculated;
 
+//    private final CalculatorController controller = new CalculatorController();
+
+
+
+
     //Setters and getters
 
 
