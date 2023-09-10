@@ -190,4 +190,9 @@ public class CalculatorModel {  //Main logic
         num1 = Double.toString(result);  //Stores the result into num1 for the next operation
         return (DECI_FORMAT.format(result)); //Return the results
     }
+
+    public String formatOutput(String number) {
+
+        return DECI_FORMAT.format(Double.parseDouble(number));
+    }
 }

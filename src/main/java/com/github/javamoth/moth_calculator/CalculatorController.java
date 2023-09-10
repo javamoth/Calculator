@@ -106,6 +106,9 @@ public class CalculatorController {
             display.setText(pointAndZeroCleared);           //Outputs the corrected value to the display
             model.setNum2(display.getText());          //Stores the current displayed number in the global variable num2
 
+            //Show the current operation on the mini display
+            displayMini.setText(model.formatOutput(model.getNum1()) + " " + model.getFlag() + " " + model.getNumIterative() + " =");
+
         }
 
         if (!Objects.equals(model.getNum1(), "") && !Objects.equals(model.getNum2(), "") && !model.isCalculated()) {
@@ -116,8 +119,13 @@ public class CalculatorController {
 
             String result = model.calcInter();    //Pass the current displayed value to calculate an
             //intermediate result
+
             updateDisplay(result);  //Output the calculated value
             model.setFlag(button.getText());                //Sets the operator flag corresponding to the button's text
+
+            //Show the current operation on the mini display
+            displayMini.setText(model.formatOutput(model.getNum1()) + " " + model.getFlag());
+
             model.setCalculated(true);    //Prevents from iterating on the result while waiting for the next operand
 
         }
@@ -141,7 +149,10 @@ public class CalculatorController {
 
         highlightOnKeyPress(buttonEquals);
         String result = model.calculate(display.getText());    //Pass the current displayed value to calculate() the res.
-        displayMini.setText(model.getNum1() + " " + model.getFlag() + " " + model.getNumIterative() + " =");
+
+        //Show the current operation on the mini display
+        displayMini.setText(model.formatOutput(model.getNum1()) + " " + model.getFlag() + " " + model.getNumIterative() + " =");
+
         updateDisplay(result);  //Output the calculated value
     }
 
