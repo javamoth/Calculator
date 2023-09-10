@@ -33,6 +33,10 @@ public class CalculatorModel {  //Main logic
     //Setters and getters
 
 
+    public String getFlag() {
+        return flag;
+    }
+
     public String getNumIterative() {
         return numIterative;
     }

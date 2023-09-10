@@ -117,7 +117,7 @@
          <font>
             <Font size="27.0" />
          </font></Button>
-   <Label fx:id="displayMini" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="327.0" text="2+4=" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.valignment="BOTTOM" GridPane.vgrow="NEVER">
+   <Label fx:id="displayMini" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="327.0" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.valignment="BOTTOM" GridPane.vgrow="NEVER">
       <GridPane.margin>
          <Insets bottom="-5.0" right="2.0" />
       </GridPane.margin>

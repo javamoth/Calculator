@@ -27,7 +27,7 @@ public class CalculatorController {
     //Defining global variables
 
     @FXML
-    private Label display;
+    private Label display, displayMini;
 
     //Defining button variables to use them in the highlighting on press method etc.
     @FXML
@@ -70,6 +70,7 @@ public class CalculatorController {
 
         highlightOnKeyPress(buttonC);
         display.setText("0");
+        displayMini.setText("");
         setModelFlag("");
         model.setAfterTheOperator(false);
         model.setEquals(false);
@@ -127,6 +128,7 @@ public class CalculatorController {
             display.setText(pointAndZeroCleared);   //Outputs the corrected value to the display
             model.setNum1(display.getText());               //Stores the current displayed number in the global variable num1
             model.setFlag(button.getText());                //Sets the operator flag corresponding to the button's text
+            displayMini.setText(model.getNum1() + " " + model.getFlag());   //Show the 1st operand and the operator on the mini display
             model.setAfterTheOperator(true);          //This lets the digit buttons know that they have to overwrite the number
             //displayed
             model.setNumIterative("");                 //Empties numIterative so that the function, calculating the result, knows
@@ -139,6 +141,7 @@ public class CalculatorController {
 
         highlightOnKeyPress(buttonEquals);
         String result = model.calculate(display.getText());    //Pass the current displayed value to calculate() the res.
+        displayMini.setText(model.getNum1() + " " + model.getFlag() + " " + model.getNumIterative() + " =");
         updateDisplay(result);  //Output the calculated value
     }
 
