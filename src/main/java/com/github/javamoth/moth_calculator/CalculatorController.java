@@ -15,6 +15,7 @@ public class CalculatorController {
 
     ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor(); //This service will be used to
     //briefly highlight and unhighlight buttons after pressing/clicking them as it's hard to achieve in CSS
+    //and also to run a couple of other tasks
     //We then shut it down in the main class on app exit
 
     private final CalculatorModel model = new CalculatorModel();    //Accessing the model class
