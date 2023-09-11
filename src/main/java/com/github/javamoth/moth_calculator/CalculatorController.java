@@ -25,6 +25,8 @@ public class CalculatorController {
         model.setFlag(flag);
     }
 
+
+
     //Defining global variables
 
     @FXML
@@ -98,11 +100,12 @@ public class CalculatorController {
 
             highlightOnKeyPress(button);    //Pass the current button to highlightOnKeyPress so that it lights up when fired
 
-            //Just in case the user has backspaced to "-0." after entering the 1st operand we perform the steps below
+
+                //Just in case the user has backspaced to "-0." after entering the 1st operand we perform the steps below
 
 
-            String pointAndZeroCleared = model.getDeciFormat().format(Double.valueOf(display.getText())); //Converts double to String
-            //and formats it, stripping any trailing zeros and the floating point from the number displayed
+                String pointAndZeroCleared = model.getDeciFormat().format(Double.valueOf(display.getText())); //Converts double to String
+                //and formats it, stripping any trailing zeros and the floating point from the number displayed
 
 
             if (pointAndZeroCleared.matches("-0")) {    //Checks if the resulting trimmed value turned out to be "-0"
@@ -119,6 +122,7 @@ public class CalculatorController {
                 model.setNum2(display.getText());          //Stores the current displayed number in the global variable num2
 
                 //Show the current operation on the mini display
+
                 displayMini.setText(model.formatOutput(model.getNum1()) + " " + model.getFlag() + " " + model.getNumIterative() + " =");
 
 
@@ -146,10 +150,10 @@ public class CalculatorController {
             } else {
                 //Does the regular thing if none of the operands are known yet
 
-                display.setText(pointAndZeroCleared);   //Outputs the corrected value to the display
+                display.setText(model.formatOutput(pointAndZeroCleared));   //Outputs the corrected value to the display
                 model.setNum1(display.getText());               //Stores the current displayed number in the global variable num1
                 model.setFlag(button.getText());                //Sets the operator flag corresponding to the button's text
-                displayMini.setText(model.getNum1() + " " + model.getFlag());   //Show the 1st operand and the operator on the mini display
+                displayMini.setText(model.formatOutput(model.getNum1()) + " " + model.getFlag());   //Show the 1st operand and the operator on the mini display
                 model.setAfterTheOperator(true);          //This lets the digit buttons know that they have to overwrite the number
                 //displayed
                 model.setNumIterative("");                 //Empties numIterative so that the function, calculating the result, knows
@@ -172,7 +176,7 @@ public class CalculatorController {
 
         //Show the current operation on the mini display
 
-            displayMini.setText(model.formatOutput(model.getNum1()) + " " + model.getFlag() + " " + model.getNumIterative() + " =");
+            displayMini.setText(model.formatOutput(model.getNum1()) + " " + model.getFlag() + " " + model.formatOutput(model.getNumIterative()) + " =");
             updateDisplay(result);  //Output the calculated value
         }
 

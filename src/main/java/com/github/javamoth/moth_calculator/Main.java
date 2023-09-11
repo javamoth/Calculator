@@ -22,10 +22,11 @@ public class Main extends Application {
     private final Font displayFont = Font.font(displayFontSize);
     private final double miniDisplayFontSize = 15;
     private final Font miniDisplayFont = Font.font(miniDisplayFontSize);
-    
 
     @Override
     public void start(Stage stage) throws IOException {
+
+
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("hello-view.fxml"));
 
@@ -157,8 +158,8 @@ public class Main extends Application {
         stage.setResizable(false);
         stage.show();
 
-        CalculatorController helloController = fxmlLoader.getController();   //Access stuff in CalculatorController.java
-        stage.setOnCloseRequest(event -> helloController.executor.shutdown());  //Shut down the executor so the app
+        CalculatorController calculatorController = fxmlLoader.getController();   //Access stuff in CalculatorController.java
+        stage.setOnCloseRequest(event -> calculatorController.executor.shutdown());  //Shut down the executor so the app
         //closes properly
     }
 

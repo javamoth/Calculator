@@ -5,7 +5,10 @@ import java.util.Objects;
 
 public class CalculatorModel {  //Main logic
 
-    private String flag; //Stores the operator: +, -, *, /
+
+
+
+        private String flag; //Stores the operator: +, -, *, /
 
     private String num1 = ""; //Stores the 1st operand
 
@@ -29,7 +32,6 @@ public class CalculatorModel {  //Main logic
 
     private boolean isCalculated;
 
-//    private final CalculatorController controller = new CalculatorController();
 
 
 
@@ -172,7 +174,7 @@ public class CalculatorModel {  //Main logic
 
     public String calcInter() {   //Calculate an intermediate result
 
-        try {
+//        try {
 
             if (!Objects.equals(numIterative, "")) {    //If numIterative is not empty, that means the 2nd operand
                 //from the previous operation has been stored in numIterative, and will be used again as the 2nd operand here
@@ -214,40 +216,53 @@ public class CalculatorModel {  //Main logic
             return (result > 1000000000000000000000000000000000000000d) ? ((SCI_FORMAT.format(result)))
                     : ((DECI_FORMAT.format(result))); //Return the result formatted depending on the length
 
-        } catch (NumberFormatException e) {
-
-            flag = "";
-            afterTheOperator = false;
-            equals = false;
-            numIterative = "";
-            result = 0;
-            num1 = "";
-            num2 = "";
-            isCalculated = false;
-            return "0";
-        }
+//        } catch (NumberFormatException e) {
+//
+//            flag = "";
+//            afterTheOperator = false;
+//            equals = false;
+//            numIterative = "";
+//            result = 0;
+//            num1 = "";
+//            num2 = "";
+//            isCalculated = false;
+//            return "0";
+//
+//
+//        }
     }
 
-    public String formatOutput(String number) {
+    public String formatOutput (String number) {
 
-            try {
 
-                return DECI_FORMAT.format(Double.parseDouble(number));
+//            try {
 
-            } catch (NumberFormatException e) {
 
-                flag = "";
-                afterTheOperator = false;
-                equals = false;
-                numIterative = "";
-                result = 0;
-                num1 = "";
-                num2 = "";
-                isCalculated = false;
-                return "0";
-            }
+
+
+                double num = Double.parseDouble(number);
+
+
+        return (num > 1000000000000000000000000000000000000000d) ? ((SCI_FORMAT.format(num)))
+                : ((DECI_FORMAT.format(num))); //Return the result formatted depending on the length
+
+//            } catch (NumberFormatException e) {
+//
+//                flag = "";
+//                afterTheOperator = false;
+//                equals = false;
+//                numIterative = "";
+//                result = 0;
+//                num1 = "";
+//                num2 = "";
+//                isCalculated = false;
+//                return "0";
+//            }
 
     }
 
 
+    public void resetAfterError(CalculatorController controller) {
+        controller.resetAfterError();
+    }
 }
