@@ -211,7 +211,8 @@ public class CalculatorModel {  //Main logic
 
 
             num1 = Double.toString(result);  //Stores the result into num1 for the next operation
-            return (DECI_FORMAT.format(result)); //Return the results
+            return (result > 1000000000000000000000000000000000000000d) ? ((SCI_FORMAT.format(result)))
+                    : ((DECI_FORMAT.format(result))); //Return the result formatted depending on the length
 
         } catch (NumberFormatException e) {
 
