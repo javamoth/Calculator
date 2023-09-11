@@ -16,7 +16,7 @@ import java.io.IOException;
 public class Main extends Application {
 
     //maximum width of the text/label
-    private final double MAX_TEXT_WIDTH = 310;
+    private final double MAX_TEXT_WIDTH = 300;
     //default (non-scaled) font size of the text/label
     private final double displayFontSize = 27;
     private final Font displayFont = Font.font(displayFontSize);
@@ -146,6 +146,8 @@ public class Main extends Application {
             }
 
         });
+
+
 
 
 

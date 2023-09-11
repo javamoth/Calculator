@@ -23,6 +23,7 @@ public class CalculatorModel {  //Main logic
     //entirely instead of appending digits to it.
 
     private final DecimalFormat DECI_FORMAT = new DecimalFormat("0.###########");  //Presets the decimal format to be used
+    private final DecimalFormat SCI_FORMAT = new DecimalFormat("0.###E0");  //Presets the scientific notation pattern if the number is too big
 
     private double result;  //Where result is stored
 
@@ -147,7 +148,9 @@ public class CalculatorModel {  //Main logic
             //displayed on the first press
 
             num2 = "";  //Empties num2
-            return (DECI_FORMAT.format(result)); //Return the results
+
+            return (result > 1000000000000000000000000000000000000000d) ? ((SCI_FORMAT.format(result)))
+                    : ((DECI_FORMAT.format(result))); //Return the result formatted depending on the length
 
 //        } catch (NumberFormatException e) {
 //
