@@ -171,7 +171,7 @@ public class CalculatorController {
         highlightOnKeyPress(buttonEquals);
 
         if (Objects.equals(display.getText(), "0") && Objects.equals(model.getNum1(), "")) {    ////Do not pass empty strings to format
-            System.out.println("LOL");
+            //do nothing
         }
 
         else {
@@ -322,24 +322,13 @@ public class CalculatorController {
         model.setCalculated(false);
 
         //Create a new Runnable object
-        Runnable showErrorMessage = () -> {
-            Platform.runLater(() -> {   //not on the FX thread
-            displayError.setText("Error: number too big");   //Display the error message
-            });
-        };
+        Runnable showErrorMessage = () -> Platform.runLater(() -> {   //not on the FX thread
+        displayError.setText("Error: number too big");   //Display the error message
+        });
 
         //Create a new Runnable object
-        Runnable clearErrorMessage = () -> {
-            Platform.runLater(() -> {   //not on the FX thread
-            displayError.setText("");   //Clear the error message
-            });
-        };
-
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                // do your GUI stuff here
-            }
+        Runnable clearErrorMessage = () -> Platform.runLater(() -> {   //not on the FX thread
+        displayError.setText("");   //Clear the error message
         });
 
         executor.execute(showErrorMessage);

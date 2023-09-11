@@ -5,10 +5,7 @@ import java.util.Objects;
 
 public class CalculatorModel {  //Main logic
 
-
-
-
-        private String flag; //Stores the operator: +, -, *, /
+    private String flag; //Stores the operator: +, -, *, /
 
     private String num1 = ""; //Stores the 1st operand
 
@@ -26,17 +23,11 @@ public class CalculatorModel {  //Main logic
     //entirely instead of appending digits to it.
 
     private final DecimalFormat DECI_FORMAT = new DecimalFormat("0.###########");  //Presets the decimal format to be used
-    private final DecimalFormat SCI_FORMAT = new DecimalFormat("0.###E0");  //Presets the scientific notation pattern if the number is too big
+    private final DecimalFormat SCI_FORMAT = new DecimalFormat("0.##########E0");  //Presets the scientific notation pattern if the number is too big
 
     private double result;  //Where result is stored
 
     private boolean isCalculated;
-
-    String formatted = "";
-
-
-
-
 
     //Setters and getters
 
@@ -107,8 +98,6 @@ public class CalculatorModel {  //Main logic
 
     public String calculate(String currentValue) {   //Calculate the result
 
-//        try {
-
             if (!Objects.equals(numIterative, "")) {    //If numIterative is not empty, that means the 2nd operand
                 //from the previous operation has been stored in numIterative, and will be used again as the 2nd operand here
 
@@ -156,27 +145,9 @@ public class CalculatorModel {  //Main logic
             return (result > 1000000000000000000000000000000000000000d) ? ((SCI_FORMAT.format(result)))
                     : ((DECI_FORMAT.format(result))); //Return the result formatted depending on the length
 
-//        } catch (NumberFormatException e) {
-//
-//            flag = "";
-//            afterTheOperator = false;
-//            equals = false;
-//            numIterative = "";
-//            result = 0;
-//            num1 = "";
-//            num2 = "";
-//            isCalculated = false;
-//            return "0";
-//
-//        }
     }
 
-
-
-
     public String calcInter() {   //Calculate an intermediate result
-
-//        try {
 
             if (!Objects.equals(numIterative, "")) {    //If numIterative is not empty, that means the 2nd operand
                 //from the previous operation has been stored in numIterative, and will be used again as the 2nd operand here
@@ -218,39 +189,15 @@ public class CalculatorModel {  //Main logic
             return (result > 1000000000000000000000000000000000000000d) ? ((SCI_FORMAT.format(result)))
                     : ((DECI_FORMAT.format(result))); //Return the result formatted depending on the length
 
-//        } catch (NumberFormatException e) {
-//
-//            flag = "";
-//            afterTheOperator = false;
-//            equals = false;
-//            numIterative = "";
-//            result = 0;
-//            num1 = "";
-//            num2 = "";
-//            isCalculated = false;
-//            return "0";
-//
-//
-//        }
     }
 
     public String formatOutput (String number) {
 
+            double num = Double.parseDouble(number);
 
+            return (num > 1000000000000000000000000000000000000000d) ? ((SCI_FORMAT.format(num)))
+                   : ((DECI_FORMAT.format(num))); //Return the result formatted depending on the length
 
-
-                    double num = Double.parseDouble(number);
-
-
-                    return (num > 1000000000000000000000000000000000000000d) ? ((SCI_FORMAT.format(num)))
-                            : ((DECI_FORMAT.format(num))); //Return the result formatted depending on the length
-
-                }
-
-
-
-
-    public void resetAfterError(CalculatorController controller) {
-        controller.resetAfterError();
     }
+
 }
