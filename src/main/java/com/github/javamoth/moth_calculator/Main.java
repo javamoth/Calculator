@@ -4,13 +4,25 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class Main extends Application {
+
+    //maximum width of the text/label
+    private final double MAX_TEXT_WIDTH = 310;
+    //default (non-scaled) font size of the text/label
+    private final double displayFontSize = 27;
+    private final Font displayFont = Font.font(displayFontSize);
+    private final double miniDisplayFontSize = 15;
+    private final Font miniDisplayFont = Font.font(miniDisplayFontSize);
+    
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -18,6 +30,9 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("hello-view.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load(), 340, 425);
+
+        Label display = (Label) scene.lookup("#display");
+        Label miniDisplay = (Label) scene.lookup("#displayMini");
 
         //Accessing the buttons in the .fxml file and assigning them to variables
         Button button0 = (Button) scene.lookup("#button0");
@@ -88,6 +103,51 @@ public class Main extends Application {
                 key.consume();
             }
         });
+
+
+        display.setFont(displayFont);
+        display.textProperty().addListener((observable, oldValue, newValue) -> {
+            //create temp Text object with the same text as the label
+            //and measure its width using default label font size
+            Text tmpText = new Text(newValue);
+            tmpText.setFont(displayFont);
+
+            double textWidth = tmpText.getLayoutBounds().getWidth();
+
+            //check if text width is smaller than maximum width allowed
+            if (textWidth <= MAX_TEXT_WIDTH) {
+                display.setFont(displayFont);
+            } else {
+                //and if it isn't, calculate new font size,
+                // so that label text width matches MAX_TEXT_WIDTH
+                double newFontSize = displayFontSize * MAX_TEXT_WIDTH / textWidth;
+                display.setFont(Font.font(displayFont.getFamily(), newFontSize));
+            }
+
+        });
+
+        miniDisplay.setFont(miniDisplayFont);
+        miniDisplay.textProperty().addListener((observable, oldValue, newValue) -> {
+            //create temp Text object with the same text as the label
+            //and measure its width using default label font size
+            Text tmpText = new Text(newValue);
+            tmpText.setFont(miniDisplayFont);
+
+            double textWidth = tmpText.getLayoutBounds().getWidth();
+
+            //check if text width is smaller than maximum width allowed
+            if (textWidth <= MAX_TEXT_WIDTH) {
+                miniDisplay.setFont(miniDisplayFont);
+            } else {
+                //and if it isn't, calculate new font size,
+                // so that label text width matches MAX_TEXT_WIDTH
+                double newFontSize = miniDisplayFontSize * MAX_TEXT_WIDTH / textWidth;
+                miniDisplay.setFont(Font.font(miniDisplayFont.getFamily(), newFontSize));
+            }
+
+        });
+
+
 
 
         stage.setTitle("Moth Calculator v1.30");
