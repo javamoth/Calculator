@@ -170,19 +170,34 @@ public class CalculatorController {
 
         highlightOnKeyPress(buttonEquals);
 
-        try {    //Prevent double_max_value overflow from crashing the app via the infinity sign
-
-        String result = model.calculate(display.getText());    //Pass the current displayed value to calculate() the res.
-
-        //Show the current operation on the mini display
-
-            displayMini.setText(model.formatOutput(model.getNum1()) + " " + model.getFlag() + " " + model.formatOutput(model.getNumIterative()) + " =");
-            updateDisplay(result);  //Output the calculated value
+        if (Objects.equals(display.getText(), "0") && Objects.equals(model.getNum1(), "")) {    ////Do not pass empty strings to format
+            System.out.println("LOL");
         }
 
-        catch (NumberFormatException e) {   //Clear and reset everything
+        else {
+            try {    //Prevent double_max_value overflow from crashing the app via the infinity sign
+
+                String result = model.calculate(display.getText());    //Pass the current displayed value to calculate() the res.
+
+                //Show the current operation on the mini display
+
+                if (Objects.equals(model.getNumIterative(), "") && Objects.equals(model.getNum1(), "")) {
+                    //do nothing
+                }
+
+                if (Objects.equals(model.getNumIterative(), "") && !Objects.equals(model.getNum1(), "")) {
+                    displayMini.setText(model.formatOutput(model.getNum1()) + " " + model.getFlag());
+                } else {
+                    displayMini.setText(model.formatOutput(model.getNum1()) + " " + model.getFlag() + " " + model.formatOutput(model.getNumIterative()) + " =");
+                }
+
+                updateDisplay(result);  //Output the calculated value
+
+
+            } catch (NumberFormatException e) {   //Clear and reset everything
 
                 resetAfterError();
+            }
         }
 
 

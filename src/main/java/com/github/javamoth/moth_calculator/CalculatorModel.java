@@ -32,6 +32,8 @@ public class CalculatorModel {  //Main logic
 
     private boolean isCalculated;
 
+    String formatted = "";
+
 
 
 
@@ -235,31 +237,17 @@ public class CalculatorModel {  //Main logic
     public String formatOutput (String number) {
 
 
-//            try {
 
 
+                    double num = Double.parseDouble(number);
 
 
-                double num = Double.parseDouble(number);
+                    return (num > 1000000000000000000000000000000000000000d) ? ((SCI_FORMAT.format(num)))
+                            : ((DECI_FORMAT.format(num))); //Return the result formatted depending on the length
+
+                }
 
 
-        return (num > 1000000000000000000000000000000000000000d) ? ((SCI_FORMAT.format(num)))
-                : ((DECI_FORMAT.format(num))); //Return the result formatted depending on the length
-
-//            } catch (NumberFormatException e) {
-//
-//                flag = "";
-//                afterTheOperator = false;
-//                equals = false;
-//                numIterative = "";
-//                result = 0;
-//                num1 = "";
-//                num2 = "";
-//                isCalculated = false;
-//                return "0";
-//            }
-
-    }
 
 
     public void resetAfterError(CalculatorController controller) {
