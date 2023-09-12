@@ -100,7 +100,7 @@ public class CalculatorModel {  //Main logic
             if (!Objects.equals(numIterative, "")) {    //If numIterative is not empty, that means the 2nd operand
                 //from the previous operation has been stored in numIterative, and will be used again as the 2nd operand here
 
-                if (!Objects.equals(currentValue, "Intermediate")) {
+                if (!Objects.equals(currentValue, "Intermediate")) {    //Only if it's an "=" calculation
 
                     num1 = currentValue;   //Stores the outputted result of the previous operation in num1
                 }
@@ -111,7 +111,7 @@ public class CalculatorModel {  //Main logic
             if (Objects.equals(numIterative, "")) { //If numIterative is empty, that means that this is the first
                 //iteration of the operation
 
-                if (!Objects.equals(currentValue, "Intermediate")) {
+                if (!Objects.equals(currentValue, "Intermediate")) {    //Only if it's an "=" calculation
 
                     num2 = currentValue;   //Stores the value of the 2nd operand, currently on the display, into num2
                 }
@@ -145,12 +145,12 @@ public class CalculatorModel {  //Main logic
             equals = true;  //Sets the equals flag to true, this lets the digit buttons know to overwrite the number
             //displayed on the first press
 
-            if (!Objects.equals(currentValue, "Intermediate")) {
+            if (!Objects.equals(currentValue, "Intermediate")) {    //Only if it's an "=" calculation
 
                 num2 = "";  //Empties num2
             }
 
-            if (Objects.equals(currentValue, "Intermediate")) {
+            if (Objects.equals(currentValue, "Intermediate")) {     //Only if it's an operator calculation
 
                 num1 = Double.toString(result);  //Stores the result into num1 for the next operation
             }
@@ -158,50 +158,6 @@ public class CalculatorModel {  //Main logic
             return (result > 1000000000000000000000000000000000000000d) ? ((SCI_FORMAT.format(result)))
                     : ((DECI_FORMAT.format(result))); //Return the result formatted depending on the length
     }
-
-//    public String calcInter() {   //Calculate an intermediate result
-//
-//            if (!Objects.equals(numIterative, "")) {    //If numIterative is not empty, that means the 2nd operand
-//                //from the previous operation has been stored in numIterative, and will be used again as the 2nd operand here
-//
-//                num2 = numIterative;   ////Num2 takes the value of numIterative now
-//            }
-//
-//            if (Objects.equals(numIterative, "")) { //If numIterative is empty, that means that this is the first
-//                //iteration of the operation
-//
-//                numIterative = num2;    //Stores the 2nd operand into numIterative to be used as the 2nd operand during
-//                //the 2nd and all consecutive iterations
-//            }
-//
-//
-//            if (Objects.equals(flag, "+")) {    //If "flag" equals to "+"
-//
-//                result = Double.parseDouble(num1) + Double.parseDouble(num2);   //Perform the calculation and store the res.
-//            }
-//
-//            if (Objects.equals(flag, "-")) {
-//
-//                result = Double.parseDouble(num1) - Double.parseDouble(num2);
-//            }
-//
-//            if (Objects.equals(flag, "*")) {
-//
-//                result = Double.parseDouble(num1) * Double.parseDouble(num2);
-//            }
-//
-//            if (Objects.equals(flag, "/")) {
-//
-//                result = Double.parseDouble(num1) / Double.parseDouble(num2);
-//            }
-//
-//            equals = true;  //Sets the equals flag to true, this lets the digit buttons know to overwrite the number
-//            //displayed on the first press
-//
-//            num1 = Double.toString(result);  //Stores the result into num1 for the next operation
-//            return (result > 1000000000000000000000000000000000000000d) ? ((SCI_FORMAT.format(result)))
-//                    : ((DECI_FORMAT.format(result))); //Return the result formatted depending on the length
-//    }
 
     public String formatOutput (String number) {
 
