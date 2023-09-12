@@ -61,15 +61,11 @@ public class CalculatorController {
             //has been entered
         }
 
-        else {
+        else if (display.getText().length() < 21) {     //Limit input to the width of the display
 
             String num = display.getText(); //Gets the number that's already on the display
             num = num + button.getText();   //Appends the button's text value to it
-
-            if (display.getText().length() < 21) {  // limit input
-
             display.setText(num);   //Displays the resulting number
-            }
         }
     }
 
