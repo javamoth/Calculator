@@ -29,12 +29,6 @@ public class CalculatorController {
     @FXML
     private Button buttonNegative, buttonPoint, buttonC, buttonEquals, buttonBackspace;
 
-    //Setters and getters
-    public void setModelFlag(String flag) {
-
-        model.setFlag(flag);
-    }
-
     //Button onAction methods
 
     @FXML
@@ -46,7 +40,6 @@ public class CalculatorController {
         highlightOnKeyPress(button);    //Pass the current button to highlightOnKeyPress so that it lights up when fired
 
         //Checks if the "0" without the f. point is being displayed or either an operator button or "=" being previously pressed
-
         if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || model.getAfterTheOperator() || model.getEquals()) {
 
             display.setText(button.getText());  //Resets the displayed number to the button's digit
@@ -76,7 +69,7 @@ public class CalculatorController {
         display.setText("0");
         displayMini.setText("");
         displayError.setText("");
-        setModelFlag("");
+        model.setFlag("");
         model.setAfterTheOperator(false);
         model.setEquals(false);
         model.setNumIterative("");
@@ -152,6 +145,7 @@ public class CalculatorController {
         }
     }
 
+    @FXML
     public void onEqualsPress() {   //The "=" button, calculates the resulting value
 
         highlightOnKeyPress(buttonEquals);
@@ -189,11 +183,13 @@ public class CalculatorController {
         }
     }
 
+    @FXML
     public void onButtonRepeatSwitchClick() {
 
         //Implement method
     }
 
+    @FXML
     public void onButtonNegativeClick() {   //Switching to negative or positive number
 
         highlightOnKeyPress(buttonNegative);
@@ -215,6 +211,7 @@ public class CalculatorController {
         }
     }
 
+    @FXML
     public void onButtonPointClick() {      //Introducing the floating point
 
         highlightOnKeyPress(buttonPoint);
@@ -237,6 +234,7 @@ public class CalculatorController {
         }
     }
 
+    @FXML
     public void onButtonBackspaceClick() {  //Deleting the last digit on the display
 
         highlightOnKeyPress(buttonBackspace);
@@ -264,6 +262,7 @@ public class CalculatorController {
         }
     }
 
+    @FXML
     public void highlightOnKeyPress(Button button) {    //Highlight the passed button briefly after pressing it
 
         //Runnable tasks
@@ -283,17 +282,18 @@ public class CalculatorController {
         executor.schedule(unHighlight, 150, TimeUnit.MILLISECONDS);     //Unhighlight it almost immediately after
     }
 
+    @FXML
     public void updateDisplay(String output) {  //Output the info to the display
 
         display.setText(output);
     }
 
-
+    @FXML
     public void resetAfterError() {     //Reset everything after the exception and display the error message
 
         display.setText("0");
         displayMini.setText("");
-        setModelFlag("");
+        model.setFlag("");
         model.setAfterTheOperator(false);
         model.setEquals(false);
         model.setNumIterative("");
