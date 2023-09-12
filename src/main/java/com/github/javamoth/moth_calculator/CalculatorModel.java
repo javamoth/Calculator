@@ -161,7 +161,8 @@ public class CalculatorModel {  //Main logic
     public String formatOutput (String number) {    //Regular trailing zeros removal or convert to scientific notation
 
             double num = Double.parseDouble(number);
-            return (num > 1000000000000000000000000000000000000000d) ? ((SCI_FORMAT.format(num)))
+            return (num > 1000000000000000000000000000000000000000d || num < -100000000000000000000000000000000000000d)
+                   ? ((SCI_FORMAT.format(num)))
                    : ((DECI_FORMAT.format(num))); //Return the result formatted depending on the length
     }
 }
