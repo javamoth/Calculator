@@ -18,12 +18,12 @@ public class CalculatorModel {  //Main logic
     //an operator button has been pressed, and they need to replace the displayed number
     //entirely instead of appending digits to it.
 
-    private Boolean equals = false;         //This flag lets the Onclick functions of the number buttons know that the "=" button
+    private Boolean equals = false; //This flag lets the Onclick functions of the number buttons know that the "=" button
     //has been pressed, and they need to replace the displayed number
     //entirely instead of appending digits to it.
 
-    private final DecimalFormat DECI_FORMAT = new DecimalFormat("0.###########");  //Presets the decimal format to be used
-    private final DecimalFormat SCI_FORMAT = new DecimalFormat("0.##########E0");  //Presets the scientific notation pattern if the number is too big
+    private final DecimalFormat DECI_FORMAT = new DecimalFormat("0.###########");   //Presets the decimal format to be used
+    private final DecimalFormat SCI_FORMAT = new DecimalFormat("0.##########E0");  //Presets the scientific notation pattern
 
     private double result;  //Where result is stored
 
@@ -155,11 +155,10 @@ public class CalculatorModel {  //Main logic
                 num1 = Double.toString(result);  //Stores the result into num1 for the next operation
             }
 
-            return (result > 1000000000000000000000000000000000000000d) ? ((SCI_FORMAT.format(result)))
-                    : ((DECI_FORMAT.format(result))); //Return the result formatted depending on the length
+            return formatOutput(Double.toString(result));   //Return the formatted result
     }
 
-    public String formatOutput (String number) {
+    public String formatOutput (String number) {    //Regular trailing zeros removal or convert to scientific notation
 
             double num = Double.parseDouble(number);
             return (num > 1000000000000000000000000000000000000000d) ? ((SCI_FORMAT.format(num)))
