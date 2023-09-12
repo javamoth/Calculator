@@ -27,7 +27,7 @@ public class CalculatorModel {  //Main logic
     private final DecimalFormat DECI_FORMAT = new DecimalFormat("0.############");   //Presets the decimal format to be used
     private final DecimalFormat SCI_FORMAT = new DecimalFormat("0.##########E0");  //Presets the scientific notation pattern
 
-    private BigDecimal result = new BigDecimal(0);  //Where result is stored
+    private BigDecimal result = new BigDecimal(0).setScale(21, RoundingMode.CEILING);  //Where result is stored
 
     private boolean isCalculated;   //Used to prevent repeated calculation on continuous operator button press if true
 
@@ -163,9 +163,11 @@ public class CalculatorModel {  //Main logic
             number = number.replaceAll( "-0", "");
         }
 
-        double num = Double.parseDouble(number);
+        BigDecimal num = BigDecimal.valueOf(Double.parseDouble(number));
+        BigDecimal max = new BigDecimal("1000000000000000000000000000000000000000");
+        BigDecimal min = new BigDecimal("-100000000000000000000000000000000000000");
 
-        return (num > 1000000000000000000000000000000000000000d || num < -100000000000000000000000000000000000000d)
+        return (num.compareTo(max) > 0 || num.compareTo(min) < 0)
                    ? ((SCI_FORMAT.format(num)))
                    : ((DECI_FORMAT.format(num))); //Return the result formatted depending on the length
     }

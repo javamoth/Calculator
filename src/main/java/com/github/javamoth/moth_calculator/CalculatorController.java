@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -42,7 +43,7 @@ public class CalculatorController {
         try {   //Prevent double_max_value overflow from crashing the app via the infinity sign
 
             //Checks if the "0" without the f. point is being displayed or either an operator button or "=" being previously pressed
-            if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || model.getAfterTheOperator() || model.getEquals()) {
+            if ((BigDecimal.valueOf(Double.parseDouble(display.getText())).signum() == 0 && !display.getText().contains(".")) || model.getAfterTheOperator() || model.getEquals()) {
 
                 display.setText(button.getText());  //Resets the displayed number to the button's digit
                 model.setAfterTheOperator(false);   //Sets the operator flag to "false" after the 1st press to allow for
@@ -78,7 +79,7 @@ public class CalculatorController {
         model.setAfterTheOperator(false);
         model.setEquals(false);
         model.setNumIterative("");
-        model.setResult(0);
+        model.setResult(BigDecimal.ZERO);
         model.setNum1("");
         model.setNum2("");
         model.setCalculated(false);
@@ -197,20 +198,20 @@ public class CalculatorController {
     public void onButtonNegativeClick() {   //Switching to negative or positive number
 
         highlightOnKeyPress(buttonNegative);
-        double displayed = Double.parseDouble(display.getText()); //Grab the displayed value, convert it to double
+        BigDecimal displayed = BigDecimal.valueOf(Double.parseDouble(display.getText())); //Grab the displayed value, convert it to double
         //and store in displayed
 
-        if (displayed < 0) {    //If the number is negative
+        if (displayed.signum() == -1) {    //If the number is negative
 
-            double displayPos = Math.abs(displayed);    //Convert to positive and store in displayedPos
-            display.setText(model.formatOutput(Double.toString(displayPos))); //Trim the final value, convert to String, and
+            BigDecimal displayPos = displayed.abs();    //Convert to positive and store in displayedPos
+            display.setText(model.formatOutput(displayPos.toString())); //Trim the final value, convert to String, and
             //output to the display
         }
 
-        if (displayed > 0) {    //If the number is positive
+        if (displayed.signum() == 1) {    //If the number is positive
 
-            double displayNeg = -displayed;     //Convert to negative and store in displayNeg
-            display.setText(model.formatOutput(Double.toString(displayNeg)));   //Trim the final value, convert to String, and
+            BigDecimal displayNeg = displayed.negate();    //Convert to negative and store in displayNeg
+            display.setText(model.formatOutput(displayNeg.toString()));   //Trim the final value, convert to String, and
             //output to the display
         }
     }
@@ -301,7 +302,7 @@ public class CalculatorController {
         model.setAfterTheOperator(false);
         model.setEquals(false);
         model.setNumIterative("");
-        model.setResult(0);
+        model.setResult(BigDecimal.ZERO);
         model.setNum1("");
         model.setNum2("");
         model.setCalculated(false);
