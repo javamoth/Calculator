@@ -125,7 +125,7 @@ public class CalculatorController {
                 //calculated
 
                 display.setText(pointAndZeroCleared);   //Outputs the corrected value to the display
-                String result = model.calcInter();    //Pass the current displayed value to calculate an
+                String result = model.calculate("Intermediate");    //Pass the current displayed value to calculate an
                 //intermediate result
 
                 updateDisplay(result);  //Output the calculated value
