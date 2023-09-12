@@ -26,13 +26,11 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-
-
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("hello-view.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load(), 340, 425);
 
-        Label display = (Label) scene.lookup("#display");
+        Label display = (Label) scene.lookup("#display");   //Accessing both displays to later reduce font size in them
         Label miniDisplay = (Label) scene.lookup("#displayMini");
 
         //Accessing the buttons in the .fxml file and assigning them to variables
@@ -105,7 +103,7 @@ public class Main extends Application {
             }
         });
 
-
+        //Dynamically reduce the font size when the numbers get longer, main display
         display.setFont(displayFont);
         display.textProperty().addListener((observable, oldValue, newValue) -> {
             //create temp Text object with the same text as the label
@@ -127,6 +125,7 @@ public class Main extends Application {
 
         });
 
+        //Dynamically reduce the font size when the numbers get longer, mini display
         miniDisplay.setFont(miniDisplayFont);
         miniDisplay.textProperty().addListener((observable, oldValue, newValue) -> {
             //create temp Text object with the same text as the label
@@ -147,11 +146,6 @@ public class Main extends Application {
             }
 
         });
-
-
-
-
-
 
         stage.setTitle("Moth Calculator v1.30");
         stage.setScene(scene);
