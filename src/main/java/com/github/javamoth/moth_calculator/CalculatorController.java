@@ -95,7 +95,7 @@ public class CalculatorController {
         try {   //Prevent double_max_value overflow from crashing the app via the infinity sign
 
                 //Just in case the user has backspaced to "-0." after entering the 1st operand we perform the steps below
-                String pointAndZeroCleared = model.getDeciFormat().format(Double.valueOf(display.getText())); //Converts double to String
+                String pointAndZeroCleared = model.formatOutput(display.getText()); //Converts double to String
                 //and formats it, stripping any trailing zeros and the floating point from the number displayed
 
             if (pointAndZeroCleared.matches("-0")) {    //Checks if the resulting trimmed value turned out to be "-0"
@@ -176,7 +176,6 @@ public class CalculatorController {
                 } else {
 
                         displayMini.setText(model.formatOutput(model.getNum1()) + " " + model.getFlag() + " " + model.formatOutput(model.getNumIterative()) + " =");
-
                 }
 
                 updateDisplay(result);  //Output the calculated value

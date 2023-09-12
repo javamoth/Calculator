@@ -22,7 +22,7 @@ public class CalculatorModel {  //Main logic
     //has been pressed, and they need to replace the displayed number
     //entirely instead of appending digits to it.
 
-    private final DecimalFormat DECI_FORMAT = new DecimalFormat("0.###########");   //Presets the decimal format to be used
+    private final DecimalFormat DECI_FORMAT = new DecimalFormat("0.############");   //Presets the decimal format to be used
     private final DecimalFormat SCI_FORMAT = new DecimalFormat("0.##########E0");  //Presets the scientific notation pattern
 
     private double result;  //Where result is stored
@@ -85,10 +85,6 @@ public class CalculatorModel {  //Main logic
 
     public void setEquals(Boolean equals) {
         this.equals = equals;
-    }
-
-    public DecimalFormat getDeciFormat() {
-        return DECI_FORMAT;
     }
 
     public void setResult(double result) {
