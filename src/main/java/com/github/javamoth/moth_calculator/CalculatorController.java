@@ -39,26 +39,31 @@ public class CalculatorController {
 
         highlightOnKeyPress(button);    //Pass the current button to highlightOnKeyPress so that it lights up when fired
 
-        //Checks if the "0" without the f. point is being displayed or either an operator button or "=" being previously pressed
-        if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || model.getAfterTheOperator() || model.getEquals()) {
+        try {   //Prevent double_max_value overflow from crashing the app via the infinity sign
 
-            display.setText(button.getText());  //Resets the displayed number to the button's digit
-            model.setAfterTheOperator(false);   //Sets the operator flag to "false" after the 1st press to allow for
-            // appending digits
+            //Checks if the "0" without the f. point is being displayed or either an operator button or "=" being previously pressed
+            if ((Double.parseDouble(display.getText()) == 0 && !display.getText().contains(".")) || model.getAfterTheOperator() || model.getEquals()) {
 
-            model.setEquals(false);     //Sets the "=" flag to "false" after the 1st press to allow for appending digits
-            model.setNumIterative("");  //Resets numIterative to prevent from iterating on the old 2nd operand after
-            //user has entered a new number
+                display.setText(button.getText());  //Resets the displayed number to the button's digit
+                model.setAfterTheOperator(false);   //Sets the operator flag to "false" after the 1st press to allow for
+                // appending digits
 
-            model.setCalculated(false);     //Allows the operator button onAction calculation to continue after a new operand
-            //has been entered
-        }
+                model.setEquals(false);     //Sets the "=" flag to "false" after the 1st press to allow for appending digits
+                model.setNumIterative("");  //Resets numIterative to prevent from iterating on the old 2nd operand after
+                //user has entered a new number
 
-        else if (display.getText().length() < 21) {     //Limit input to the width of the display
+                model.setCalculated(false);     //Allows the operator button onAction calculation to continue after a new operand
+                //has been entered
+            } else if (display.getText().length() < 21) {     //Limit input to the width of the display
 
-            String num = display.getText(); //Gets the number that's already on the display
-            num = num + button.getText();   //Appends the button's text value to it
-            display.setText(num);   //Displays the resulting number
+                String num = display.getText(); //Gets the number that's already on the display
+                num = num + button.getText();   //Appends the button's text value to it
+                display.setText(num);   //Displays the resulting number
+            }
+
+        } catch (NumberFormatException e) {
+
+            resetAfterError();
         }
     }
 
@@ -82,15 +87,14 @@ public class CalculatorController {
     @FXML
     public void onOperatorPress(ActionEvent event) {    //Grab the passed onAction event from the operator button
 
-        try {   //Prevent double_max_value overflow from crashing the app via the infinity sign
-
             Button button = (Button) event.getTarget(); //Get the Button object from the event and store it in the "button"
             //variable
 
             highlightOnKeyPress(button);    //Pass the current button to highlightOnKeyPress so that it lights up when fired
 
-                //Just in case the user has backspaced to "-0." after entering the 1st operand we perform the steps below
+        try {   //Prevent double_max_value overflow from crashing the app via the infinity sign
 
+                //Just in case the user has backspaced to "-0." after entering the 1st operand we perform the steps below
                 String pointAndZeroCleared = model.getDeciFormat().format(Double.valueOf(display.getText())); //Converts double to String
                 //and formats it, stripping any trailing zeros and the floating point from the number displayed
 

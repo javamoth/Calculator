@@ -95,7 +95,7 @@ public class CalculatorModel {  //Main logic
         this.result = result;
     }
 
-    public String calculate(String currentValue) {   //Calculate the result
+    public String calculate(String currentValue) throws NumberFormatException {   //Calculate the result
 
             if (!Objects.equals(numIterative, "")) {    //If numIterative is not empty, that means the 2nd operand
                 //from the previous operation has been stored in numIterative, and will be used again as the 2nd operand here
