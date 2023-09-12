@@ -1,5 +1,7 @@
 package com.github.javamoth.moth_calculator;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.Objects;
 
@@ -25,7 +27,7 @@ public class CalculatorModel {  //Main logic
     private final DecimalFormat DECI_FORMAT = new DecimalFormat("0.############");   //Presets the decimal format to be used
     private final DecimalFormat SCI_FORMAT = new DecimalFormat("0.##########E0");  //Presets the scientific notation pattern
 
-    private double result;  //Where result is stored
+    private BigDecimal result = new BigDecimal(0);  //Where result is stored
 
     private boolean isCalculated;   //Used to prevent repeated calculation on continuous operator button press if true
 
@@ -87,7 +89,7 @@ public class CalculatorModel {  //Main logic
         this.equals = equals;
     }
 
-    public void setResult(double result) {
+    public void setResult(BigDecimal result) {
         this.result = result;
     }
 
@@ -120,22 +122,22 @@ public class CalculatorModel {  //Main logic
 
             if (Objects.equals(flag, "+")) {    //If "flag" equals to "+"
 
-                result = Double.parseDouble(num1) + Double.parseDouble(num2);   //Perform the calculation and store the res.
+                result = BigDecimal.valueOf(Double.parseDouble(num1)).add(BigDecimal.valueOf(Double.parseDouble(num2)));   //Perform the calculation and store the res.
             }
 
             if (Objects.equals(flag, "-")) {
 
-                result = Double.parseDouble(num1) - Double.parseDouble(num2);
+                result = BigDecimal.valueOf(Double.parseDouble(num1)).subtract(BigDecimal.valueOf(Double.parseDouble(num2)));
             }
 
             if (Objects.equals(flag, "*")) {
 
-                result = Double.parseDouble(num1) * Double.parseDouble(num2);
+                result = BigDecimal.valueOf(Double.parseDouble(num1)).multiply(BigDecimal.valueOf(Double.parseDouble(num2)));
             }
 
             if (Objects.equals(flag, "/")) {
 
-                result = Double.parseDouble(num1) / Double.parseDouble(num2);
+                result = BigDecimal.valueOf(Double.parseDouble(num1)).divide(BigDecimal.valueOf(Double.parseDouble(num2)), RoundingMode.CEILING);
             }
 
             equals = true;  //Sets the equals flag to true, this lets the digit buttons know to overwrite the number
@@ -148,10 +150,10 @@ public class CalculatorModel {  //Main logic
 
             if (Objects.equals(currentValue, "Intermediate")) {     //Only if it's an operator calculation
 
-                num1 = Double.toString(result);  //Stores the result into num1 for the next operation
+                num1 = result.toString();  //Stores the result into num1 for the next operation
             }
 
-            return formatOutput(Double.toString(result));   //Return the formatted result
+            return result.toString();   //Return the formatted result
     }
 
     public String formatOutput (String number) {    //Regular trailing zeros removal or convert to scientific notation
