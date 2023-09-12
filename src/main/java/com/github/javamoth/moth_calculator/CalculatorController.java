@@ -207,15 +207,14 @@ public class CalculatorController {
         if (displayed < 0) {    //If the number is negative
 
             double displayPos = Math.abs(displayed);    //Convert to positive and store in displayedPos
-
-            display.setText(model.getDeciFormat().format(Double.valueOf(displayPos))); //Trim the final value, convert to String, and
+            display.setText(model.formatOutput(Double.toString(displayPos))); //Trim the final value, convert to String, and
             //output to the display
         }
 
         if (displayed > 0) {    //If the number is positive
 
             double displayNeg = -displayed;     //Convert to negative and store in displayNeg
-            display.setText(model.getDeciFormat().format(Double.valueOf(displayNeg)));   //Trim the final value, convert to String, and
+            display.setText(model.formatOutput(Double.toString(displayNeg)));   //Trim the final value, convert to String, and
             //output to the display
         }
     }
@@ -271,19 +270,17 @@ public class CalculatorController {
 
     public void highlightOnKeyPress(Button button) {    //Highlight the passed button briefly after pressing it
 
-        //Create a new Runnable object
+        //Runnable tasks
         Runnable highlight = () -> {
 
             button.setStyle("-fx-background-color: #1B6B93");   //Set the bg color to a different one immediately
             //after pressing
         };
 
-        //Create a new Runnable object
         Runnable unHighlight = () -> {
 
             button.setStyle(":hover -fx-background-color: #526D82");    //Set the stylesheet back to change
             // color on hover
-
         };
 
         executor.execute(highlight);    //Highlight the button
@@ -309,12 +306,11 @@ public class CalculatorController {
         model.setNum2("");
         model.setCalculated(false);
 
-        //Create a new Runnable object
+        //Runnable tasks
         Runnable showErrorMessage = () -> Platform.runLater(() -> {   //not on the FX thread
         displayError.setText("Error: number too big");   //Display the error message
         });
 
-        //Create a new Runnable object
         Runnable clearErrorMessage = () -> Platform.runLater(() -> {   //not on the FX thread
         displayError.setText("");   //Clear the error message
         });
