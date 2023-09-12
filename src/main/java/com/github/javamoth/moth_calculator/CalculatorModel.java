@@ -27,10 +27,9 @@ public class CalculatorModel {  //Main logic
 
     private double result;  //Where result is stored
 
-    private boolean isCalculated;
+    private boolean isCalculated;   //Used to prevent repeated calculation on continuous operator button press if true
 
     //Setters and getters
-
 
     public String getFlag() {
         return flag;
@@ -136,7 +135,6 @@ public class CalculatorModel {  //Main logic
                 result = Double.parseDouble(num1) / Double.parseDouble(num2);
             }
 
-
             equals = true;  //Sets the equals flag to true, this lets the digit buttons know to overwrite the number
             //displayed on the first press
 
@@ -151,11 +149,13 @@ public class CalculatorModel {  //Main logic
 
             if (!Objects.equals(numIterative, "")) {    //If numIterative is not empty, that means the 2nd operand
                 //from the previous operation has been stored in numIterative, and will be used again as the 2nd operand here
+
                 num2 = numIterative;   ////Num2 takes the value of numIterative now
             }
 
             if (Objects.equals(numIterative, "")) { //If numIterative is empty, that means that this is the first
                 //iteration of the operation
+
                 numIterative = num2;    //Stores the 2nd operand into numIterative to be used as the 2nd operand during
                 //the 2nd and all consecutive iterations
             }
@@ -184,20 +184,15 @@ public class CalculatorModel {  //Main logic
             equals = true;  //Sets the equals flag to true, this lets the digit buttons know to overwrite the number
             //displayed on the first press
 
-
             num1 = Double.toString(result);  //Stores the result into num1 for the next operation
             return (result > 1000000000000000000000000000000000000000d) ? ((SCI_FORMAT.format(result)))
                     : ((DECI_FORMAT.format(result))); //Return the result formatted depending on the length
-
     }
 
     public String formatOutput (String number) {
 
             double num = Double.parseDouble(number);
-
             return (num > 1000000000000000000000000000000000000000d) ? ((SCI_FORMAT.format(num)))
                    : ((DECI_FORMAT.format(num))); //Return the result formatted depending on the length
-
     }
-
 }

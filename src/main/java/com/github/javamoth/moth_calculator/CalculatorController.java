@@ -20,14 +20,6 @@ public class CalculatorController {
 
     private final CalculatorModel model = new CalculatorModel();    //Accessing the model class
 
-    //Setters and getters
-    public void setModelFlag(String flag) {
-
-        model.setFlag(flag);
-    }
-
-
-
     //Defining global variables
 
     @FXML
@@ -36,6 +28,12 @@ public class CalculatorController {
     //Defining button variables to use them in the highlighting on press method etc.
     @FXML
     private Button buttonNegative, buttonPoint, buttonC, buttonEquals, buttonBackspace;
+
+    //Setters and getters
+    public void setModelFlag(String flag) {
+
+        model.setFlag(flag);
+    }
 
     //Button onAction methods
 
@@ -54,9 +52,11 @@ public class CalculatorController {
             display.setText(button.getText());  //Resets the displayed number to the button's digit
             model.setAfterTheOperator(false);   //Sets the operator flag to "false" after the 1st press to allow for
             // appending digits
+
             model.setEquals(false);     //Sets the "=" flag to "false" after the 1st press to allow for appending digits
             model.setNumIterative("");  //Resets numIterative to prevent from iterating on the old 2nd operand after
             //user has entered a new number
+
             model.setCalculated(false);     //Allows the operator button onAction calculation to continue after a new operand
             //has been entered
         }
@@ -93,7 +93,6 @@ public class CalculatorController {
     @FXML
     public void onOperatorPress(ActionEvent event) {    //Grab the passed onAction event from the operator button
 
-
         try {   //Prevent double_max_value overflow from crashing the app via the infinity sign
 
             Button button = (Button) event.getTarget(); //Get the Button object from the event and store it in the "button"
@@ -101,13 +100,10 @@ public class CalculatorController {
 
             highlightOnKeyPress(button);    //Pass the current button to highlightOnKeyPress so that it lights up when fired
 
-
                 //Just in case the user has backspaced to "-0." after entering the 1st operand we perform the steps below
-
 
                 String pointAndZeroCleared = model.getDeciFormat().format(Double.valueOf(display.getText())); //Converts double to String
                 //and formats it, stripping any trailing zeros and the floating point from the number displayed
-
 
             if (pointAndZeroCleared.matches("-0")) {    //Checks if the resulting trimmed value turned out to be "-0"
 
@@ -118,15 +114,10 @@ public class CalculatorController {
                 //and set num2
 
                 display.setText(pointAndZeroCleared);           //Outputs the corrected value to the display
-
-
                 model.setNum2(display.getText());          //Stores the current displayed number in the global variable num2
 
                 //Show the current operation on the mini display
-
                 displayMini.setText(model.formatOutput(model.getNum1()) + " " + model.getFlag() + " " + model.getNumIterative() + " =");
-
-
             }
 
             if (!Objects.equals(model.getNum1(), "") && !Objects.equals(model.getNum2(), "") && !model.isCalculated()) {
@@ -134,30 +125,28 @@ public class CalculatorController {
                 //calculated
 
                 display.setText(pointAndZeroCleared);   //Outputs the corrected value to the display
-
-
                 String result = model.calcInter();    //Pass the current displayed value to calculate an
                 //intermediate result
 
                 updateDisplay(result);  //Output the calculated value
-                model.setFlag(button.getText());                //Sets the operator flag corresponding to the button's text
+                model.setFlag(button.getText());    //Sets the operator flag corresponding to the button's text
 
                 //Show the current operation on the mini display
                 displayMini.setText(model.formatOutput(model.getNum1()) + " " + model.getFlag());
-
                 model.setCalculated(true);    //Prevents from iterating on the result while waiting for the next operand
 
-
-            } else {
-                //Does the regular thing if none of the operands are known yet
+            } else {    //Does the regular thing if none of the operands are known yet
 
                 display.setText(model.formatOutput(pointAndZeroCleared));   //Outputs the corrected value to the display
-                model.setNum1(display.getText());               //Stores the current displayed number in the global variable num1
-                model.setFlag(button.getText());                //Sets the operator flag corresponding to the button's text
-                displayMini.setText(model.formatOutput(model.getNum1()) + " " + model.getFlag());   //Show the 1st operand and the operator on the mini display
-                model.setAfterTheOperator(true);          //This lets the digit buttons know that they have to overwrite the number
+                model.setNum1(display.getText());   //Stores the current displayed number in the global variable num1
+                model.setFlag(button.getText());    //Sets the operator flag corresponding to the button's text
+
+                //Show the 1st operand and the operator on the mini display
+                displayMini.setText(model.formatOutput(model.getNum1()) + " " + model.getFlag());
+                model.setAfterTheOperator(true);    //This lets the digit buttons know that they have to overwrite the number
                 //displayed
-                model.setNumIterative("");                 //Empties numIterative so that the function, calculating the result, knows
+
+                model.setNumIterative("");  //Empties numIterative so that the function, calculating the result, knows
                 //that the next iteration will be the 1st and to use the num2 variable as the
                 //2nd operand instead of numIterative
             }
@@ -176,32 +165,32 @@ public class CalculatorController {
         }
 
         else {
+
             try {    //Prevent double_max_value overflow from crashing the app via the infinity sign
 
                 String result = model.calculate(display.getText());    //Pass the current displayed value to calculate() the res.
 
                 //Show the current operation on the mini display
-
                 if (Objects.equals(model.getNumIterative(), "") && Objects.equals(model.getNum1(), "")) {
                     //do nothing
                 }
 
                 if (Objects.equals(model.getNumIterative(), "") && !Objects.equals(model.getNum1(), "")) {
+
                     displayMini.setText(model.formatOutput(model.getNum1()) + " " + model.getFlag());
+
                 } else {
+
                     displayMini.setText(model.formatOutput(model.getNum1()) + " " + model.getFlag() + " " + model.formatOutput(model.getNumIterative()) + " =");
                 }
 
                 updateDisplay(result);  //Output the calculated value
-
 
             } catch (NumberFormatException e) {   //Clear and reset everything
 
                 resetAfterError();
             }
         }
-
-
     }
 
     public void onButtonRepeatSwitchClick() {
@@ -226,7 +215,6 @@ public class CalculatorController {
         if (displayed > 0) {    //If the number is positive
 
             double displayNeg = -displayed;     //Convert to negative and store in displayNeg
-
             display.setText(model.getDeciFormat().format(Double.valueOf(displayNeg)));   //Trim the final value, convert to String, and
             //output to the display
         }
@@ -248,7 +236,6 @@ public class CalculatorController {
 
             //Then I'd like the app to input "0." for the 1st operand or the 2nd operand
             //for us if we hit the f.point button after either seeing the result or pressing an operator button:
-
             display.setText("0.");
             model.setAfterTheOperator(false);   //Reset both flags
             model.setEquals(false);
