@@ -143,6 +143,8 @@ public class CalculatorController {
                 model.setNumIterative("");  //Empties numIterative so that the function, calculating the result, knows
                 //that the next iteration will be the 1st and to use the num2 variable as the
                 //2nd operand instead of numIterative
+
+                model.setCalculated(true);
             }
         } catch (NumberFormatException | ArithmeticException e){  //Clear and reset everything
 
