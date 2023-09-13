@@ -16,6 +16,8 @@ public class CalculatorModel {  //Main logic
     private String numIterative = ""; //Stores the latest operand to be used as the 2nd operand during iterative calculation
     //Used in a couple of unique checks
 
+    private boolean isIterativeOn = true;   //Iterative switch flag, if false "=" won't iterate the result
+
     private Boolean afterTheOperator = false; //This flag lets the Onclick functions of the number buttons know that
     //an operator button has been pressed, and they need to replace the displayed number
     //entirely instead of appending digits to it.
@@ -33,6 +35,15 @@ public class CalculatorModel {  //Main logic
     private boolean isCalculated;   //Used to prevent repeated calculation on continuous operator button press if true
 
     //Setters and getters
+
+
+    public boolean isIterativeOn() {
+        return isIterativeOn;
+    }
+
+    public void setIterativeOn(boolean iterativeOn) {
+        isIterativeOn = iterativeOn;
+    }
 
     public String getFlag() {
         return flag;

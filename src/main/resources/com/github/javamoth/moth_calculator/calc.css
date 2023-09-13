@@ -23,11 +23,6 @@
     -fx-fill: white;
 }
 
-#buttonRepeatSwitch {
--fx-background-color: #3C486B;
--fx-text-fill: #61677A
-}
-
 #buttonBackspace {
    -fx-background-image: url("bsp.png");
    -fx-background-repeat: stretch;

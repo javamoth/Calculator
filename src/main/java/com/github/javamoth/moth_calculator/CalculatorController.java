@@ -28,7 +28,7 @@ public class CalculatorController {
 
     //Defining button variables to use them in the highlighting on press method etc.
     @FXML
-    private Button buttonNegative, buttonPoint, buttonC, buttonEquals, buttonBackspace;
+    private Button buttonNegative, buttonPoint, buttonC, buttonEquals, buttonBackspace, buttonRepeatSwitch;
 
     //Button onAction methods
 
@@ -191,7 +191,8 @@ public class CalculatorController {
     @FXML
     public void onButtonRepeatSwitchClick() {
 
-        //Implement method
+        highlightOnKeyPress(buttonRepeatSwitch);
+        model.setIterativeOn(!model.isIterativeOn());
     }
 
     @FXML
