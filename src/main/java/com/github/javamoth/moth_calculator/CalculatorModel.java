@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class CalculatorModel {  //Main logic
 
-    private String flag; //Stores the operator: +, -, *, /
+    private String flag = ""; //Stores the operator: +, -, *, /
 
     private String num1 = ""; //Stores the 1st operand
 
