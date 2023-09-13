@@ -156,7 +156,7 @@ public class Main extends Application {
 
         });
 
-        stage.setTitle("Moth Calculator v1.30");
+        stage.setTitle("Moth Calculator v1.40");
         stage.setScene(scene);
         stage.setResizable(false);  //Prohibit resizing the window as the sizes of all elements are hard-coded
         stage.show();

@@ -178,7 +178,7 @@ public class CalculatorController {
 
                 } else {
 
-                        displayMini.setText(model.formatOutput(model.getNum1()) + " " + model.getFlag() + " " + model.formatOutput(model.getNumIterative()) + " =");
+                    displayMini.setText(model.formatOutput(model.getNum1()) + " " + model.getFlag() + " " + model.formatOutput(model.getNumIterative()) + " =");
                 }
 
                 updateDisplay(result);  //Output the calculated value
