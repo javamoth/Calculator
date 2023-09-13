@@ -95,6 +95,7 @@ public class Main extends Application {
 
             if (!key.isShiftDown() && ((key.getCode() == KeyCode.EQUALS) || (key.getCode() == KeyCode.ENTER))) {
                 buttonEquals.fire();
+                key.consume();
             }
 
             //Same as above

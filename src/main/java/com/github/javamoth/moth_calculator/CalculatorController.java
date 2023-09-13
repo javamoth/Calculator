@@ -198,16 +198,16 @@ public class CalculatorController {
 
             //This is the only way I've found to be working when I wanted the repeat switch to still have hover effects
             //setStyle with the :hover pseudo class just didn't work
-            buttonRepeatSwitch.setOnMouseEntered(t -> buttonRepeatSwitch.setStyle("-fx-background-color:#af380f;"));
-            buttonRepeatSwitch.setOnMouseExited(t -> buttonRepeatSwitch.setStyle("-fx-background-color:#E25E3E;"));
+            buttonRepeatSwitch.setOnMouseEntered(r -> buttonRepeatSwitch.setStyle("-fx-background-color:#af380f;"));
+            buttonRepeatSwitch.setOnMouseExited(r -> buttonRepeatSwitch.setStyle("-fx-background-color:#E25E3E;"));
         });
 
         Runnable deactivate = () -> Platform.runLater(() -> {
 
             model.setIterativeOn(true);
             buttonRepeatSwitch.setStyle("-fx-background-color: #526D82;");    //Reset the bg color to default
-            buttonRepeatSwitch.setOnMouseEntered(t -> buttonRepeatSwitch.setStyle("-fx-background-color:#164B60;"));
-            buttonRepeatSwitch.setOnMouseExited(t -> buttonRepeatSwitch.setStyle("-fx-background-color:#526D82;"));
+            buttonRepeatSwitch.setOnMouseEntered(r -> buttonRepeatSwitch.setStyle("-fx-background-color:#164B60;"));
+            buttonRepeatSwitch.setOnMouseExited(r -> buttonRepeatSwitch.setStyle("-fx-background-color:#526D82;"));
         });
 
         if (model.isIterativeOn()) {
