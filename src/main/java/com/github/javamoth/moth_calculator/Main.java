@@ -15,11 +15,13 @@ import java.io.IOException;
 
 public class Main extends Application {
 
-    //maximum width of the text/label
+    //Maximum width of the text
     private final double MAX_TEXT_WIDTH = 300;
-    //default (non-scaled) font size of the text/label
+
+    //Default (non-scaled) font size of the text
     private final double displayFontSize = 27;
     private final Font displayFont = Font.font(displayFontSize);
+
     private final double miniDisplayFontSize = 15;
     private final Font miniDisplayFont = Font.font(miniDisplayFontSize);
 
@@ -30,7 +32,8 @@ public class Main extends Application {
 
         Scene scene = new Scene(fxmlLoader.load(), 340, 425);
 
-        Label display = (Label) scene.lookup("#display");   //Accessing both displays to later reduce font size in them
+        //Accessing both displays to later reduce font size in them
+        Label display = (Label) scene.lookup("#display");
         Label miniDisplay = (Label) scene.lookup("#displayMini");
 
         //Accessing the buttons in the .fxml file and assigning them to variables
@@ -149,7 +152,7 @@ public class Main extends Application {
 
         stage.setTitle("Moth Calculator v1.30");
         stage.setScene(scene);
-        stage.setResizable(false);
+        stage.setResizable(false);  //Prohibit resizing the window as the sizes of all elements are hard-coded
         stage.show();
 
         CalculatorController calculatorController = fxmlLoader.getController();   //Access stuff in CalculatorController.java
