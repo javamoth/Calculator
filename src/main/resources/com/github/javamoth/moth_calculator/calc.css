@@ -37,3 +37,7 @@
    -fx-background-position:  center 19;
 }
 
+.tooltip {
+    -fx-font-size: 14;
+}
+

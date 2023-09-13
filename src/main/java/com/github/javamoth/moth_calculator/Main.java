@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
@@ -108,6 +109,8 @@ public class Main extends Application {
                 key.consume();
             }
         });
+
+        buttonRepeatSwitch.setTooltip(new Tooltip("Doesn't do anything yet"));
 
         //Dynamically reduce the font size when the numbers get longer, main display
         display.setFont(displayFont);
