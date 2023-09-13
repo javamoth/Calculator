@@ -194,9 +194,12 @@ public class CalculatorController {
     public void onButtonRepeatSwitchClick() {
 
         Runnable activate = () -> Platform.runLater(() -> { //Not on the FX thread
+
             model.setIterativeOn(false);
             buttonRepeatSwitch.setStyle("-fx-background-color: #E25E3E;");    //Set the stylesheet back to change
 
+            //This is the only way I've found to be working when I wanted the repeat switch to still have hover effects
+            //setStyle with the :hover pseudo class just didn't work
             buttonRepeatSwitch.setOnMouseEntered(new EventHandler<MouseEvent>() {
 
                 @Override
@@ -215,8 +218,6 @@ public class CalculatorController {
                 }
             });
         });
-
-
 
         Runnable deactivate = () -> Platform.runLater(() -> { //Not on the FX thread
 
@@ -244,12 +245,12 @@ public class CalculatorController {
 
         if (model.isIterativeOn()) {
 
-            executor.execute(activate);    //Switch iterative calculation on
+            executor.execute(activate);    //Turn the switch on (Iterative calculation will be off)
         }
 
         if (!model.isIterativeOn()) {
 
-            executor.execute(deactivate);    //Switch iterative calculation on
+            executor.execute(deactivate);    //Turn the switch off (Iterative calculation will be on)
         }
     }
 
