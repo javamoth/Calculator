@@ -28,7 +28,7 @@ public class CalculatorModel {  //Main logic
 
     private final DecimalFormat SCI_FORMAT = new DecimalFormat("0.##########E0");  //Presets the scientific notation pattern
 
-    private BigDecimal result = new BigDecimal("0").setScale(31, RoundingMode.UP);  //Where result is stored
+    private BigDecimal result = new BigDecimal("0").setScale(19, RoundingMode.HALF_UP);  //Where result is stored
 
     private boolean isCalculated;   //Used to prevent repeated calculation on continuous operator button press if true
 
@@ -97,7 +97,7 @@ public class CalculatorModel {  //Main logic
 
 
 
-    public String calculate(String currentValue) throws NumberFormatException {   //Calculate the result
+    public String calculate(String currentValue) throws NumberFormatException, ArithmeticException {   //Calculate the result
 
             if (!Objects.equals(numIterative, "")) {    //If numIterative is not empty, that means the 2nd operand
                 //from the previous operation has been stored in numIterative, and will be used again as the 2nd operand here
@@ -141,7 +141,7 @@ public class CalculatorModel {  //Main logic
 
             if (Objects.equals(flag, "/")) {
 
-                result = new BigDecimal(num1).divide((new BigDecimal(num2)), RoundingMode.CEILING);
+                result = new BigDecimal(num1).divide((new BigDecimal(num2)), 19, RoundingMode.HALF_UP);
             }
 
             equals = true;  //Sets the equals flag to true, this lets the digit buttons know to overwrite the number

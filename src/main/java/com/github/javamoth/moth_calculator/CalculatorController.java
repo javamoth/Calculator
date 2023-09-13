@@ -62,7 +62,7 @@ public class CalculatorController {
                 display.setText(num);   //Displays the resulting number
             }
 
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | ArithmeticException e) {
 
             resetAfterError();
         }
@@ -144,7 +144,7 @@ public class CalculatorController {
                 //that the next iteration will be the 1st and to use the num2 variable as the
                 //2nd operand instead of numIterative
             }
-        } catch (NumberFormatException e){  //Clear and reset everything
+        } catch (NumberFormatException | ArithmeticException e){  //Clear and reset everything
 
             resetAfterError();
         }
@@ -181,7 +181,7 @@ public class CalculatorController {
 
                 updateDisplay(result);  //Output the calculated value
 
-            } catch (NumberFormatException e) {   //Clear and reset everything
+            } catch (NumberFormatException | ArithmeticException e) {   //Clear and reset everything
 
                 resetAfterError();
             }
