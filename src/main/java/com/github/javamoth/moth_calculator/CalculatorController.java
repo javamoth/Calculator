@@ -40,10 +40,10 @@ public class CalculatorController {
 
         highlightOnKeyPress(button);    //Pass the current button to highlightOnKeyPress so that it lights up when fired
 
-        try {   //Prevent double_max_value overflow from crashing the app via the infinity sign
+        try {   //Prevent from crashing the app via the infinity sign/overflow
 
             //Checks if the "0" without the f. point is being displayed or either an operator button or "=" being previously pressed
-            if ((BigDecimal.valueOf(Double.parseDouble(display.getText())).signum() == 0 && !display.getText().contains(".")) || model.getAfterTheOperator() || model.getEquals()) {
+            if ((new BigDecimal(display.getText()).signum() == 0 && !display.getText().contains(".")) || model.getAfterTheOperator() || model.getEquals()) {
 
                 display.setText(button.getText());  //Resets the displayed number to the button's digit
                 model.setAfterTheOperator(false);   //Sets the operator flag to "false" after the 1st press to allow for
@@ -93,7 +93,7 @@ public class CalculatorController {
 
             highlightOnKeyPress(button);    //Pass the current button to highlightOnKeyPress so that it lights up when fired
 
-        try {   //Prevent double_max_value overflow from crashing the app via the infinity sign
+        try {   //Prevent crashing the app via the infinity sign/overflow
 
                 //Just in case the user has backspaced to "-0." after entering the 1st operand we perform the steps below
                 String pointAndZeroCleared = model.formatOutput(display.getText()); //Converts double to String
@@ -161,7 +161,7 @@ public class CalculatorController {
 
         else {
 
-            try {    //Prevent double_max_value overflow from crashing the app via the infinity sign
+            try {    //Prevent crashing the app via the infinity sign/overflow
 
                 String result = model.calculate(display.getText());    //Pass the current displayed value to calculate() the res.
 
