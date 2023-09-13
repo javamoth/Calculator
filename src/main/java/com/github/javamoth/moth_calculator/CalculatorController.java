@@ -198,7 +198,7 @@ public class CalculatorController {
     public void onButtonNegativeClick() {   //Switching to negative or positive number
 
         highlightOnKeyPress(buttonNegative);
-        BigDecimal displayed = BigDecimal.valueOf(Double.parseDouble(display.getText())); //Grab the displayed value, convert it to double
+        BigDecimal displayed = new BigDecimal(display.getText()); //Grab the displayed value, convert it to double
         //and store in displayed
 
         if (displayed.signum() == -1) {    //If the number is negative
@@ -220,7 +220,7 @@ public class CalculatorController {
     public void onButtonPointClick() {      //Introducing the floating point
 
         highlightOnKeyPress(buttonPoint);
-        String displayed = display.getText();   //Store currently displayed text into displayed
+        String displayed = display.getText();   //Store the currently displayed text into "displayed"
 
         if (!displayed.contains(".") && (!model.getAfterTheOperator() && !model.getEquals())) { //If there's no f.point already and none
             //of the flags is set to "true"

@@ -29,6 +29,7 @@ public class CalculatorModel {  //Main logic
     private final DecimalFormat SCI_FORMAT = new DecimalFormat("0.##########E0");  //Presets the scientific notation pattern
 
     private BigDecimal result = new BigDecimal("0").setScale(19, RoundingMode.HALF_UP);  //Where result is stored
+//    private BigDecimal result = new BigDecimal(0);  //Where result is stored
 
     private boolean isCalculated;   //Used to prevent repeated calculation on continuous operator button press if true
 
