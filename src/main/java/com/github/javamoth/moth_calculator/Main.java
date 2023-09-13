@@ -78,10 +78,10 @@ public class Main extends Application {
                 case MULTIPLY -> {buttonMultiply.fire(); key.consume();}
                 case DIVIDE, BACK_SLASH -> {buttonDivide.fire(); key.consume();}
                 case DELETE -> {buttonC.fire(); key.consume();}
-                case DECIMAL, PERIOD, F11 -> {buttonPoint.fire(); key.consume();}
+                case DECIMAL, PERIOD, F11, SLASH -> {buttonPoint.fire(); key.consume();}    //SLASH is for RU period
                 case F10 -> {buttonNegative.fire(); key.consume();}
                 case BACK_SPACE, F12 -> {buttonBackspace.fire(); key.consume();}
-//              default -> System.out.println(key.getCode()); //Use this for debugging
+              default -> System.out.println(key.getCode()); //Use this for debugging
             }
 
             //For this number row key we need to trigger an event with both shift pressed
