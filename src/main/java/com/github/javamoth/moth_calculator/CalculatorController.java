@@ -2,9 +2,11 @@ package com.github.javamoth.moth_calculator;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -191,37 +193,64 @@ public class CalculatorController {
     @FXML
     public void onButtonRepeatSwitchClick() {
 
-        Runnable activate = () -> {
+        Runnable activate = () -> Platform.runLater(() -> { //Not on the FX thread
             model.setIterativeOn(false);
-            buttonRepeatSwitch.setStyle("-fx-background-color: #E25E3E");    //Set the stylesheet back to change
-            // color on hover
-        };
+            buttonRepeatSwitch.setStyle("-fx-background-color: #E25E3E;");    //Set the stylesheet back to change
 
-        Runnable deactivate = () -> {
+            buttonRepeatSwitch.setOnMouseEntered(new EventHandler<MouseEvent>() {
+
+                @Override
+                public void handle(MouseEvent t) {
+
+                    buttonRepeatSwitch.setStyle("-fx-background-color:#af380f;");
+                }
+            });
+
+            buttonRepeatSwitch.setOnMouseExited(new EventHandler<MouseEvent>() {
+
+                @Override
+                public void handle(MouseEvent t) {
+
+                    buttonRepeatSwitch.setStyle("-fx-background-color:#E25E3E;");
+                }
+            });
+        });
+
+
+
+        Runnable deactivate = () -> Platform.runLater(() -> { //Not on the FX thread
+
             model.setIterativeOn(true);
-            buttonRepeatSwitch.setStyle("-fx-background-color: #526D82");    //Set the stylesheet back to change
-            // color on hover
-        };
+            buttonRepeatSwitch.setStyle("-fx-background-color: #526D82;");    //Set the stylesheet back to change
 
+            buttonRepeatSwitch.setOnMouseEntered(new EventHandler<MouseEvent>() {
+
+                @Override
+                public void handle(MouseEvent t) {
+
+                    buttonRepeatSwitch.setStyle("-fx-background-color:#164B60;");
+                }
+            });
+
+            buttonRepeatSwitch.setOnMouseExited(new EventHandler<MouseEvent>() {
+
+                @Override
+                public void handle(MouseEvent t) {
+
+                    buttonRepeatSwitch.setStyle("-fx-background-color:#526D82;");
+                }
+            });
+        });
 
         if (model.isIterativeOn()) {
 
             executor.execute(activate);    //Switch iterative calculation on
-
-
-
         }
 
         if (!model.isIterativeOn()) {
 
             executor.execute(deactivate);    //Switch iterative calculation on
         }
-
-
-
-
-
-
     }
 
     @FXML

@@ -30,3 +30,10 @@
    -fx-background-position:  center 20;
 }
 
+#buttonRepeatSwitch {
+   -fx-background-image: url("iterative_switch.png");
+   -fx-background-repeat: stretch;
+   -fx-background-size: 25 22;
+   -fx-background-position:  center 19;
+}
+

@@ -30,7 +30,7 @@
             <Insets right="2.0" />
          </GridPane.margin></Label>
 
-       <Button fx:id="buttonRepeatSwitch" layoutX="88.0" layoutY="74.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onButtonRepeatSwitchClick" prefHeight="57.0" prefWidth="77.0" text="R" GridPane.columnIndex="0" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.vgrow="NEVER">
+       <Button fx:id="buttonRepeatSwitch" layoutX="88.0" layoutY="74.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onButtonRepeatSwitchClick" prefHeight="57.0" prefWidth="77.0" text="" GridPane.columnIndex="0" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.vgrow="NEVER">
            <font>
                <Font size="27.0" />
            </font></Button>
