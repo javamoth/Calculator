@@ -126,22 +126,22 @@ public class CalculatorModel {  //Main logic
 
             if (Objects.equals(flag, "+")) {    //If "flag" equals to "+"
 
-                result = BigDecimal.valueOf(Double.parseDouble(num1)).add(BigDecimal.valueOf(Double.parseDouble(num2)));   //Perform the calculation and store the res.
+                result = new BigDecimal(num1).add(new BigDecimal(num2));   //Perform the calculation and store the res.
             }
 
             if (Objects.equals(flag, "-")) {
 
-                result = BigDecimal.valueOf(Double.parseDouble(num1)).subtract(BigDecimal.valueOf(Double.parseDouble(num2)));
+                result = new BigDecimal(num1).subtract(new BigDecimal(num2));
             }
 
             if (Objects.equals(flag, "*")) {
 
-                result = BigDecimal.valueOf(Double.parseDouble(num1)).multiply(BigDecimal.valueOf(Double.parseDouble(num2)));
+                result = new BigDecimal(num1).multiply(new BigDecimal(num2));
             }
 
             if (Objects.equals(flag, "/")) {
 
-                result = BigDecimal.valueOf(Double.parseDouble(num1)).divide(BigDecimal.valueOf(Double.parseDouble(num2)), RoundingMode.CEILING);
+                result = new BigDecimal(num1).divide((new BigDecimal(num2)), RoundingMode.CEILING);
             }
 
             equals = true;  //Sets the equals flag to true, this lets the digit buttons know to overwrite the number
