@@ -191,8 +191,37 @@ public class CalculatorController {
     @FXML
     public void onButtonRepeatSwitchClick() {
 
-        highlightOnKeyPress(buttonRepeatSwitch);
-        model.setIterativeOn(!model.isIterativeOn());
+        Runnable activate = () -> {
+            model.setIterativeOn(false);
+            buttonRepeatSwitch.setStyle("-fx-background-color: #E25E3E");    //Set the stylesheet back to change
+            // color on hover
+        };
+
+        Runnable deactivate = () -> {
+            model.setIterativeOn(true);
+            buttonRepeatSwitch.setStyle("-fx-background-color: #526D82");    //Set the stylesheet back to change
+            // color on hover
+        };
+
+
+        if (model.isIterativeOn()) {
+
+            executor.execute(activate);    //Switch iterative calculation on
+
+
+
+        }
+
+        if (!model.isIterativeOn()) {
+
+            executor.execute(deactivate);    //Switch iterative calculation on
+        }
+
+
+
+
+
+
     }
 
     @FXML
