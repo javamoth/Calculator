@@ -25,9 +25,10 @@ public class CalculatorModel {  //Main logic
     //entirely instead of appending digits to it.
 
     private final DecimalFormat DECI_FORMAT = new DecimalFormat("0.############");   //Presets the decimal format to be used
+
     private final DecimalFormat SCI_FORMAT = new DecimalFormat("0.##########E0");  //Presets the scientific notation pattern
 
-    private BigDecimal result = new BigDecimal(0).setScale(21, RoundingMode.CEILING);  //Where result is stored
+    private BigDecimal result = new BigDecimal("0").setScale(31, RoundingMode.UP);  //Where result is stored
 
     private boolean isCalculated;   //Used to prevent repeated calculation on continuous operator button press if true
 
@@ -92,6 +93,9 @@ public class CalculatorModel {  //Main logic
     public void setResult(BigDecimal result) {
         this.result = result;
     }
+
+
+
 
     public String calculate(String currentValue) throws NumberFormatException {   //Calculate the result
 
@@ -163,7 +167,7 @@ public class CalculatorModel {  //Main logic
             number = number.replaceAll( "-0", "");
         }
 
-        BigDecimal num = BigDecimal.valueOf(Double.parseDouble(number));
+        BigDecimal num = new BigDecimal(number);
         BigDecimal max = new BigDecimal("1000000000000000000000000000000000000000");
         BigDecimal min = new BigDecimal("-100000000000000000000000000000000000000");
 
