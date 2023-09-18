@@ -1,4 +1,4 @@
-# Calculator v1.41 
+# Moth Calculator v1.41 
 
 ![calc](https://github.com/javamoth/Moth_Calculator/assets/143262476/bbe9f7b9-14e9-4651-bac7-19a2efa70d9c)
 
