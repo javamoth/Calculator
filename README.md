@@ -15,5 +15,5 @@
 ## Not-so-obvious hotkeys: 
 
 Positive/negative:  F10  
-Floating point:     F11 / EN period / RU period / Numpad decimal  
+Decimal point:     F11 / EN period / RU period / Numpad decimal  
 Backspace:          F12 / Backspace  
